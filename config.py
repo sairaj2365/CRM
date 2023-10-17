@@ -50,5 +50,57 @@ class Config:
         "https://jjuser:JJJJpassword2022!@con-na-visine-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
         "https://jjuser:JJJJpassword2022!@con-na-sudafed-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins"
     ]
+
+    URLs_to_test_en_prod = [
+        "https://www.aveeno.ca/careclub",
+        "https://www.bandaid.ca/careclub",
+        "https://www.benadryl.ca/careclub",
+        "https://www.cleanandclear.ca/careclub",
+        "https://www.johnsonsbaby.ca/careclub",
+        "https://www.listerine.ca/careclub",
+        "https://www.neutrogena.ca/careclub",
+        "https://www.nicorette.ca/careclub",
+        "https://www.jnjcanada.com/careclub",
+        "https://www.benylin.ca/careclub",
+        "https://www.imodium.ca/careclub",
+        "https://www.motrin.ca/careclub",
+        "https://www.nicoderm.ca/careclub",
+        "https://www.penaten.ca/careclub",
+        "https://www.pepcid.ca/careclub",
+        "https://www.polysporin.ca/careclub",
+        "https://www.reactine.ca/careclub",
+        "https://www.rogaine.ca/careclub",
+        "https://www.sudafed.ca/careclub",
+        "https://www.tylenol.ca/careclub",
+        "https://www.visine.ca/careclub",
+        "https://www.zarbees.ca/careclub"
+    ]
+
+    URLs_to_test_fr_prod = [
+        "https://fr.aveeno.ca/clubbonssoins",
+        "https://fr.bandaid.ca/clubbonssoins",
+        "https://fr.benadryl.ca/clubbonssoins",
+        "https://fr.cleanandclear.ca/clubbonssoins",
+        "https://fr.johnsonsbaby.ca/clubbonssoins",
+        "https://fr.listerine.ca/clubbonssoins",
+        "https://fr.neutrogena.ca/clubbonssoins",
+        "https://fr.nicorette.ca/clubbonssoins",
+        "https://fr.jnjcanada.com/clubbonssoins",
+        "https://fr.benylin.ca/clubbonssoins",
+        "https://fr.imodium.ca/clubbonssoins",
+        "https://fr.motrin.ca/clubbonssoins",
+        "https://fr.nicoderm.ca/clubbonssoins",
+        "https://fr.penaten.ca/clubbonssoins",
+        "https://fr.pepcid.ca/clubbonssoins",
+        "https://fr.polysporin.ca/clubbonssoins",
+        "https://fr.reactine.ca/clubbonssoins",
+        "https://fr.rogaine.ca/clubbonssoins",
+        "https://fr.sudafed.ca/clubbonssoins",
+        "https://fr.tylenol.ca/clubbonssoins",
+        "https://fr.visine.ca/clubbonssoins",
+        "https://fr.zarbees.ca/clubbonssoins"
+    ]
+
     privacy_policy_link_en = "https://www.jnjcanada.com/privacy-policy"
+    terms_condition_link_en = "https://www.amazon.ca/careclubwelcometerms23_en"
     

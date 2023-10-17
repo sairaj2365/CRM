@@ -1,5 +1,7 @@
-testcase,expected_url,page_title
-test_page_url_path,careclub
-test_page_url_path_fr,clubbonssoins
-test_page_title,careclub,Sign up for Care Club for Exclusive Benefits | 
-test_page_title_fr,clubbonssoins,Inscrivez-vous au Club Bons soins | 
+testcase,expected_url,page_title,logo_text,brand_text,href_en,href_fr
+test_page_url_path,careclub,,,,,
+test_page_url_path_fr,clubbonssoins,,,,,
+test_page_title,careclub,Sign up for Care Club for Exclusive Benefits | ,,,,
+test_page_title_fr,clubbonssoins,Inscrivez-vous au Club Bons soins | ,,,,
+test_img_alt_tags,,,Care Club logo,"Logos of 21 Johnson & Johnson brands, including Aveeno, Band-Aid, Benadryl, Benylin, Clean & Clear, Imodium, Johnson’s, Listerine, Motrin, Neutrogena, Nicoderm, Nicorette, Penaten, Pepcid, Polysporin, Reactine, Rogaine, Sudafed, Tylenol, Visine and Zarbee's",,
+test_href_lang,,,,,en-CA,fr-CA

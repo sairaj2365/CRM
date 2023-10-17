@@ -1,15 +1,9 @@
-import config
 from playwright.sync_api import Playwright, sync_playwright, Page, BrowserContext, Browser, expect
+from utils.actions import Action
 
 class Webform:
-    #Text will be moved to excel sheet
     jnj_title_text = "Johnson and Johnson Inc."
     jnj_meta_text = "Get more out of JNJ Canada by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to all product releases!"
-    meta_desc = "Looking to get more out of TYLENOL®? Sign up to be a Care Club member to receive exclusive offers, personalized emails & access to new product releases."
-    logo_alt = "Care Club logo"
-    brand_alt = "Logos of 21 Johnson & Johnson brands, including Aveeno, Band-Aid, Benadryl, Benylin, Clean & Clear, Imodium, Johnson’s, Listerine, Motrin, Neutrogena, Nicoderm, Nicorette, Penaten, Pepcid, Polysporin, Reactine, Rogaine, Sudafed, Tylenol, Visine and Zarbee's"
-    href_en_text = "en-CA"
-    href_fr_text = "fr-CA"
     privacy_policy_data_en_p1 = "Your personal information will be governed by the Privacy Policy Open link in new window and will be used by Johnson & Johnson, Inc. (“Kenvue”), and its third party service providers inside and outside QC & Canada. You consent to the transfer of your data to jurisdictions outside your province and/or country of residence, which may have different data protection rules governing your personal information."
     privacy_policy_data_fr_p1 = "Vos renseignements personnels seront régis par notre Politique de confidentialité Open link in new window et seront utilisés par Johnson & Johnson, Inc. (« Kenvue ») et ses tiers fournisseurs de services au Québec, au Canada et à l’étranger. Vous acceptez que vos données soient transférées vers des juridictions situées en dehors de votre province et/ou de votre pays de résidence, où les règles de protection des données peuvent différer de celles qui régissent vos renseignements personnels."
     privacy_policy_data_en_p2 = "You may opt-out of receiving emails from us at any time by following the unsubscribe instructions provided in any email message sent to you. Johnson & Johnson Inc., 88 McNabb Street, Markham, ON L3R 5L2, 1‑800‑265‑7323."
@@ -26,7 +20,7 @@ class Webform:
         self.href_lang_fr = page.locator("link[hreflang = 'fr-CA']")
         self.privacy_policy_en_p1 = page.locator(".careclub-form .careclub-warnings p:nth-child(2)")
         self.privacy_policy_en_p2 = page.locator(".careclub-form .careclub-warnings p:nth-child(3)")
-        self.privacy_policy_data_link = page.locator(".careclub-warnings p:nth-child(2) a")
+        self.privacy_policy_data_link = page.locator('.careclub-warnings > p:nth-child(2) > a')
         self.first_name = page.locator("#edit-name")
         self.email = page.locator("#edit-email")
         self.verify_email = page.locator("#edit-confirm-email")
@@ -39,6 +33,10 @@ class Webform:
         self.checkbox_error_message_1 = page.locator("div:nth-child(9) > .error-required")
         self.checkbox_error_message_2 = page.locator("div:nth-child(8) > .error-required")
         self.recaptcha_error_message = page.locator(".recaptcha-error")
+        self.name_error_invalid = page.locator("div:nth-child(4) > .error-format")
+        self.email_error_invalid = page.locator("div:nth-child(5) > .error-format")
+        self.verify_email_error_message_invalid = page.locator("div:nth-child(6) > .error-format")
+        self.terms_link = page.get_by_role("link", name="full terms and conditions.")
 
     """
     Function to verify page titles
@@ -84,10 +82,10 @@ class Webform:
     Function to verify image alt tag
     """
 
-    def check_img_alt_tags(self,image_name):
+    def check_img_alt_tags(self,image_name, alt):
         if image_name == "logo":
             alt_text = self.logo_image.get_attribute('alt')
-            if alt_text == Webform.logo_alt:
+            if alt_text == alt:
                 assert True
                 print(f"Image Alt Text: {alt_text}")
             else:
@@ -95,7 +93,7 @@ class Webform:
         
         if image_name == "brand":
             alt_text = self.brand_image.get_attribute('alt')
-            if alt_text == Webform.brand_alt:
+            if alt_text == alt:
                 assert True
                 print(f"Image Alt Text: {alt_text}")
             else:
@@ -104,10 +102,10 @@ class Webform:
     """
     Function to verify href lang
     """
-    def check_href_lang(self,site):
+    def check_href_lang(self,site, href):
         if  site == "EN":
             href_text = self.href_lang_en.get_attribute('hreflang')
-            if href_text == Webform.href_en_text:
+            if href_text == href:
                 assert True
                 print(f"href lang text is: {href_text}")
             else:
@@ -115,12 +113,11 @@ class Webform:
         
         if  site == "FR":
             href_text = self.href_lang_fr.get_attribute('hreflang')
-            if href_text == Webform.href_fr_text:
+            if href_text == href:
                 assert True
                 print(f"href lang text is: {href_text}")
             else:
                 assert False, f"href lang text not present."
-
 
     """
     Function to verify privacy policy content
@@ -133,18 +130,14 @@ class Webform:
                 p_text2 = self.privacy_policy_en_p2
                 expect(p_text1).to_have_text(Webform.privacy_policy_data_en_p1)
                 expect(p_text2).to_have_text(Webform.privacy_policy_data_en_p2)
-                assert True
                 print(f"Text is present and is correct: '{Webform.privacy_policy_data_en_p1 + Webform.privacy_policy_data_en_p2}'")
-                self.privacy_policy_data_link.click()
 
             if site_name == "FR":
                 p_text1 = self.privacy_policy_en_p1
                 p_text2 = self.privacy_policy_en_p2
                 expect(p_text1).to_have_text(Webform.privacy_policy_data_fr_p1)
                 expect(p_text2).to_have_text(Webform.privacy_policy_data_fr_p2)
-                assert True
                 print(f"Text is present and is correct: '{Webform.privacy_policy_data_fr_p1 + Webform.privacy_policy_data_fr_p2}'")
-                self.privacy_policy_data_link.click()
         except TimeoutError:
             print(f"Text not present.")
 
@@ -182,50 +175,98 @@ class Webform:
         button = self.submit
         button.highlight()
         button.click()
-
     
     """
     Function to verify form error messages for empty fields
     """
-    def error_messages_empty_fields(self, name_error, email_error, verify_email_error, checkbox_error, recaptcha_error):
-        brand = self.brand_name
-        try:
-            #name
-            error_name = self.name_error
-            expect(error_name).to_have_text(name_error)
-            assert True
-            print(f"Error message is present and is correct: '{name_error}'")
+    def error_messages_fields(self, name_error, email_error, verify_email_error, checkbox_error, recaptcha_error, type):
+        if type == 'empty':
+            brand = self.brand_name
+            try:
+                #name
+                error_name = self.name_error
+                expect(error_name).to_have_text(name_error)
+                print(f"Error message is present and is correct: '{name_error}'")
 
-            #email
-            error_email = self.email_error
-            expect(error_email).to_have_text(email_error)
-            assert True
-            print(f"Error message is present and is correct: '{email_error}'")
+                #email
+                error_email = self.email_error
+                expect(error_email).to_have_text(email_error)
+                print(f"Error message is present and is correct: '{email_error}'")
 
-            if (brand == "TYLENOL®" or brand == "NEUTROGENA®" or brand == "REACTINE®" or brand == "Johnson & Johnson Canada"):
-                #verify email
-                error_verify_email = self.verify_email_error_message
-                expect(error_verify_email).to_have_text(verify_email_error)
-                assert True
-                print(f"Error message is present and is correct: '{verify_email_error}'")
+                if (brand == "TYLENOL®" or brand == "NEUTROGENA®" or brand == "REACTINE®" or brand == "Johnson & Johnson Canada"):
+                    #verify email
+                    error_verify_email = self.verify_email_error_message
+                    expect(error_verify_email).to_have_text(verify_email_error)
+                    print(f"Error message is present and is correct: '{verify_email_error}'")
 
-                #checkbox
-                error_checkbox = self.checkbox_error_message_1
-                expect(error_checkbox).to_have_text(checkbox_error)
-                assert True
-                print(f"Error message is present and is correct: '{checkbox_error}'")
+                    #checkbox
+                    error_checkbox = self.checkbox_error_message_1
+                    expect(error_checkbox).to_have_text(checkbox_error)
+                    print(f"Error message is present and is correct: '{checkbox_error}'")
+                else:
+                    #checkbox
+                    error_checkbox = self.checkbox_error_message_2
+                    expect(error_checkbox).to_have_text(checkbox_error)
+                    print(f"Error message is present and is correct: '{checkbox_error}'")
+
+                #recaptcha
+                error_recaptcha = self.recaptcha_error_message
+                expect(error_recaptcha).to_have_text(recaptcha_error)
+                print(f"Error message is present and is correct: '{recaptcha_error}'")
+
+            except TimeoutError:
+                print(f"Error message not present.")
+        
+        if type == 'invalid':
+            brand = self.brand_name
+            try:
+                #name
+                error_name = self.name_error_invalid
+                expect(error_name).to_have_text(name_error)
+                print(f"Error message is present and is correct: '{name_error}'")
+
+                #email
+                error_email = self.email_error_invalid
+                expect(error_email).to_have_text(email_error)
+                print(f"Error message is present and is correct: '{email_error}'")
+
+                if (brand == "TYLENOL®" or brand == "NEUTROGENA®" or brand == "REACTINE®" or brand == "Johnson & Johnson Canada"):
+                    #verify email
+                    error_verify_email = self.verify_email_error_message_invalid
+                    expect(error_verify_email).to_have_text(verify_email_error)
+                    print(f"Error message is present and is correct: '{verify_email_error}'")
+
+                else:
+                    print(f"Verify email field not present")
+
+                #recaptcha
+                error_recaptcha = self.recaptcha_error_message
+                expect(error_recaptcha).to_have_text(recaptcha_error)
+                print(f"Error message is present and is correct: '{recaptcha_error}'")
+
+            except TimeoutError:
+                print(f"Error message not present.")
+    
+    """
+    Function to verify links on webform
+    """
+    def verify_links(self, sitename):
+        action_obj = Action(self.page)
+        if sitename == 'EN':
             
-            #checkbox
-            error_checkbox = self.checkbox_error_message_2
-            expect(error_checkbox).to_have_text(checkbox_error)
-            assert True
-            print(f"Error message is present and is correct: '{checkbox_error}'")
+            #privacy policy
+            privacy_policy_en = self.privacy_policy_data_link
+            href_link = privacy_policy_en.get_attribute('href')
+            action_obj.new_tab_validate_url(privacy_policy_en, href_link)
+            #self.page.go_back()
 
-            #recaptcha
-            error_recaptcha = self.recaptcha_error_message
-            expect(error_recaptcha).to_have_text(recaptcha_error)
-            assert True
-            print(f"Error message is present and is correct: '{recaptcha_error}'")
+            #terms and conditions
+            terms_link_en = self.terms_link
+            href_link = terms_link_en.get_attribute('href')
+            action_obj.new_tab_validate_url(terms_link_en, href_link)
 
-        except TimeoutError:
-            print(f"Error message not present.")
+            
+            
+
+    
+            

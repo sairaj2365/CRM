@@ -47,7 +47,7 @@ testdata = "./test_data/test_webform.csv"
 #     webform_obj.check_href_lang("FR")
 
 @pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_prod)
 def test_privacy_policy(url, page: Page) -> None:
     page.set_default_timeout(300000)
     page.goto(url)
