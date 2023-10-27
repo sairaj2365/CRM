@@ -1,13 +1,15 @@
+import config
 from playwright.sync_api import Playwright, sync_playwright, Page, BrowserContext, Browser, expect
 from utils.actions import Action
 
 class Webform:
     jnj_title_text = "Johnson and Johnson Inc."
+    jnj_meta_text_fr = "Obtenez-en plus de la part de J&J Canada en devenant membre du Club Bons soins. Recevez des offres et de l'information exclusives directement dans votre boîte de réception, et l'accès à tous les nouveaux produits!"
     jnj_meta_text = "Get more out of JNJ Canada by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to all product releases!"
     privacy_policy_data_en_p1 = "Your personal information will be governed by the Privacy Policy Open link in new window and will be used by Johnson & Johnson, Inc. (“Kenvue”), and its third party service providers inside and outside QC & Canada. You consent to the transfer of your data to jurisdictions outside your province and/or country of residence, which may have different data protection rules governing your personal information."
-    privacy_policy_data_fr_p1 = "Vos renseignements personnels seront régis par notre Politique de confidentialité Open link in new window et seront utilisés par Johnson & Johnson, Inc. (« Kenvue ») et ses tiers fournisseurs de services au Québec, au Canada et à l’étranger. Vous acceptez que vos données soient transférées vers des juridictions situées en dehors de votre province et/ou de votre pays de résidence, où les règles de protection des données peuvent différer de celles qui régissent vos renseignements personnels."
+    privacy_policy_data_fr_p1 = "Vos renseignements personnels seront régis par notre Politique de confidentialité Open link in new window et seront utilisés par Johnson & Johnson Inc. (« Kenvue ») et ses tiers fournisseurs de services au Québec, au Canada et à l’étranger. Vous acceptez que vos données soient transférées vers des juridictions situées en dehors de votre province et/ou de votre pays de résidence, où les règles qui régissent la protection de vos renseignements personnels peuvent différer."
     privacy_policy_data_en_p2 = "You may opt-out of receiving emails from us at any time by following the unsubscribe instructions provided in any email message sent to you. Johnson & Johnson Inc., 88 McNabb Street, Markham, ON L3R 5L2, 1‑800‑265‑7323."
-    privacy_policy_data_fr_p2 = "Vous pouvez refuser à tout moment de recevoir des courriels de notre part en suivant les instructions de désabonnement fournies dans tout message électronique qui vous est envoyé. Johnson & Johnson Inc., 88 McNabb Street, Markham (Ontario) L3R 5L2, 1 800 265‑7323."
+    privacy_policy_data_fr_p2 = "Vous pouvez refuser à tout moment de recevoir des courriels de notre part en suivant les instructions de désabonnement fournies dans tout message électronique qui vous est envoyé. Johnson & Johnson Inc., 88 McNabb Street, Markham, ON L3R 5L2, 1 800 265‑7323"
 
 
     def __init__(self, page : Page):
@@ -26,7 +28,7 @@ class Webform:
         self.verify_email = page.locator("#edit-confirm-email")
         self.birthdate = page.locator("#edit-birth-date")
         self.checkbox = page.locator("#edit-term")
-        self.submit = page.get_by_role("button", name= 'Submit')
+        self.submit = page.locator(".careclub-form #edit-submit")
         self.name_error = page.locator("div:nth-child(4) > .error-required")
         self.email_error = page.locator("div:nth-child(5) > .error-required")
         self.verify_email_error_message = page.locator("div:nth-child(6) > .error-required")
@@ -60,23 +62,55 @@ class Webform:
     """
     Function to verify meta description
     """
-    def meta_description_check(self):
-        text = self.brand_name
-        if text == "Johnson & Johnson Canada":
-            meta_desc = Webform.jnj_meta_text
-            if meta_desc == self.meta_description:
-                assert True, f"Meta description is as expected"
-                print("Meta description is as expected:", meta_desc)
-            else:
-                assert False, print(f"Meta description is not as expected: {meta_desc}")
-        elif text != "Johnson & Johnson Canada":
-            meta_desc = "Get more out of "+ text +" by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-            if  meta_desc == self.meta_description:
-                assert True, f"Meta description is as expected"
-                print("Meta description is as expected:", meta_desc)
-            else:
-                assert False, print(f"Meta description is not as expected: {meta_desc}") 
-            
+    def meta_description_check(self, site, meta):
+        if site == "EN":
+            text = self.brand_name
+            if text == "Johnson & Johnson Canada":
+                meta_desc = Webform.jnj_meta_text
+                if meta_desc == self.meta_description:
+                    assert True, f"Meta description is as expected"
+                    print("Meta description is as expected:", meta_desc)
+                else:
+                    assert False, print(f"Meta description is not as expected: {meta_desc}")
+            elif text != "Johnson & Johnson Canada":
+                meta_desc = "Get more out of "+ text +" by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                if  meta_desc == self.meta_description:
+                    assert True, f"Meta description is as expected"
+                    print("Meta description is as expected:", meta_desc)
+                else:
+                    assert False, print(f"Meta description is not as expected: {meta_desc}")
+            elif text == "TYLENOL®":
+                meta_desc = "Looking to get more out of "+ text +"? Sign up to be a Care Club member to receive exclusive offers, personalized emails & access to new product releases."   
+                if  meta_desc == self.meta_description:
+                    assert True, f"Meta description is as expected"
+                    print("Meta description is as expected:", meta_desc)
+                else:
+                    assert False, print(f"Meta description is not as expected: {meta_desc}")
+
+        elif site == "FR":
+            text = self.brand_name
+            if text == "Johnson & Johnson Canada":
+                meta_desc_fr = Webform.jnj_meta_text_fr
+                if meta_desc_fr == self.meta_description:
+                    assert True, f"Meta description is as expected"
+                    print("Meta description is as expected:", meta_desc_fr)
+                else:
+                    assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+            elif text != "Johnson & Johnson Canada":
+                if text == "TYLENOL®":
+                    meta_desc_fr = meta + " " + text + "!"   
+                    if  meta_desc_fr == self.meta_description:
+                        assert True, f"Meta description is as expected"
+                        print("Meta description is as expected:", meta_desc_fr)
+                    else:
+                        assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                else:
+                    meta_desc_fr = meta + " " + text + "!"   
+                    if  meta_desc_fr == self.meta_description:
+                        assert True, f"Meta description is as expected"
+                        print("Meta description is as expected:", meta_desc_fr)
+                    else:
+                        assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
 
     """
     Function to verify image alt tag
@@ -85,6 +119,7 @@ class Webform:
     def check_img_alt_tags(self,image_name, alt):
         if image_name == "logo":
             alt_text = self.logo_image.get_attribute('alt')
+            print(alt_text)
             if alt_text == alt:
                 assert True
                 print(f"Image Alt Text: {alt_text}")
@@ -125,19 +160,34 @@ class Webform:
 
     def check_privacy_policy(self,site_name):
         try:
+            text = self.brand_name
             if site_name == "EN":
-                p_text1 = self.privacy_policy_en_p1
-                p_text2 = self.privacy_policy_en_p2
-                expect(p_text1).to_have_text(Webform.privacy_policy_data_en_p1)
-                expect(p_text2).to_have_text(Webform.privacy_policy_data_en_p2)
-                print(f"Text is present and is correct: '{Webform.privacy_policy_data_en_p1 + Webform.privacy_policy_data_en_p2}'")
+                if text=="Johnson & Johnson Canada":
+                    p_text1 = self.privacy_policy_en_p1
+                    p_text2 = self.privacy_policy_en_p2
+                    expect(p_text1).to_have_text(config.Config.jnj_careclub_privacy_data_en)
+                    expect(p_text2).to_have_text(Webform.privacy_policy_data_en_p2)
+                    print(f"Text is present and is correct: '{config.Config.jnj_careclub_privacy_data_en + Webform.privacy_policy_data_en_p2}'")
+                else:
+                    p_text1 = self.privacy_policy_en_p1
+                    p_text2 = self.privacy_policy_en_p2
+                    expect(p_text1).to_have_text(Webform.privacy_policy_data_en_p1)
+                    expect(p_text2).to_have_text(Webform.privacy_policy_data_en_p2)
+                    print(f"Text is present and is correct: '{Webform.privacy_policy_data_en_p1 + Webform.privacy_policy_data_en_p2}'")
 
             if site_name == "FR":
-                p_text1 = self.privacy_policy_en_p1
-                p_text2 = self.privacy_policy_en_p2
-                expect(p_text1).to_have_text(Webform.privacy_policy_data_fr_p1)
-                expect(p_text2).to_have_text(Webform.privacy_policy_data_fr_p2)
-                print(f"Text is present and is correct: '{Webform.privacy_policy_data_fr_p1 + Webform.privacy_policy_data_fr_p2}'")
+                if text=="Johnson & Johnson Canada":
+                    p_text1 = self.privacy_policy_en_p1
+                    p_text2 = self.privacy_policy_en_p2
+                    expect(p_text1).to_have_text(config.Config.jnj_careclub_privacy_data_fr)
+                    expect(p_text2).to_have_text(Webform.privacy_policy_data_fr_p2)
+                    print(f"Text is present and is correct: '{config.Config.jnj_careclub_privacy_data_fr + Webform.privacy_policy_data_fr_p2}'")
+                else:
+                    p_text1 = self.privacy_policy_en_p1
+                    p_text2 = self.privacy_policy_en_p2
+                    expect(p_text1).to_have_text(Webform.privacy_policy_data_fr_p1)
+                    expect(p_text2).to_have_text(Webform.privacy_policy_data_fr_p2)
+                    print(f"Text is present and is correct: '{Webform.privacy_policy_data_fr_p1 + Webform.privacy_policy_data_fr_p2}'")
         except TimeoutError:
             print(f"Text not present.")
 
@@ -230,6 +280,11 @@ class Webform:
                 expect(error_email).to_have_text(email_error)
                 print(f"Error message is present and is correct: '{email_error}'")
 
+                #birthdate
+                error_email = self.email_error_invalid
+                expect(error_email).to_have_text(email_error)
+                print(f"Error message is present and is correct: '{email_error}'")
+
                 if (brand == "TYLENOL®" or brand == "NEUTROGENA®" or brand == "REACTINE®" or brand == "Johnson & Johnson Canada"):
                     #verify email
                     error_verify_email = self.verify_email_error_message_invalid
@@ -264,6 +319,10 @@ class Webform:
             terms_link_en = self.terms_link
             href_link = terms_link_en.get_attribute('href')
             action_obj.new_tab_validate_url(terms_link_en, href_link)
+
+    
+
+
 
             
             
