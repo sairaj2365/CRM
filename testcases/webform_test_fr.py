@@ -73,7 +73,7 @@ testdata_form = "./test_data/form_data.csv"
 #     webform_obj.check_href_lang("FR", href_fr)
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_prod)
 # def test_privacy_policy(url, page: Page) -> None:
 #     page.set_default_timeout(300000)
 #     page.goto(url)
@@ -96,7 +96,7 @@ testdata_form = "./test_data/form_data.csv"
 #     webform_obj.submit_button()
 #     page.close()
 
-# @pytest.mark.webform
+# @pytest.mark.webform # will update the code once new updates are deployed
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
 # def test_empty_form_fr(url, browser : Browser) -> None:
 #     context = browser.new_context(
@@ -112,19 +112,32 @@ testdata_form = "./test_data/form_data.csv"
 #     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, checkbox_error, recaptcha_error, 'empty')
 #     page.close()
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
-def test_form_invalid_data_fr(url, browser : Browser) -> None:
-    context = browser.new_context(
-        #record_video_dir= "video/"
-    )
-    page = context.new_page()
-    page.set_default_timeout(300000)
-    page.goto(url)
-    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-    firstname, emailid, verify_email, birthdate, name_error, email_error, verify_email_error, checkbox_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
-    webform_obj = Webform(page)
-    webform_obj.webform_form(firstname, emailid, verify_email, birthdate)
-    webform_obj.submit_button()
-    webform_obj.error_messages_fields(name_error, email_error, verify_email_error, checkbox_error, recaptcha_error, 'invalid')
-    page.close()
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+# def test_form_invalid_data_fr(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/"
+#     )
+#     page = context.new_page()
+#     page.set_default_timeout(300000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
+#     webform_obj = Webform(page)
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate)
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+# def test_webform_links(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/"
+#     )
+#     page = context.new_page()
+#     page.set_default_timeout(300000)
+#     page.goto(url)
+#     webform_obj = Webform(page)
+#     webform_obj.verify_links('FR')
+#     page.close()

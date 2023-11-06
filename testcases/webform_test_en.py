@@ -23,15 +23,15 @@ testdata_form = "./test_data/form_data.csv"
 #     action_obj.verify_current_url(expected_partial_url)
 #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
-# def test_page_title(url, page: Page) -> None:
-#     page.set_default_timeout(300000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata, Action.get_current_test_name())
-#     page_title = data[1]
-#     webform_obj = Webform(page)
-#     webform_obj.verify_page_title(page_title)
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+def test_page_title(url, page: Page) -> None:
+    page.set_default_timeout(300000)
+    page.goto(url)
+    data = reader.read_test_data(testdata, Action.get_current_test_name())
+    page_title = data[1]
+    webform_obj = Webform(page)
+    webform_obj.verify_page_title(page_title)
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
@@ -62,7 +62,7 @@ testdata_form = "./test_data/form_data.csv"
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
 # def test_href_lang(url, page: Page) -> None:
-#     page.set_default_timeout(300000)
+#     page.set_default_timeout(80000)
 #     page.goto(url)
 #     data = reader.read_test_data(testdata, Action.get_current_test_name())
 #     href_en, href_fr = data[4], data[5]
@@ -120,11 +120,11 @@ testdata_form = "./test_data/form_data.csv"
 #     page.set_default_timeout(300000)
 #     page.goto(url)
 #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, birthdate, name_error, email_error, verify_email_error, checkbox_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
+#     firstname, emailid, verify_email, birthdate, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
 #     webform_obj = Webform(page)
 #     webform_obj.webform_form(firstname, emailid, verify_email, birthdate)
 #     webform_obj.submit_button()
-#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, checkbox_error, recaptcha_error, 'invalid')
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
 #     page.close()
 
 # @pytest.mark.webform

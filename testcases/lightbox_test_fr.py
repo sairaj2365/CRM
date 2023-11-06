@@ -8,7 +8,7 @@ from utils.actions import Action
 lightbox_privacy_data = "./test_data/lightbox_privacy_policy.csv"
 
 @pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home)
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home_prod)
 def test_privacy_policy_fr(url, page: Page) -> None:
     page.set_default_timeout(300000)
     page.goto(url)

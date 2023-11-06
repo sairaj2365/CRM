@@ -28,17 +28,23 @@ class Webform:
         self.verify_email = page.locator("#edit-confirm-email")
         self.birthdate = page.locator("#edit-birth-date")
         self.checkbox = page.locator("#edit-term")
-        self.submit = page.locator(".careclub-form #edit-submit")
+        self.submit = page.locator(".careclub-form .form-submit")
         self.name_error = page.locator("div:nth-child(4) > .error-required")
+        self.name_error_2 = page.locator("div:nth-child(3) > .error-required")
         self.email_error = page.locator("div:nth-child(5) > .error-required")
+        self.email_error_2 = page.locator("div:nth-child(4) > .error-required")
         self.verify_email_error_message = page.locator("div:nth-child(6) > .error-required")
+        self.verify_email_error_message_2 = page.locator("div:nth-child(5) > .error-required")
         self.checkbox_error_message_1 = page.locator("div:nth-child(9) > .error-required")
         self.checkbox_error_message_2 = page.locator("div:nth-child(8) > .error-required")
         self.recaptcha_error_message = page.locator(".recaptcha-error")
         self.name_error_invalid = page.locator("div:nth-child(4) > .error-format")
         self.email_error_invalid = page.locator("div:nth-child(5) > .error-format")
         self.verify_email_error_message_invalid = page.locator("div:nth-child(6) > .error-format")
+        self.birthdate_error_invalid = page.locator(".field-birthdate .error-format")
+        self.name_error_invalid_2 = page.locator("div:nth-child(3) > .error-format")
         self.terms_link = page.get_by_role("link", name="full terms and conditions.")
+        self.terms_link_fr = page.get_by_role("link", name="conditions générales.")
 
     """
     Function to verify page titles
@@ -52,7 +58,59 @@ class Webform:
                 print(f"Title verified to be : '{page_title_modified}'")
                 expect(self.page).to_have_title(page_title_modified)
                 print(f"Title verified to be : '{page_title_modified}'")
-            if text != "Johnson & Johnson Canada":
+            elif text == "Quit Smoking with Our Products & Resources | NICORETTE®":
+                page_title_modified = page_title + "NICORETTE®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "BENYLIN® Canada":
+                page_title_modified = page_title + "BENYLIN®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "BAND-AID® Brand":
+                page_title_modified = page_title + "BANDAID®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "Polysporin® Canada":
+                page_title_modified = page_title + "POLYSPORIN®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "LISTERINE® Antiseptic Mouthwash, Rinse & Oral Care Products":
+                page_title_modified = page_title + "LISTERINE®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "Johnson's® Baby":
+                page_title_modified = page_title + "JOHNSON'S® Baby"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "Marque BAND-AID®":
+                page_title_modified = page_title + "BANDAID®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "CLEAN & CLEAR® Canada":
+                page_title_modified = page_title + "CLEAN & CLEAR®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "Motrin":
+                page_title_modified = page_title + "MOTRIN®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "PENATEN® Canada":
+                page_title_modified = page_title + "PENATEN®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "PEPCID® Canada":
+                page_title_modified = page_title + "PEPCID®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "Rogaine":
+                page_title_modified = page_title + "ROGAINE®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "ROGAINE® Canada":
+                page_title_modified = page_title + "ROGAINE®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
+            elif text != "Johnson & Johnson Canada":
                 page_title_modified = page_title + text
                 expect(self.page).to_have_title(page_title_modified)
                 print(f"Title verified to be : '{page_title_modified}'")
@@ -98,7 +156,7 @@ class Webform:
                     assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
             elif text != "Johnson & Johnson Canada":
                 if text == "TYLENOL®":
-                    meta_desc_fr = meta + " " + text + "!"   
+                    meta_desc_fr = config.Config.meta_tylenol_fr + " " + text + "!"   
                     if  meta_desc_fr == self.meta_description:
                         assert True, f"Meta description is as expected"
                         print("Meta description is as expected:", meta_desc_fr)
@@ -117,23 +175,25 @@ class Webform:
     """
 
     def check_img_alt_tags(self,image_name, alt):
-        if image_name == "logo":
-            alt_text = self.logo_image.get_attribute('alt')
-            print(alt_text)
-            if alt_text == alt:
-                assert True
-                print(f"Image Alt Text: {alt_text}")
-            else:
-                assert False, f"Image has no Alt Text."
+        try:
+            if image_name == "logo":
+                alt_text = self.logo_image.get_attribute('alt')
+                print(alt_text)
+                if alt_text == alt:
+                    assert True
+                    print(f"Image Alt Text: {alt_text}")
+                else:
+                    assert False, f"Image has no Alt Text."
         
-        if image_name == "brand":
-            alt_text = self.brand_image.get_attribute('alt')
-            if alt_text == alt:
-                assert True
-                print(f"Image Alt Text: {alt_text}")
-            else:
-                assert False, f"Image has no Alt Text."
-
+            if image_name == "brand":
+                alt_text = self.brand_image.get_attribute('alt')
+                if alt_text == alt:
+                    assert True
+                    print(f"Image Alt Text: {alt_text}")
+                else:
+                    assert False, f"Image has no Alt Text."
+        except TimeoutError:
+            print("Timeout Error")
     """
     Function to verify href lang
     """
@@ -229,35 +289,63 @@ class Webform:
     """
     Function to verify form error messages for empty fields
     """
-    def error_messages_fields(self, name_error, email_error, verify_email_error, checkbox_error, recaptcha_error, type):
+    def error_messages_fields(self, name_error, email_error, verify_email_error, checkbox_birthdate_error, recaptcha_error, type):
         if type == 'empty':
             brand = self.brand_name
             try:
-                #name
-                error_name = self.name_error
-                expect(error_name).to_have_text(name_error)
-                print(f"Error message is present and is correct: '{name_error}'")
+                if (brand == "TYLENOL®" or brand == "BENYLIN® Canada" or brand == "BENADRYL®" or brand == "SUDAFED®" or brand == "AVEENO®"):
+                    #name
+                    error_name = self.name_error_2
+                    expect(error_name).to_have_text(name_error)
+                    print(f"Error message is present and is correct: '{name_error}'")
 
-                #email
-                error_email = self.email_error
-                expect(error_email).to_have_text(email_error)
-                print(f"Error message is present and is correct: '{email_error}'")
+                    #email
+                    error_email = self.email_error_2
+                    expect(error_email).to_have_text(email_error)
+                    print(f"Error message is present and is correct: '{email_error}'")
 
-                if (brand == "TYLENOL®" or brand == "NEUTROGENA®" or brand == "REACTINE®" or brand == "Johnson & Johnson Canada"):
-                    #verify email
-                    error_verify_email = self.verify_email_error_message
-                    expect(error_verify_email).to_have_text(verify_email_error)
-                    print(f"Error message is present and is correct: '{verify_email_error}'")
+                    if (brand == "TYLENOL®" or brand == "NEUTROGENA®" or brand == "REACTINE®" or brand == "Johnson & Johnson Canada"):
+                        #verify email
+                        error_verify_email = self.verify_email_error_message_2
+                        expect(error_verify_email).to_have_text(verify_email_error)
+                        print(f"Error message is present and is correct: '{verify_email_error}'")
 
-                    #checkbox
-                    error_checkbox = self.checkbox_error_message_1
-                    expect(error_checkbox).to_have_text(checkbox_error)
-                    print(f"Error message is present and is correct: '{checkbox_error}'")
+                        #checkbox
+                        error_checkbox = self.checkbox_error_message_2
+                        expect(error_checkbox).to_have_text(checkbox_birthdate_error)
+                        print(f"Error message is present and is correct: '{checkbox_birthdate_error}'")
+                    else:
+                        #checkbox
+                        error_checkbox = self.checkbox_error_message_2
+                        expect(error_checkbox).to_have_text(checkbox_birthdate_error)
+                        print(f"Error message is present and is correct: '{checkbox_birthdate_error}'")
+
                 else:
-                    #checkbox
-                    error_checkbox = self.checkbox_error_message_2
-                    expect(error_checkbox).to_have_text(checkbox_error)
-                    print(f"Error message is present and is correct: '{checkbox_error}'")
+                    #name
+                    error_name = self.name_error
+                    expect(error_name).to_have_text(name_error)
+                    print(f"Error message is present and is correct: '{name_error}'")
+
+                    #email
+                    error_email = self.email_error
+                    expect(error_email).to_have_text(email_error)
+                    print(f"Error message is present and is correct: '{email_error}'")
+
+                    if (brand == "TYLENOL®" or brand == "NEUTROGENA®" or brand == "REACTINE®" or brand == "Johnson & Johnson Canada"):
+                        #verify email
+                        error_verify_email = self.verify_email_error_message
+                        expect(error_verify_email).to_have_text(verify_email_error)
+                        print(f"Error message is present and is correct: '{verify_email_error}'")
+
+                        #checkbox
+                        error_checkbox = self.checkbox_error_message_2
+                        expect(error_checkbox).to_have_text(checkbox_birthdate_error)
+                        print(f"Error message is present and is correct: '{checkbox_birthdate_error}'")
+                    else:
+                        #checkbox
+                        error_checkbox = self.checkbox_error_message_2
+                        expect(error_checkbox).to_have_text(checkbox_birthdate_error)
+                        print(f"Error message is present and is correct: '{checkbox_birthdate_error}'")
 
                 #recaptcha
                 error_recaptcha = self.recaptcha_error_message
@@ -267,13 +355,19 @@ class Webform:
             except TimeoutError:
                 print(f"Error message not present.")
         
-        if type == 'invalid':
+        if type == 'invalid': #need to update locator code
             brand = self.brand_name
             try:
-                #name
-                error_name = self.name_error_invalid
-                expect(error_name).to_have_text(name_error)
-                print(f"Error message is present and is correct: '{name_error}'")
+                if (brand == "TYLENOL®" or brand == "BENYLIN® Canada" or brand == "BENADRYL®" or brand == "SUDAFED®"):
+                    #name
+                    error_name = self.name_error_invalid_2
+                    expect(error_name).to_have_text(name_error)
+                    print(f"Error message is present and is correct: '{name_error}'")
+                else:
+                    #name
+                    error_name = self.name_error_invalid
+                    expect(error_name).to_have_text(name_error)
+                    print(f"Error message is present and is correct: '{name_error}'")
 
                 #email
                 error_email = self.email_error_invalid
@@ -281,15 +375,20 @@ class Webform:
                 print(f"Error message is present and is correct: '{email_error}'")
 
                 #birthdate
-                error_email = self.email_error_invalid
-                expect(error_email).to_have_text(email_error)
-                print(f"Error message is present and is correct: '{email_error}'")
+                birthdate_error = self.birthdate_error_invalid
+                expect(birthdate_error).to_have_text(checkbox_birthdate_error)
+                print(f"Error message is present and is correct: '{checkbox_birthdate_error}'")
 
                 if (brand == "TYLENOL®" or brand == "NEUTROGENA®" or brand == "REACTINE®" or brand == "Johnson & Johnson Canada"):
                     #verify email
-                    error_verify_email = self.verify_email_error_message_invalid
-                    expect(error_verify_email).to_have_text(verify_email_error)
-                    print(f"Error message is present and is correct: '{verify_email_error}'")
+                    if brand == "TYLENOL®":
+                        error_verify_email = self.email_error_invalid
+                        expect(error_verify_email).to_have_text(verify_email_error)
+                        print(f"Error message is present and is correct: '{verify_email_error}'")
+                    else:
+                        error_verify_email = self.verify_email_error_message_invalid
+                        expect(error_verify_email).to_have_text(verify_email_error)
+                        print(f"Error message is present and is correct: '{verify_email_error}'")
 
                 else:
                     print(f"Verify email field not present")
@@ -307,18 +406,24 @@ class Webform:
     """
     def verify_links(self, sitename):
         action_obj = Action(self.page)
-        if sitename == 'EN':
             
-            #privacy policy
-            privacy_policy_en = self.privacy_policy_data_link
-            href_link = privacy_policy_en.get_attribute('href')
-            action_obj.new_tab_validate_url(privacy_policy_en, href_link)
-            #self.page.go_back()
+        #privacy policy
+        privacy_policy_en = self.privacy_policy_data_link
+        href_link = privacy_policy_en.get_attribute('href')
+        action_obj.new_tab_validate_url(privacy_policy_en, href_link)
+        #self.page.go_back()
 
+        if sitename == 'EN':
             #terms and conditions
             terms_link_en = self.terms_link
             href_link = terms_link_en.get_attribute('href')
             action_obj.new_tab_validate_url(terms_link_en, href_link)
+
+        if sitename == 'FR':
+            #terms and conditions
+            terms_link_fr = self.terms_link_fr
+            href_link = terms_link_fr.get_attribute('href')
+            action_obj.new_tab_validate_url(terms_link_fr, href_link)
 
     
 

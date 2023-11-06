@@ -38,6 +38,15 @@ class Action:
                 elif url == config.Config.terms_condition_link_en:
                     assert True
                     print(f"Link navigates to correct url:'{url}'")
+                elif url == config.Config.privacy_policy_link_fr:
+                    assert True
+                    print(f"Link navigates to correct url:'{url}'")
+                elif url == config.Config.terms_condition_link_fr:
+                    assert True
+                    print(f"Link navigates to correct url:'{url}'")
+                elif url == config.Config.privacy_policy_link_fr_jnj:
+                    assert True
+                    print(f"Link navigates to correct url:'{url}'")
                 else:
                     expect(new_page).to_have_url(url)
                     print(f"Link navigates to correct url:'{url}'")
