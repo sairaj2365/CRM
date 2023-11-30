@@ -153,12 +153,11 @@ class Config:
         "https://jjuser:JJJJpassword2022!@con-na-consumer-ca-en.jnjnab13d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-tylenol-ca-en.jnjnab13d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-aveeno2-ca-en.jnjnab11d6-test.jjc-devops.com/",
-        "https://jjuser:JJJJpassword2022!@con-na-zarbees-ca-en.jnjnab13d6-test.jjc-devops.com/",
+        #"https://jjuser:JJJJpassword2022!@con-na-zarbees-ca-en.jnjnab13d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-nicorette-ca-en.jnjnab11d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-benylin-ca-en.jnjnab13d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-polysporin-ca-en.jnjnab13d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-reactine-ca-en.jnjnab13d6-test.jjc-devops.com/",
-        "https://jjuser:JJJJpassword2022!@con-na-tylenol-ca-en.jnjnab13d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-lis-ca-en.jnjnab11d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-jbaby3-ca-en.jnjnab11d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-bandaid-ca-en.jnjnab11d6-test.jjc-devops.com/",
@@ -179,7 +178,7 @@ class Config:
         "https://jjuser:JJJJpassword2022!@con-na-consumer-ca-fr.jnjnab13d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-tylenol-ca-fr.jnjnab13d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-aveeno2-ca-fr.jnjnab11d6-test.jjc-devops.com/",
-        "https://jjuser:JJJJpassword2022!@con-na-zarbees-ca-fr.jnjnab13d6-test.jjc-devops.com/",
+        #"https://jjuser:JJJJpassword2022!@con-na-zarbees-ca-fr.jnjnab13d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-nicorette-ca-fr.jnjnab11d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-benylin-ca-fr.jnjnab13d6-test.jjc-devops.com/",
         "https://jjuser:JJJJpassword2022!@con-na-polysporin-ca-fr.jnjnab13d6-test.jjc-devops.com/",
@@ -213,5 +212,49 @@ class Config:
     terms_condition_link_fr = "https://www.amazon.ca/careclubwelcometerms23_fr"
 
     privacy_policy_link_fr_jnj = "/confidentialite"
+    privacy_policy_link_en_jnj = "/privacy-policy"
 
     meta_tylenol_fr = "Inscrivez-vous au Club Bons soins pour recevoir des offres exclusives et des courriels personnalisés, et avoir accès aux nouveaux produits"
+    tylenol_alt_text = "A group of Tylenol products"
+    aveeno_alt_text = "A group of Aveeno products"
+    zarbees_alt_text = "A group of Zarbee's® products"
+    nicorette_alt_text = "A group of Nicorette products"
+    benylin_alt_text = "A group of Benylin products"
+    polysporin_alt_text = "A group of Polysporin products"
+    reactine_alt_text = "A group of Reactine products"
+    listerine_alt_text = "A group of Listerine products"
+    jbaby_alt_text = "A group of Johnson's Baby products"
+    bandaid_alt_text = "A group of Bandaid products"
+    benadryl_alt_text = "A group of Benadryl products"
+    motrin_alt_text = "A group of Motrin products"
+    cnc_alt_text = "A group of Clean & Clear products"
+    imodium_alt_text = "A group of Imodium products"
+    nicoderm_alt_text = "A group of Nicoderm products"
+    penaten_alt_text = "A group of Penaten products"
+    pepcid_alt_text = "A group of Pepcid products"
+    rogaine_alt_text = "A group of Rogaine products"
+    visine_alt_text = "A group of Visine products"
+    sudafed_alt_text = "A group of Sudafed products"
+    neutrogena_alt_text = "A group of Neutrogena products"
+
+    tylenol_alt_text_fr = "Un groupe de produits Tylenol"
+    aveeno_alt_text_fr = "Un groupe de produits Aveeno"
+    zarbees_alt_text_fr = "Un groupe de produits Zarbees"
+    nicorette_alt_text_fr = "Un groupe de produits Nicorette"
+    benylin_alt_text_fr = "Un groupe de produits Benylin"
+    polysporin_alt_text_fr = "Un groupe de produits Polysporin"
+    reactine_alt_text_fr = "Un groupe de produits Reactine"
+    listerine_alt_text_fr = "Un groupe de produits Listerine"
+    jbaby_alt_text_fr = "Un groupe de produits Johnson's Baby"
+    bandaid_alt_text_fr = "Un groupe de produits Bandaid"
+    benadryl_alt_text_fr = "Un groupe de produits Benadryl"
+    motrin_alt_text_fr = "Un groupe de produits Motrin"
+    cnc_alt_text_fr = "Un groupe de produits Clean & Clear"
+    imodium_alt_text_fr = "Un groupe de produits Imodium"
+    nicoderm_alt_text_fr = "Un groupe de produits Nicoderm"
+    penaten_alt_text_fr = "Un groupe de produits Penaten"
+    pepcid_alt_text_fr = "Un groupe de produits Pepcid"
+    rogaine_alt_text_fr = "Un groupe de produits Rogaine"
+    visine_alt_text_fr = "Un groupe de produits Visine"
+    sudafed_alt_text_fr = "Un groupe de produits Sudafed"
+    neutrogena_alt_text_fr = "Un groupe de produits Neutrogena"

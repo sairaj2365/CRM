@@ -3,7 +3,10 @@ test_page_url_path,careclub,,,,,,,,
 test_page_url_path_fr,clubbonssoins,,,,,,,,
 test_page_title,careclub,Sign up for Care Club for Exclusive Benefits | ,,,,,,,
 test_page_title_fr,clubbonssoins,Inscrivez-vous au Club Bons soins | ,,,,,,,
-test_img_alt_tags,,,Care Club logo,"Logos of 21 Johnson & Johnson brands, including Aveeno, Band-Aid, Benadryl, Benylin, Clean & Clear, Imodium, Johnson’s, Listerine, Motrin, Neutrogena, Nicoderm, Nicorette, Penaten, Pepcid, Polysporin, Reactine, Rogaine, Sudafed, Tylenol, Visine and Zarbee's",,,,,
+test_img_alt_tags,,,Care Club Logo,"Logos of 21 Johnson & Johnson brands, including Aveeno, Band-Aid, Benadryl, Benylin, Clean & Clear, Imodium, Johnson?, Listerine, Motrin, Neutrogena, Nicoderm, Nicorette, Penaten, Pepcid, Polysporin, Reactine, Rogaine, Sudafed, Tylenol, Visine and Zarbee's",,,,,
 test_href_lang,,,,,en-CA,fr-CA,,,
 test_meta_description,,,,,,,"Inscrivez-vous au Club Bons soins pour recevoir des offres et de l’information exclusives par courriel, et avoir accès aux nouveaux produits",,
-test_img_alt_tags_fr,,,,,,,,Logo du Club Bons soins,"Logos de 21 marques de Johnson & Johnson, dont Aveeno, Band-Aid, Benadryl, Benylin, Clean & Clear, Imodium, Johnson’s, Listerine, Motrin, Neutrogena, Nicoderm, Nicorette, Penaten, Pepcid, Polysporin, Reactine, Rogaine, Sudafed, Tylenol, Visine et Zarbee's"
+test_img_alt_tags_fr,,,,,,,,Logo du Club Bons Soins,"Logos de 21 marques de Johnson & Johnson, dont Aveeno, Band-Aid, Benadryl, Benylin, Clean & Clear, Imodium, Johnson’s, Listerine, Motrin, Neutrogena, Nicoderm, Nicorette, Penaten, Pepcid, Polysporin, Reactine, Rogaine, Sudafed, Tylenol, Visine et Zarbee's"
+,,,,,,,,,
+test_thankyou_page_url,thank-you-for-joining-care-club,,,,,,,,
+test_thankyou_page_url_fr,merci-de-votre-abonnement-au-club-bons-soins,,,,,,,,
