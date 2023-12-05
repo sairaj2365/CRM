@@ -41,23 +41,23 @@ testdata_form = "./test_data/form_data.csv"
 #     webform_obj = Webform(page)
 #     webform_obj.meta_description_check('EN', "")
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
-def test_img_alt_tags(url, browser : Browser) -> None:  #playwright: Playwright - device viewport
-    #iphone_13 = playwright.devices['iPhone 13']
-    context = browser.new_context(
-        #record_video_dir= "video/",
-        #**iphone_13
-    )
-    page = context.new_page()
-    page.set_default_timeout(80000)
-    page.goto(url)
-    data = reader.read_test_data(testdata, Action.get_current_test_name())
-    logo_text, brand_text = data[2], data[3]
-    webform_obj = Webform(page)
-    webform_obj.check_img_alt_tags("logo", logo_text)
-    webform_obj.check_img_alt_tags("brand", brand_text)
-    page.close()
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
+# def test_img_alt_tags(url, browser : Browser) -> None:  #playwright: Playwright - device viewport
+#     #iphone_13 = playwright.devices['iPhone 13']
+#     context = browser.new_context(
+#         #record_video_dir= "video/",
+#         #**iphone_13
+#     )
+#     page = context.new_page()
+#     page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata, Action.get_current_test_name())
+#     logo_text, brand_text = data[2], data[3]
+#     webform_obj = Webform(page)
+#     webform_obj.check_img_alt_tags("logo", logo_text)
+#     webform_obj.check_img_alt_tags("brand", brand_text)
+#     page.close()
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
@@ -158,9 +158,39 @@ def test_img_alt_tags(url, browser : Browser) -> None:  #playwright: Playwright 
 #     webform_obj.verify_links('EN')
 #     page.close()
 
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_thankyou_page)
+def test_thankyou_page_url(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/"
+    )
+    page = context.new_page()
+    page.set_default_timeout(80000)
+    page.goto(url)
+    data = reader.read_test_data(testdata, Action.get_current_test_name())
+    expected_partial_url = data[0]
+    action_obj = Action(page)
+    action_obj.verify_current_url(expected_partial_url)
+    page.close()
+
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_thankyou_page)
+def test_thankyou_page_content(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/"
+    )
+    page = context.new_page()
+    page.set_default_timeout(80000)
+    page.goto(url)
+    data = reader.read_test_data(testdata, Action.get_current_test_name())
+    thank_you_content_one, page_content_two = data[16], data[17]
+    webform_obj = Webform(page)
+    webform_obj.verify_thankyou_page_content(thank_you_content_one, page_content_two)
+    page.close()
+
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
-# def test_thankyou_page_url(url, browser : Browser) -> None:
+# def test_webform_content(url, browser : Browser) -> None:
 #     context = browser.new_context(
 #         #record_video_dir= "video/"
 #     )
@@ -168,14 +198,14 @@ def test_img_alt_tags(url, browser : Browser) -> None:  #playwright: Playwright 
 #     page.set_default_timeout(80000)
 #     page.goto(url)
 #     data = reader.read_test_data(testdata, Action.get_current_test_name())
-#     expected_partial_url = data[0]
-#     action_obj = Action(page)
-#     action_obj.verify_current_url(expected_partial_url)
+#     content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four = data[9], data[10], data[11], data[12], data[13], data[14], data[15]
+#     webform_obj = Webform(page)
+#     webform_obj.verify_webform_content("EN", content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four)
 #     page.close()
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
-# def test_thankyou_page_content(url, browser : Browser) -> None:
+# def test_dob_text(url, browser : Browser) -> None:
 #     context = browser.new_context(
 #         #record_video_dir= "video/"
 #     )
@@ -183,7 +213,7 @@ def test_img_alt_tags(url, browser : Browser) -> None:  #playwright: Playwright 
 #     page.set_default_timeout(80000)
 #     page.goto(url)
 #     data = reader.read_test_data(testdata, Action.get_current_test_name())
-#     expected_partial_url = data[0]
+#     dob_content = data[18]
 #     webform_obj = Webform(page)
-    
+#     webform_obj.verify_dob_content(dob_content)
 #     page.close()

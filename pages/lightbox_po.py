@@ -34,6 +34,12 @@ class Lightbox:
         self.name_error_invalid_2 = page.locator("#edit-lightbox div:nth-child(2) .error-format")
         self.email_error_invalid_2 = page.locator("#edit-lightbox div:nth-child(3) .error-format")
         self.verify_email_error_message_invalid_2 = page.locator("#edit-lightbox div:nth-child(4) .error-format")
+        self.content_one = page.locator("#care-club-lightbox-title")
+        self.content_two = page.locator(".lightbox-header p:nth-child(3)")
+        self.content_three = page.locator(".lightbox-warnings p:nth-child(1)")
+        self.privacy_content_two = page.locator(".lightbox-warnings p:nth-child(2)")
+        self.privacy_content_three = page.locator(".lightbox-warnings p:nth-child(3)")
+        self.privacy_content_four = page.locator(".lightbox-warnings p:nth-child(4)")
 
     """
     Function to verify privacy policy content
@@ -563,6 +569,56 @@ class Lightbox:
                 print(f"Error message is present and is correct: '{recaptcha_error}'")
         except TimeoutError:
                 print(f"Timeout Error")
+    
+    """
+    Function to verify webform content
+    """
+    def verify_lightbox_content(self, site, content_one, content_two, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four):
+        try:
+            brand = self.brand_name
+            main_title = self.content_one
+            expect(main_title).to_have_text(content_one)
+            print(f"Text is present and is correct: '{content_one}'")
+
+            textcontent_one = self.content_two
+            expect(textcontent_one).to_have_text(content_two)
+            print(f"Text is present and is correct: '{content_two}'")
+
+            if site == "EN":
+                privacy_text_one = self.content_three
+                privacy_text = privacy_content_one + "1‑800‑265‑7323."
+                expect(privacy_text_one).to_have_text(privacy_text)
+                print(f"Text is present and is correct: '{privacy_text}'")
+            
+            elif site == "FR":
+                privacy_text_one = self.content_three
+                privacy_text = privacy_content_one + "1 800 265‑7323."
+                expect(privacy_text_one).to_have_text(privacy_text)
+                print(f"Text is present and is correct: '{privacy_text}'")
+
+            if brand == "Johnson & Johnson Canada":
+                if site == "EN":
+                    privacy_text_two = self.privacy_content_two
+                    expect(privacy_text_two).to_have_text(config.Config.jnj_privacy_data_en_new)
+                    print(f"Text is present and is correct: '{config.Config.jnj_privacy_data_en_new}'")
+                elif site == "FR":
+                    privacy_text_two = self.privacy_content_two
+                    expect(privacy_text_two).to_have_text(config.Config.jnj_privacy_data_fr_new)
+                    print(f"Text is present and is correct: '{config.Config.jnj_privacy_data_fr_new}'")
+            else:
+                privacy_text_two = self.privacy_content_two
+                expect(privacy_text_two).to_have_text(privacy_content_two)
+                print(f"Text is present and is correct: '{privacy_content_two}'")
+
+            privacy_text_three = self.privacy_content_three
+            expect(privacy_text_three).to_have_text(privacy_content_three)
+            print(f"Text is present and is correct: '{privacy_content_three}'")
+
+            privacy_text_four = self.privacy_content_four
+            expect(privacy_text_four).to_have_text(privacy_content_four)
+            print(f"Text is present and is correct: '{privacy_content_four}'")
+        except TimeoutError:
+                print(f"Error message not present.")
 
     
             

@@ -47,6 +47,18 @@ class Webform:
         self.verify_email_error_message_invalid_2 = page.locator("div:nth-child(5) > .error-format")
         self.terms_link = page.get_by_role("link", name="full terms and conditions.")
         self.terms_link_fr = page.get_by_role("link", name="conditions générales.")
+        self.content_one = page.locator("#content-main")
+        self.content_two = page.locator(".careclub-header p")
+        self.checkbox_content = page.locator(".careclub-term label")
+        self.privacy_content_one = page.locator(".careclub-warnings p:nth-child(2)")
+        self.privacy_content_two = page.locator(".careclub-warnings p:nth-child(3)")
+        self.privacy_content_three = page.locator(".careclub-warnings p:nth-child(4)")
+        self.privacy_content_four = page.locator(".careclub-warnings p:nth-child(5)")
+        self.page_content_two = page.locator(".main-row.region-row p:nth-child(1)")
+        self.dob = page.locator(".field-birthdate em")
+        self.dob_fr = page.locator(".field-birthdate i")
+        self.page_content_two_2 = page.locator(".field--label-hidden p")
+        self.page_content_two_3 = page.locator(".field--label-hidden p p")
 
     """
     Function to verify page titles
@@ -419,13 +431,98 @@ class Webform:
             href_link = terms_link_fr.get_attribute('href')
             action_obj.new_tab_validate_url(terms_link_fr, href_link)
 
-   
+    """
+    Function to verify webform content
+    """
+    def verify_webform_content(self, site, content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four):
+        try:
+            brand = self.brand_name
+            main_title = self.content_one
+            expect(main_title).to_have_text(content_one)
+            print(f"Text is present and is correct: '{content_one}'")
 
+            textcontent_one = self.content_two
+            expect(textcontent_one).to_have_text(content_two)
+            print(f"Text is present and is correct: '{content_two}'")
 
+            checkbox = self.checkbox_content
+            expect(checkbox).to_have_text(checkbox_content)
+            print(f"Text is present and is correct: '{checkbox_content}'")
+
+            if site == "EN":
+                privacy_text_one = self.privacy_content_one
+                privacy_text = privacy_content_one + "1‑800‑265‑7323."
+                expect(privacy_text_one).to_have_text(privacy_text)
+                print(f"Text is present and is correct: '{privacy_text}'")
+            
+            elif site == "FR":
+                privacy_text_one = self.privacy_content_one
+                privacy_text = privacy_content_one + "1 800 265‑7323."
+                expect(privacy_text_one).to_have_text(privacy_text)
+                print(f"Text is present and is correct: '{privacy_text}'")
+
+            if brand == "Johnson & Johnson Canada":
+                if site == "EN":
+                    privacy_text_two = self.privacy_content_two
+                    expect(privacy_text_two).to_have_text(config.Config.jnj_careclub_privacy_data_en_new)
+                    print(f"Text is present and is correct: '{config.Config.jnj_careclub_privacy_data_en_new}'")
+                elif site == "FR":
+                    privacy_text_two = self.privacy_content_two
+                    expect(privacy_text_two).to_have_text(config.Config.jnj_careclub_privacy_data_fr_new)
+                    print(f"Text is present and is correct: '{config.Config.jnj_careclub_privacy_data_fr_new}'")
+            else:
+                privacy_text_two = self.privacy_content_two
+                expect(privacy_text_two).to_have_text(privacy_content_two)
+                print(f"Text is present and is correct: '{privacy_content_two}'")
+
+            privacy_text_three = self.privacy_content_three
+            expect(privacy_text_three).to_have_text(privacy_content_three)
+            print(f"Text is present and is correct: '{privacy_content_three}'")
+
+            privacy_text_four = self.privacy_content_four
+            expect(privacy_text_four).to_have_text(privacy_content_four)
+            print(f"Text is present and is correct: '{privacy_content_four}'")
+        except TimeoutError:
+                print(f"Error message not present.")
     
 
+    """
+    Function to verify thank you page content
+    """
+    def verify_thankyou_page_content(self, thank_you_content_one, page_content_two):
+        try:
+            text = self.brand_name
+            main_title = self.content_one
+            expect(main_title).to_have_text(thank_you_content_one)
+            print(f"Text is present and is correct: '{thank_you_content_one}'")
+
+            if text == "CLEAN & CLEAR® Canada" or text == "SUDAFED®":
+                content_two = self.page_content_two_2
+                expect(content_two).to_have_text(page_content_two)
+                print(f"Text is present and is correct: '{page_content_two}'")
+            elif text == "BENADRYL®":
+                content_two = self.page_content_two_3
+                expect(content_two).to_have_text(page_content_two)
+                print(f"Text is present and is correct: '{page_content_two}'")
+            else:
+                content_two = self.page_content_two
+                expect(content_two).to_have_text(page_content_two)
+                print(f"Text is present and is correct: '{page_content_two}'")
+
+        except TimeoutError:
+                print(f"Error message not present.")
 
 
+    """
+    Function to verify "facultative" text
+    """
+    def verify_dob_content(self, dob_content):
+         try:
+            dob_text = self.dob_fr
+            expect(dob_text).to_have_text(dob_content)
+            print(f"Text is present and is correct: '{dob_content}'")
+         except TimeoutError:
+                print(f"Error message not present.")    
             
             
 
