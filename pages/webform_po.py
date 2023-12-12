@@ -1,6 +1,7 @@
 import config
 from playwright.sync_api import Playwright, sync_playwright, Page, BrowserContext, Browser, expect
 from utils.actions import Action
+from faker import Faker
 
 class Webform:
     jnj_title_text = "Johnson and Johnson Inc."
@@ -59,6 +60,10 @@ class Webform:
         self.dob_fr = page.locator(".field-birthdate i")
         self.page_content_two_2 = page.locator(".field--label-hidden p")
         self.page_content_two_3 = page.locator(".field--label-hidden p p")
+        self.recaptcha_error_message_2 = page.locator("#submit-error")
+        self.recaptcha_error_message_3 = page.locator("#email-registered-error")
+        self.email_address_error_message = page.locator(".error-no-match")
+        
 
     """
     Function to verify page titles
@@ -124,6 +129,10 @@ class Webform:
                 page_title_modified = page_title + "ROGAINE®"
                 expect(self.page).to_have_title(page_title_modified)
                 print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "Cessez de fumer avec nos produits et ressources | NICORETTE®":
+                page_title_modified = page_title + "NICORETTE®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
             elif text != "Johnson & Johnson Canada":
                 page_title_modified = page_title + text
                 expect(self.page).to_have_title(page_title_modified)
@@ -141,6 +150,13 @@ class Webform:
                 if text == "Johnson & Johnson Canada":
                     meta_desc = Webform.jnj_meta_text
                     if meta_desc == self.meta_description:
+                        assert True, f"Meta description is as expected"
+                        print("Meta description is as expected:", meta_desc)
+                    else:
+                        assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "Quit Smoking with Our Products & Resources | NICORETTE®":
+                    meta_desc = "Get more out of NICORETTE® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                    if  meta_desc == self.meta_description:
                         assert True, f"Meta description is as expected"
                         print("Meta description is as expected:", meta_desc)
                     else:
@@ -169,6 +185,13 @@ class Webform:
                         print("Meta description is as expected:", meta_desc_fr)
                     else:
                         assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "Cessez de fumer avec nos produits et ressources | NICORETTE®":
+                        meta_desc_fr = meta + " " + "NICORETTE®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
                 elif text != "Johnson & Johnson Canada":
                     if text == "TYLENOL®":
                         meta_desc_fr = config.Config.meta_tylenol_fr + " " + text + "!"   
@@ -271,16 +294,25 @@ class Webform:
     """
     Function for form fields
     """
-    def webform_form(self, name, email_id, email_verify, date):
+    def webform_form(self, name, email_id, email_verify, date, type):
         try:
             #firstname
             self.first_name.fill(name)
 
-            #email
-            self.email.fill(email_id)
+            if type == "recaptcha" or type == "verify_email":
+                #email
+                self.email.fill(email_id)
 
-            #confirm email
-            self.verify_email.fill(email_verify)
+                #confirm email
+                self.verify_email.fill(email_verify)
+            else:
+                #email
+                fake = Faker()
+                random_email = fake.email()
+                self.email.fill(random_email)
+
+                #confirm email
+                self.verify_email.fill(random_email)
     
             #birthdate
             self.birthdate.fill(date)
@@ -522,7 +554,36 @@ class Webform:
             expect(dob_text).to_have_text(dob_content)
             print(f"Text is present and is correct: '{dob_content}'")
          except TimeoutError:
-                print(f"Error message not present.")    
+                print(f"Error message not present.")
+
+    """
+    Function to verify "recaptcha" error text
+    """
+    def recaptcha_error_check(self, recaptcha_error, type):
+         try:
+            if type == "generic":
+                #recaptcha
+                error_recaptcha = self.recaptcha_error_message_2
+                expect(error_recaptcha).to_have_text(recaptcha_error)
+                print(f"Error message is present and is correct: '{recaptcha_error}'")
+            elif type == "registered":
+                error_recaptcha = self.recaptcha_error_message_3
+                expect(error_recaptcha).to_have_text(recaptcha_error)
+                print(f"Error message is present and is correct: '{recaptcha_error}'")
+         except TimeoutError:
+                print(f"Error message not present.")
+
+    """
+    Function to verify "email address" error text
+    """
+    def email_address_error_check(self, email_error_text):
+         try:
+            #recaptcha
+            error_recaptcha = self.email_address_error_message
+            expect(error_recaptcha).to_have_text(email_error_text)
+            print(f"Error message is present and is correct: '{email_error_text}'")
+         except TimeoutError:
+                print(f"Error message not present.")              
             
             
 

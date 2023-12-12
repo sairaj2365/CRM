@@ -1,6 +1,8 @@
 import config
 from playwright.sync_api import Playwright, sync_playwright, Page, BrowserContext, Browser, expect
 from utils.actions import Action
+from faker import Faker
+
 
 class Lightbox:
     
@@ -40,6 +42,8 @@ class Lightbox:
         self.privacy_content_two = page.locator(".lightbox-warnings p:nth-child(2)")
         self.privacy_content_three = page.locator(".lightbox-warnings p:nth-child(3)")
         self.privacy_content_four = page.locator(".lightbox-warnings p:nth-child(4)")
+        self.alt_text_checkmark = page.locator("#lightbox-thank-you-message p:nth-child(1) img")
+        self.content = page.locator("#lightbox-thank-you-message p:nth-child(2)")
 
     """
     Function to verify privacy policy content
@@ -407,9 +411,10 @@ class Lightbox:
     """
     Function to verify close icon alt tag
     """
-    def check_close_icon_alt_tag(self,site, alt):
+    def check_close_icon_alt_tag(self,site,alt):
         try:
             if site == "EN":
+                #self.page.wait_for_selector()
                 alt_text = self.close_icon.get_attribute('aria-label')
                 print(alt_text)
                 if alt_text == alt:
@@ -419,6 +424,7 @@ class Lightbox:
                     assert False, f"Icon has no Alt Text."
         
             if site == "FR":
+                #self.page.wait_for_selector()
                 alt_text = self.close_icon.get_attribute('aria-label')
                 if alt_text == alt:
                     assert True
@@ -444,16 +450,26 @@ class Lightbox:
     Function for form fields lightbox
     """
 
-    def lightbox_form(self, name, email_id, email_verify):
+    def lightbox_form(self, name, email_id, email_verify, type):
         try:
+            self.page.wait_for_selector("#edit-name")
             #firstname
             self.first_name.fill(name)
+            
+            if type == "recaptcha" or type == "verify_email":
+                #email
+                self.email.fill(email_id)
 
-            #email
-            self.email.fill(email_id)
+                #confirm email
+                self.verify_email.fill(email_verify)
+            else:
+                #email
+                fake = Faker()
+                random_email = fake.email()
+                self.email.fill(random_email)
 
-            #confirm email
-            self.verify_email.fill(email_verify)
+                #confirm email
+                self.verify_email.fill(random_email)
         except TimeoutError:
                 print(f"Timeout Error") 
 
@@ -491,77 +507,40 @@ class Lightbox:
         try:
             brand = self.brand_name
             if type == 'empty':
-                if brand == "Johnson & Johnson Canada":
-                    #name
-                    error_name = self.name_error
-                    expect(error_name).to_have_text(name_error)
-                    print(f"Error message is present and is correct: '{name_error}'")
+                #name
+                error_name = self.name_error_2
+                expect(error_name).to_have_text(name_error)
+                print(f"Error message is present and is correct: '{name_error}'")
 
-                    #email
-                    error_email = self.email_error
-                    expect(error_email).to_have_text(email_error)
-                    print(f"Error message is present and is correct: '{email_error}'")
+                #email
+                error_email = self.email_error_2
+                expect(error_email).to_have_text(email_error)
+                print(f"Error message is present and is correct: '{email_error}'")
 
-                    #verify email
-                    error_verify_email = self.verify_email_error_message
-                    expect(error_verify_email).to_have_text(verify_email_error)
-                    print(f"Error message is present and is correct: '{verify_email_error}'")
+                #verify email
+                error_verify_email = self.verify_email_error_message_2
+                expect(error_verify_email).to_have_text(verify_email_error)
+                print(f"Error message is present and is correct: '{verify_email_error}'")
 
-                    #recaptcha
-                    error_recaptcha = self.recaptcha_error_message
-                    expect(error_recaptcha).to_have_text(recaptcha_error)
-                    print(f"Error message is present and is correct: '{recaptcha_error}'")
-                else:
-                    #name
-                    error_name = self.name_error_2
-                    expect(error_name).to_have_text(name_error)
-                    print(f"Error message is present and is correct: '{name_error}'")
-
-                    #email
-                    error_email = self.email_error_2
-                    expect(error_email).to_have_text(email_error)
-                    print(f"Error message is present and is correct: '{email_error}'")
-
-                    #verify email
-                    error_verify_email = self.verify_email_error_message_2
-                    expect(error_verify_email).to_have_text(verify_email_error)
-                    print(f"Error message is present and is correct: '{verify_email_error}'")
-
-                    #recaptcha
-                    error_recaptcha = self.recaptcha_error_message_2
-                    expect(error_recaptcha).to_have_text(recaptcha_error)
-                    print(f"Error message is present and is correct: '{recaptcha_error}'")
+                #recaptcha
+                error_recaptcha = self.recaptcha_error_message_2
+                expect(error_recaptcha).to_have_text(recaptcha_error)
+                print(f"Error message is present and is correct: '{recaptcha_error}'")
             elif type == 'invalid':
-                if brand == "Johnson & Johnson Canada":
-                    #name
-                    error_name = self.name_error_invalid
-                    expect(error_name).to_have_text(name_error)
-                    print(f"Error message is present and is correct: '{name_error}'")
+                #name
+                error_name = self.name_error_invalid_2
+                expect(error_name).to_have_text(name_error)
+                print(f"Error message is present and is correct: '{name_error}'")
 
-                    #email
-                    error_email = self.email_error_invalid
-                    expect(error_email).to_have_text(email_error)
-                    print(f"Error message is present and is correct: '{email_error}'")
+                #email
+                error_email = self.email_error_invalid_2
+                expect(error_email).to_have_text(email_error)
+                print(f"Error message is present and is correct: '{email_error}'")
 
-                    #verify email
-                    error_verify_email = self.verify_email_error_message_invalid
-                    expect(error_verify_email).to_have_text(verify_email_error)
-                    print(f"Error message is present and is correct: '{verify_email_error}'")
-                else:
-                    #name
-                    error_name = self.name_error_invalid_2
-                    expect(error_name).to_have_text(name_error)
-                    print(f"Error message is present and is correct: '{name_error}'")
-
-                    #email
-                    error_email = self.email_error_invalid_2
-                    expect(error_email).to_have_text(email_error)
-                    print(f"Error message is present and is correct: '{email_error}'")
-
-                    #verify email
-                    error_verify_email = self.verify_email_error_message_invalid_2
-                    expect(error_verify_email).to_have_text(verify_email_error)
-                    print(f"Error message is present and is correct: '{verify_email_error}'")
+                #verify email
+                error_verify_email = self.verify_email_error_message_invalid_2
+                expect(error_verify_email).to_have_text(verify_email_error)
+                print(f"Error message is present and is correct: '{verify_email_error}'")
 
                 #recaptcha
                 error_recaptcha = self.recaptcha_error_message_invalid
@@ -571,7 +550,7 @@ class Lightbox:
                 print(f"Timeout Error")
     
     """
-    Function to verify webform content
+    Function to verify lightbox content
     """
     def verify_lightbox_content(self, site, content_one, content_two, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four):
         try:
@@ -620,5 +599,47 @@ class Lightbox:
         except TimeoutError:
                 print(f"Error message not present.")
 
+    """
+    Function to verify lightbox checkmark alt tag
+    """
+
+    def check_checkmark_image_alt_tag(self, alt_tag):
+        try:
+            alt_text = self.alt_text_checkmark.get_attribute('alt')
+            if alt_text == alt_tag:
+                assert True
+                print(f"Image Alt Text: {alt_text}")
+            else:
+                assert False, f"Image has no Alt Text."       
+        except TimeoutError:
+                print(f"Error message not present.")
     
-            
+    """
+    Function to verify thank you modal content
+    """
+
+    def check_thankyou_modal_content(self, content):
+        try:
+            text_content = self.content
+            expect(text_content).to_have_text(content)
+            print(f"Text is present and is correct: '{content}'") 
+        except TimeoutError:
+                print(f"Error message not present.")
+
+    """
+    Function to verify "recaptcha" error text
+    """
+    def recaptcha_error_check(self, recaptcha_error, type):
+         try:
+            if type == "generic":
+                #recaptcha
+                error_recaptcha = self.recaptcha_error_message
+                expect(error_recaptcha).to_have_text(recaptcha_error)
+                print(f"Error message is present and is correct: '{recaptcha_error}'")
+            elif type == "registered":
+                error_recaptcha = self.recaptcha_error_message_2
+                expect(error_recaptcha).to_have_text(recaptcha_error)
+                print(f"Error message is present and is correct: '{recaptcha_error}'")
+         except TimeoutError:
+                print(f"Error message not present.")
+  

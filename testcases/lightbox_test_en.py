@@ -60,23 +60,27 @@ def test_empty_form(url, browser : Browser) -> None:
     lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "empty")
     page.close()
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
-def test_form_page(url, browser : Browser) -> None:
-    context = browser.new_context(
-        #record_video_dir= "video/"
-    )
-    page = context.new_page()
-    page.set_default_timeout(80000)
-    page.goto(url)
-    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-    firstname, emailid, verify_email = data[0], data[1], data[2]
-    action_obj = Action(page)
-    lightbox_obj = Lightbox(page)
-    lightbox_obj.lightbox_form(firstname, emailid, verify_email)
-    action_obj.closeCookiePopup()
-    lightbox_obj.submit_button()
-    page.close()
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+# def test_form_page(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/"
+#     )
+#     page = context.new_page()
+#     page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, input_data_1, brand_text, alt_tag, text_content = data[0], data[1], data[2], data[9], data[10], data[11], data[12]
+#     action_obj = Action(page)
+#     lightbox_obj = Lightbox(page)
+#     lightbox_obj.lightbox_form(firstname, emailid, verify_email)
+#     action_obj.closeCookiePopup()
+#     lightbox_obj.submit_button()
+#     lightbox_obj.check_close_icon_alt_tag("EN", input_data_1)
+#     lightbox_obj.check_image_alt_tag("EN", brand_text)
+#     lightbox_obj.check_checkmark_image_alt_tag(alt_tag)
+#     lightbox_obj.check_thankyou_modal_content(text_content)
+#     page.close()
 
 @pytest.mark.webform
 @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
@@ -91,7 +95,7 @@ def test_form_invalid_data(url, browser : Browser) -> None:
     firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[4], data[5], data[6], data[8]
     action_obj = Action(page)
     lightbox_obj = Lightbox(page)
-    lightbox_obj.lightbox_form(firstname, emailid, verify_email)
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "")
     action_obj.closeCookiePopup()
     lightbox_obj.submit_button()
     lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
@@ -124,3 +128,58 @@ def test_webform_links(url, browser : Browser) -> None:
 #     lightbox_obj = Lightbox(page)
 #     lightbox_obj.verify_lightbox_content("EN", content_one, content_two, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four)
 #     page.close()
+
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+# def test_form_recaptcha_generic(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/"
+#     )
+#     page = context.new_page()
+#     page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, recaptcha_error = data[0], data[1], data[2], data[8]
+#     action_obj = Action(page)
+#     lightbox_obj = Lightbox(page)
+#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "recaptcha")
+#     action_obj.closeCookiePopup()
+#     lightbox_obj.submit_button()
+#     lightbox_obj.recaptcha_error_check(recaptcha_error, "generic")
+
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+# def test_form_page_registered_error_message(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/"
+#     )
+#     page = context.new_page()
+#     page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, recaptcha_error = data[0], data[1], data[2], data[8]
+#     action_obj = Action(page)
+#     lightbox_obj = Lightbox(page)
+#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "recaptcha")
+#     action_obj.closeCookiePopup()
+#     lightbox_obj.submit_button()
+#     lightbox_obj.recaptcha_error_check(recaptcha_error, "registered")
+
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_page_addresses_do_not_match(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/"
+    )
+    page = context.new_page()
+    page.set_default_timeout(80000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, email_error_text = data[0], data[1], data[2], data[6]
+    action_obj = Action(page)
+    webform_obj = Webform(page)
+    lightbox_obj = Lightbox(page)
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+    action_obj.closeCookiePopup()
+    lightbox_obj.submit_button()
+    webform_obj.email_address_error_check(email_error_text)
