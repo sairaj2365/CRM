@@ -1,6 +1,7 @@
 import config
 from playwright.sync_api import Playwright, sync_playwright, Page, BrowserContext, Browser, expect
 from utils.actions import Action
+from faker import Faker
 
 class Webform:
     jnj_title_text = "Johnson and Johnson Inc."
@@ -47,6 +48,22 @@ class Webform:
         self.verify_email_error_message_invalid_2 = page.locator("div:nth-child(5) > .error-format")
         self.terms_link = page.get_by_role("link", name="full terms and conditions.")
         self.terms_link_fr = page.get_by_role("link", name="conditions générales.")
+        self.content_one = page.locator("#content-main")
+        self.content_two = page.locator(".careclub-header p")
+        self.checkbox_content = page.locator(".careclub-term label")
+        self.privacy_content_one = page.locator(".careclub-warnings p:nth-child(2)")
+        self.privacy_content_two = page.locator(".careclub-warnings p:nth-child(3)")
+        self.privacy_content_three = page.locator(".careclub-warnings p:nth-child(4)")
+        self.privacy_content_four = page.locator(".careclub-warnings p:nth-child(5)")
+        self.page_content_two = page.locator(".main-row.region-row p:nth-child(1)")
+        self.dob = page.locator(".field-birthdate em")
+        self.dob_fr = page.locator(".field-birthdate i")
+        self.page_content_two_2 = page.locator(".field--label-hidden p")
+        self.page_content_two_3 = page.locator(".field--label-hidden p p")
+        self.recaptcha_error_message_2 = page.locator("#submit-error")
+        self.recaptcha_error_message_3 = page.locator("#email-registered-error")
+        self.email_address_error_message = page.locator(".error-no-match")
+        
 
     """
     Function to verify page titles
@@ -112,6 +129,10 @@ class Webform:
                 page_title_modified = page_title + "ROGAINE®"
                 expect(self.page).to_have_title(page_title_modified)
                 print(f"Title verified to be : '{page_title_modified}'")
+            elif text == "Cessez de fumer avec nos produits et ressources | NICORETTE®":
+                page_title_modified = page_title + "NICORETTE®"
+                expect(self.page).to_have_title(page_title_modified)
+                print(f"Title verified to be : '{page_title_modified}'")
             elif text != "Johnson & Johnson Canada":
                 page_title_modified = page_title + text
                 expect(self.page).to_have_title(page_title_modified)
@@ -133,15 +154,92 @@ class Webform:
                         print("Meta description is as expected:", meta_desc)
                     else:
                         assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text != "Johnson & Johnson Canada":
-                    meta_desc = "Get more out of "+ text +" by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                elif text == "Quit Smoking with Our Products & Resources | NICORETTE®":
+                    meta_desc = "Get more out of NICORETTE® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
                     if  meta_desc == self.meta_description:
                         assert True, f"Meta description is as expected"
                         print("Meta description is as expected:", meta_desc)
                     else:
                         assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "BENYLIN® Canada":
+                        meta_desc = "Get more out of BENYLIN® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                        if  meta_desc == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "Polysporin® Canada":
+                        meta_desc = "Get more out of POLYSPORIN® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                        if  meta_desc == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "LISTERINE® Antiseptic Mouthwash, Rinse & Oral Care Products":
+                        meta_desc = "Get more out of LISTERINE® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"  
+                        if  meta_desc == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "Johnson's® Baby":
+                        meta_desc = "Get more out of JOHNSON'S® Baby by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                        if  meta_desc == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "BAND-AID® Brand":
+                        meta_desc = "Get more out of BANDAID® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"  
+                        if  meta_desc == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "Motrin":
+                        meta_desc = "Get more out of MOTRIN® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                        if  meta_desc == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "CLEAN & CLEAR® Canada":
+                        meta_desc = "Get more out of CLEAN & CLEAR® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                        if  meta_desc == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "PENATEN® Canada":
+                        meta_desc = "Get more out of PENATEN® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                        if  meta_desc == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "PEPCID® Canada":
+                        meta_desc = "Get more out of PEPCID® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                        if  meta_desc == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "ROGAINE® Canada":
+                        meta_desc = "Get more out of ROGAINE® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                        if  meta_desc == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc}")
                 elif text == "TYLENOL®":
                     meta_desc = "Looking to get more out of "+ text +"? Sign up to be a Care Club member to receive exclusive offers, personalized emails & access to new product releases."   
+                    if  meta_desc == self.meta_description:
+                        assert True, f"Meta description is as expected"
+                        print("Meta description is as expected:", meta_desc)
+                    else:
+                        assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text != "Johnson & Johnson Canada":
+                    meta_desc = "Get more out of "+ text +" by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
                     if  meta_desc == self.meta_description:
                         assert True, f"Meta description is as expected"
                         print("Meta description is as expected:", meta_desc)
@@ -157,9 +255,86 @@ class Webform:
                         print("Meta description is as expected:", meta_desc_fr)
                     else:
                         assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "Cessez de fumer avec nos produits et ressources | NICORETTE®":
+                        meta_desc_fr = meta + " " + "NICORETTE®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "BENYLIN® Canada":
+                        meta_desc_fr = meta + " " + "BENYLIN®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "Polysporin® Canada":
+                        meta_desc_fr = meta + " " + "POLYSPORIN®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "LISTERINE® Antiseptic Mouthwash, Rinse & Oral Care Products":
+                        meta_desc_fr = meta + " " + "LISTERINE®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "Johnson's® Baby":
+                        meta_desc_fr = meta + " " + "JOHNSON'S® Baby" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "Marque BAND-AID®":
+                        meta_desc_fr = meta + " " + "BAND-AID®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "Motrin":
+                        meta_desc_fr = meta + " " + "MOTRIN®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "CLEAN & CLEAR® Canada":
+                        meta_desc_fr = meta + " " + "CLEAN & CLEAR®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "PENATEN® Canada":
+                        meta_desc_fr = meta + " " + "PENATEN®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "PEPCID® Canada":
+                        meta_desc_fr = meta + " " + "PEPCID®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "Rogaine":
+                        meta_desc_fr = meta + " " + "ROGAINE®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
                 elif text != "Johnson & Johnson Canada":
                     if text == "TYLENOL®":
-                        meta_desc_fr = config.Config.meta_tylenol_fr + " " + text + "!"   
+                        meta_desc_fr = config.Config.meta_tylenol_fr + " " + text + "."   
                         if  meta_desc_fr == self.meta_description:
                             assert True, f"Meta description is as expected"
                             print("Meta description is as expected:", meta_desc_fr)
@@ -259,16 +434,25 @@ class Webform:
     """
     Function for form fields
     """
-    def webform_form(self, name, email_id, email_verify, date):
+    def webform_form(self, name, email_id, email_verify, date, type):
         try:
             #firstname
             self.first_name.fill(name)
 
-            #email
-            self.email.fill(email_id)
+            if type == "recaptcha" or type == "verify_email":
+                #email
+                self.email.fill(email_id)
 
-            #confirm email
-            self.verify_email.fill(email_verify)
+                #confirm email
+                self.verify_email.fill(email_verify)
+            else:
+                #email
+                fake = Faker()
+                random_email = fake.email()
+                self.email.fill(random_email)
+
+                #confirm email
+                self.verify_email.fill(random_email)
     
             #birthdate
             self.birthdate.fill(date)
@@ -419,13 +603,127 @@ class Webform:
             href_link = terms_link_fr.get_attribute('href')
             action_obj.new_tab_validate_url(terms_link_fr, href_link)
 
-   
+    """
+    Function to verify webform content
+    """
+    def verify_webform_content(self, site, content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four):
+        try:
+            brand = self.brand_name
+            main_title = self.content_one
+            expect(main_title).to_have_text(content_one)
+            print(f"Text is present and is correct: '{content_one}'")
 
+            textcontent_one = self.content_two
+            expect(textcontent_one).to_have_text(content_two)
+            print(f"Text is present and is correct: '{content_two}'")
 
+            checkbox = self.checkbox_content
+            expect(checkbox).to_have_text(checkbox_content)
+            print(f"Text is present and is correct: '{checkbox_content}'")
+
+            if site == "EN":
+                privacy_text_one = self.privacy_content_one
+                privacy_text = privacy_content_one + "1‑800‑265‑7323."
+                expect(privacy_text_one).to_have_text(privacy_text)
+                print(f"Text is present and is correct: '{privacy_text}'")
+            
+            elif site == "FR":
+                privacy_text_one = self.privacy_content_one
+                privacy_text = privacy_content_one + "1 800 265‑7323."
+                expect(privacy_text_one).to_have_text(privacy_text)
+                print(f"Text is present and is correct: '{privacy_text}'")
+
+            if brand == "Johnson & Johnson Canada":
+                if site == "EN":
+                    privacy_text_two = self.privacy_content_two
+                    expect(privacy_text_two).to_have_text(config.Config.jnj_careclub_privacy_data_en_new)
+                    print(f"Text is present and is correct: '{config.Config.jnj_careclub_privacy_data_en_new}'")
+                elif site == "FR":
+                    privacy_text_two = self.privacy_content_two
+                    expect(privacy_text_two).to_have_text(config.Config.jnj_careclub_privacy_data_fr_new)
+                    print(f"Text is present and is correct: '{config.Config.jnj_careclub_privacy_data_fr_new}'")
+            else:
+                privacy_text_two = self.privacy_content_two
+                expect(privacy_text_two).to_have_text(privacy_content_two)
+                print(f"Text is present and is correct: '{privacy_content_two}'")
+
+            privacy_text_three = self.privacy_content_three
+            expect(privacy_text_three).to_have_text(privacy_content_three)
+            print(f"Text is present and is correct: '{privacy_content_three}'")
+
+            privacy_text_four = self.privacy_content_four
+            expect(privacy_text_four).to_have_text(privacy_content_four)
+            print(f"Text is present and is correct: '{privacy_content_four}'")
+        except TimeoutError:
+                print(f"Error message not present.")
     
 
+    """
+    Function to verify thank you page content
+    """
+    def verify_thankyou_page_content(self, thank_you_content_one, page_content_two):
+        try:
+            text = self.brand_name
+            main_title = self.content_one
+            expect(main_title).to_have_text(thank_you_content_one)
+            print(f"Text is present and is correct: '{thank_you_content_one}'")
+
+            if text == "CLEAN & CLEAR® Canada" or text == "SUDAFED®":
+                content_two = self.page_content_two_2
+                expect(content_two).to_have_text(page_content_two)
+                print(f"Text is present and is correct: '{page_content_two}'")
+            elif text == "BENADRYL®":
+                content_two = self.page_content_two_3
+                expect(content_two).to_have_text(page_content_two)
+                print(f"Text is present and is correct: '{page_content_two}'")
+            else:
+                content_two = self.page_content_two
+                expect(content_two).to_have_text(page_content_two)
+                print(f"Text is present and is correct: '{page_content_two}'")
+
+        except TimeoutError:
+                print(f"Error message not present.")
 
 
+    """
+    Function to verify "facultative" text
+    """
+    def verify_dob_content(self, dob_content):
+         try:
+            dob_text = self.dob_fr
+            expect(dob_text).to_have_text(dob_content)
+            print(f"Text is present and is correct: '{dob_content}'")
+         except TimeoutError:
+                print(f"Error message not present.")
+
+    """
+    Function to verify "recaptcha" error text
+    """
+    def recaptcha_error_check(self, recaptcha_error, type):
+         try:
+            if type == "generic":
+                #recaptcha
+                error_recaptcha = self.recaptcha_error_message_2
+                expect(error_recaptcha).to_have_text(recaptcha_error)
+                print(f"Error message is present and is correct: '{recaptcha_error}'")
+            elif type == "registered":
+                error_recaptcha = self.recaptcha_error_message_3
+                expect(error_recaptcha).to_have_text(recaptcha_error)
+                print(f"Error message is present and is correct: '{recaptcha_error}'")
+         except TimeoutError:
+                print(f"Error message not present.")
+
+    """
+    Function to verify "email address" error text
+    """
+    def email_address_error_check(self, email_error_text):
+         try:
+            #recaptcha
+            error_recaptcha = self.email_address_error_message
+            expect(error_recaptcha).to_have_text(email_error_text)
+            print(f"Error message is present and is correct: '{email_error_text}'")
+         except TimeoutError:
+                print(f"Error message not present.")              
             
             
 

@@ -12,7 +12,7 @@ class Action:
 
     def verify_current_url(self, expected_partial_url):
         try:
-            self.page.wait_for_timeout(10000)
+            self.page.wait_for_timeout(1000)
             current_url = self.page.url
             assert expected_partial_url in current_url, f"Expected '{expected_partial_url}' to be present in URL, but it is not. Current URL: {current_url}"
             print(f"URL verified to contain : '{expected_partial_url}'")
