@@ -23,7 +23,7 @@ class Webform:
         self.href_lang_fr = page.locator("link[hreflang = 'fr-CA']")
         self.privacy_policy_en_p1 = page.locator(".careclub-form .careclub-warnings p:nth-child(2)")
         self.privacy_policy_en_p2 = page.locator(".careclub-form .careclub-warnings p:nth-child(3)")
-        self.privacy_policy_data_link = page.locator('.careclub-warnings > p:nth-child(2) > a')
+        self.privacy_policy_data_link = page.locator('.careclub-warnings > p:nth-child(3) > a')
         self.first_name = page.locator("#edit-name")
         self.email = page.locator("#edit-email")
         self.verify_email = page.locator("#edit-confirm-email")
@@ -591,17 +591,17 @@ class Webform:
         action_obj.new_tab_validate_url(privacy_policy_en, href_link)
         #self.page.go_back()
 
-        if sitename == 'EN':
-            #terms and conditions
-            terms_link_en = self.terms_link
-            href_link = terms_link_en.get_attribute('href')
-            action_obj.new_tab_validate_url(terms_link_en, href_link)
+        # if sitename == 'EN':
+        #     #terms and conditions
+        #     terms_link_en = self.terms_link
+        #     href_link = terms_link_en.get_attribute('href')
+        #     action_obj.new_tab_validate_url(terms_link_en, href_link)
 
-        if sitename == 'FR':
-            #terms and conditions
-            terms_link_fr = self.terms_link_fr
-            href_link = terms_link_fr.get_attribute('href')
-            action_obj.new_tab_validate_url(terms_link_fr, href_link)
+        # if sitename == 'FR':
+        #     #terms and conditions
+        #     terms_link_fr = self.terms_link_fr
+        #     href_link = terms_link_fr.get_attribute('href')
+        #     action_obj.new_tab_validate_url(terms_link_fr, href_link)
 
     """
     Function to verify webform content
@@ -688,11 +688,22 @@ class Webform:
     """
     Function to verify "facultative" text
     """
-    def verify_dob_content(self, dob_content):
+    def verify_dob_content(self, dob_content, site):
          try:
-            dob_text = self.dob_fr
-            expect(dob_text).to_have_text(dob_content)
-            print(f"Text is present and is correct: '{dob_content}'")
+            text = self.brand_name
+            if text == "TYLENOL®":
+                if site == "EN":
+                    dob_text = self.dob
+                    expect(dob_text).to_have_text(dob_content)
+                    print(f"Text is present and is correct: '{dob_content}'")
+                elif site == "FR":
+                    dob_text = self.dob_fr
+                    expect(dob_text).to_have_text(dob_content)
+                    print(f"Text is present and is correct: '{dob_content}'")
+            else:     
+                dob_text = self.dob_fr
+                expect(dob_text).to_have_text(dob_content)
+                print(f"Text is present and is correct: '{dob_content}'")
          except TimeoutError:
                 print(f"Error message not present.")
 

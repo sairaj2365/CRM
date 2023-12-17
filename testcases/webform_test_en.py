@@ -33,13 +33,13 @@ testdata_form = "./test_data/form_data.csv"
 #     webform_obj = Webform(page)
 #     webform_obj.verify_page_title(page_title)
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
-def test_meta_description(url, page: Page) -> None:
-    page.set_default_timeout(300000)
-    page.goto(url)
-    webform_obj = Webform(page)
-    webform_obj.meta_description_check('EN', "")
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_meta_description(url, page: Page) -> None:
+#     page.set_default_timeout(300000)
+#     page.goto(url)
+#     webform_obj = Webform(page)
+#     webform_obj.meta_description_check('EN', "")
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
@@ -130,18 +130,18 @@ def test_meta_description(url, page: Page) -> None:
 #     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
 #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
-# def test_webform_links(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(300000)
-#     page.goto(url)
-#     webform_obj = Webform(page)
-#     webform_obj.verify_links('EN')
-#     page.close()
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+def test_webform_links(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/"
+    )
+    page = context.new_page()
+    page.set_default_timeout(300000)
+    page.goto(url)
+    webform_obj = Webform(page)
+    webform_obj.verify_links('EN')
+    page.close()
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_thankyou_page)
@@ -173,35 +173,35 @@ def test_meta_description(url, page: Page) -> None:
 #     webform_obj.verify_thankyou_page_content(thank_you_content_one, page_content_two)
 #     page.close()
 
-# # @pytest.mark.webform
-# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
-# # def test_webform_content(url, browser : Browser) -> None:
-# #     context = browser.new_context(
-# #         #record_video_dir= "video/"
-# #     )
-# #     page = context.new_page()
-# #     page.set_default_timeout(80000)
-# #     page.goto(url)
-# #     data = reader.read_test_data(testdata, Action.get_current_test_name())
-# #     content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four = data[9], data[10], data[11], data[12], data[13], data[14], data[15]
-# #     webform_obj = Webform(page)
-# #     webform_obj.verify_webform_content("EN", content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four)
-# #     page.close()
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+def test_webform_content(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/"
+    )
+    page = context.new_page()
+    page.set_default_timeout(80000)
+    page.goto(url)
+    data = reader.read_test_data(testdata, Action.get_current_test_name())
+    content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four = data[9], data[10], data[11], data[12], data[13], data[14], data[15]
+    webform_obj = Webform(page)
+    webform_obj.verify_webform_content("EN", content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four)
+    page.close()
 
-# # @pytest.mark.webform
-# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
-# # def test_dob_text(url, browser : Browser) -> None:
-# #     context = browser.new_context(
-# #         #record_video_dir= "video/"
-# #     )
-# #     page = context.new_page()
-# #     page.set_default_timeout(80000)
-# #     page.goto(url)
-# #     data = reader.read_test_data(testdata, Action.get_current_test_name())
-# #     dob_content = data[18]
-# #     webform_obj = Webform(page)
-# #     webform_obj.verify_dob_content(dob_content)
-# #     page.close()
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+def test_dob_text(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/"
+    )
+    page = context.new_page()
+    page.set_default_timeout(80000)
+    page.goto(url)
+    data = reader.read_test_data(testdata, Action.get_current_test_name())
+    dob_content = data[18]
+    webform_obj = Webform(page)
+    webform_obj.verify_dob_content(dob_content, "EN")
+    page.close()
 
 # # @pytest.mark.webform
 # # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)

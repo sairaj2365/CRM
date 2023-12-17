@@ -1,7 +1,16 @@
-testcase,firstname,email_id,verify_email,birthdate,name_error,email_error,verify_email_error,checkbox_error,recaptcha_error,,,,,
-test_form_page,testname,testing3911@gmail.com,testing3911@gmail.com,31/12,,,,,,,,,,
-test_empty_form,,,,,Please enter your first name.,Please enter your email address.,Please enter your email address.,Please check this field.,The answer you entered for the CAPTCHA was not correct.,,,,,
-test_form_invalid_data,#NAME?,test,test,31/04,Please enter a valid name.,Please enter a valid email address.,Please enter a valid email address.,Please enter a valid date.,The answer you entered for the CAPTCHA was not correct.,,,,,
-test_empty_form_fr,,,,,Veuillez entrer votre prénom.,Veuillez entrer votre adresse de courriel.,Veuillez entrer votre adresse de courriel.,Veuillez remplir ce champ.,La réponse que vous avez entrée pour le CAPTCHA est incorrecte.,,,,,
-test_form_invalid_data_fr,#NAME?,test,test,31/04,Veuillez entrer un nom valide.,Veuillez entrer une adresse électronique valide.,Veuillez entrer une adresse électronique valide.,Veuillez utiliser une date valide.,La réponse que vous avez entrée pour le CAPTCHA est incorrecte.,,,,,
-test_form_recaptcha_generic,testname,testing3911@gmail.com,testing3911@gmail.com,31/12,,,,,"An error occurred, please try again later.",,,,,
+testcase,firstname,email_id,verify_email,birthdate,name_error,email_error,verify_email_error,checkbox_error,recaptcha_error,input_data_1,brand_text,alt_tag,text_content,thank_you_content_one,page_content_two,expected_url,,
+test_form_page,testname,testing3989@gmail.com,testing3989@gmail.com,,,,,,,Close lightbox modal,"Logos of 21 Johnson & Johnson brands, including Aveeno, Band-Aid, Benadryl, Benylin, Clean & Clear, Imodium, Johnson’s, Listerine, Motrin, Neutrogena, Nicoderm, Nicorette, Penaten, Pepcid, Polysporin, Reactine, Rogaine, Sudafed, Tylenol, Visine and Zarbee's",Check mark,"Thank you for joining Care Club Canada.
+Your exclusive reward is being sent to your inbox.",Thank you for joining Care Club Canada.,Your exclusive reward is being sent to your inbox.,thank-you-for-joining-care-club,,
+test_empty_form,,,,,Please enter your first name.,Please enter your email address.,Please enter your email address.,Please check this field.,The answer you entered for the CAPTCHA was not correct.,,,,,,,,,
+test_form_invalid_data,#NAME?,test,test,31/04,Please enter a valid name.,Please enter a valid email address.,Please enter a valid email address.,Please enter a valid date.,The answer you entered for the CAPTCHA was not correct.,,,,,,,,,
+test_empty_form_fr,,,,,Veuillez entrer votre prénom.,Veuillez entrer votre adresse de courriel.,Veuillez entrer votre adresse de courriel.,Veuillez remplir ce champ.,La réponse que vous avez entrée pour le CAPTCHA est incorrecte.,,,,,,,,,
+test_form_invalid_data_fr,#NAME?,test,test,31/04,Veuillez entrer un nom valide.,Veuillez entrer une adresse électronique valide.,Veuillez entrer une adresse électronique valide.,Veuillez utiliser une date valide.,La réponse que vous avez entrée pour le CAPTCHA est incorrecte.,,,,,,,,,
+test_form_recaptcha_generic,testname,testing3911@gmail.com,testing3911@gmail.com,,,,,,"An error occurred, please try again later.",,,,,,,,,
+test_form_page_fr,testname,testing3995@gmail.com,testing3995@gmail.com,,,,,,,Fermer la fenêtre modale,"Logos de 21 marques de Johnson & Johnson, dont Aveeno, Band-Aid, Benadryl, Benylin, Clean & Clear, Imodium, Johnson’s, Listerine, Motrin, Neutrogena, Nicoderm, Nicorette, Penaten, Pepcid, Polysporin, Reactine, Rogaine, Sudafed, Tylenol, Visine et Zarbee's",Coche,"Merci pour votre inscription au Club Bons soins Canada!
+
+Vous allez recevoir votre récompense exclusive dans votre boîte de réception.",Merci pour votre inscription au Club Bons soins Canada!,Vous allez recevoir votre récompense exclusive dans votre boîte de réception.,merci-de-votre-abonnement-au-club-bons-soins,,
+test_form_page_generic_message_fr,testname,testing3911@gmail.com,testing3911@gmail.com,,,,,,"Une erreur s’est produite, prière de réessayer.",,,,,,,,,
+test_form_page_registered_error_message_fr,testname,mscavasse@ciandt.com,mscavasse@ciandt.com,,,,,,Cette adresse courriel est déjà inscrite au Club Bons soins Canada.,,,,,,,,,
+test_form_page_addresses_do_not_match_fr,testname,testing3911@gmail.com,testing3900@gmail.com,,,,Les adresses courriel ne correspondent pas.,,,,,,,,,,,
+test_form_page_registered_error_message,testname,mscavasse@ciandt.com,mscavasse@ciandt.com,,,,,,This email address is already registered with Care Club Canada.,,,,,,,,,
+test_form_page_addresses_do_not_match,testname,testing3911@gmail.com,testing3900@gmail.com,,,,Email addresses do not match.,,,,,,,,,,,

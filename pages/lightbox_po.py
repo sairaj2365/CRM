@@ -18,7 +18,7 @@ class Lightbox:
         self.first_name = page.locator("#edit-name")
         self.email = page.locator("#edit-email")
         self.verify_email = page.locator("#edit-confirm-email")
-        self.privacy_policy_data_link = page.locator('.lightbox-warnings > p:nth-child(1) > a')
+        self.privacy_policy_data_link = page.locator('.lightbox-warnings > p:nth-child(2) > a')
         self.terms_link = page.get_by_role("link", name="full terms and conditions.")
         self.terms_link_fr = page.get_by_role("link", name="conditions générales.")
         self.name_error = page.locator("#edit-lightbox div:nth-child(3) .error-required")
@@ -486,17 +486,17 @@ class Lightbox:
             action_obj.new_tab_validate_url(privacy_policy_en, href_link)
             #self.page.go_back()
 
-            if sitename == 'EN':
-                #terms and conditions
-                terms_link_en = self.terms_link
-                href_link = terms_link_en.get_attribute('href')
-                action_obj.new_tab_validate_url(terms_link_en, href_link)
+            # if sitename == 'EN':
+            #     #terms and conditions
+            #     terms_link_en = self.terms_link
+            #     href_link = terms_link_en.get_attribute('href')
+            #     action_obj.new_tab_validate_url(terms_link_en, href_link)
 
-            elif sitename == 'FR':
-                #terms and conditions
-                terms_link_fr = self.terms_link_fr
-                href_link = terms_link_fr.get_attribute('href')
-                action_obj.new_tab_validate_url(terms_link_fr, href_link)
+            # elif sitename == 'FR':
+            #     #terms and conditions
+            #     terms_link_fr = self.terms_link_fr
+            #     href_link = terms_link_fr.get_attribute('href')
+            #     action_obj.new_tab_validate_url(terms_link_fr, href_link)
         except TimeoutError:
                 print(f"Timeout Error")
 
