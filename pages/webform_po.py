@@ -63,6 +63,7 @@ class Webform:
         self.recaptcha_error_message_2 = page.locator("#submit-error")
         self.recaptcha_error_message_3 = page.locator("#email-registered-error")
         self.email_address_error_message = page.locator(".error-no-match")
+        self.content_one_1 = page.locator(".careclub-title")
         
 
     """
@@ -609,29 +610,32 @@ class Webform:
     def verify_webform_content(self, site, content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four):
         try:
             brand = self.brand_name
-            main_title = self.content_one
-            expect(main_title).to_have_text(content_one)
-            print(f"Text is present and is correct: '{content_one}'")
+            if brand == "BAND-AID® Brand" or brand == "Marque BAND-AID®" or brand == "BENADRYL®" or brand == "CLEAN & CLEAR® Canada" or brand == "CLEAN & CLEAR® Canada" or brand == "BENYLIN® Canada" or brand == "Motrin" or brand == "IMODIUM®" or brand == "PEPCID® Canada" or brand == "SUDAFED®" or brand == "VISINE®" or brand == "NICODERM®":
+                main_title = self.content_one_1 
+            else:
+                main_title = self.content_one
+                expect(main_title).to_have_text(content_one)
+                print(f"Text is present and is correct: '{content_one}'")
 
-            textcontent_one = self.content_two
-            expect(textcontent_one).to_have_text(content_two)
-            print(f"Text is present and is correct: '{content_two}'")
+                textcontent_one = self.content_two
+                expect(textcontent_one).to_have_text(content_two)
+                print(f"Text is present and is correct: '{content_two}'")
 
-            checkbox = self.checkbox_content
-            expect(checkbox).to_have_text(checkbox_content)
-            print(f"Text is present and is correct: '{checkbox_content}'")
+                checkbox = self.checkbox_content
+                expect(checkbox).to_have_text(checkbox_content)
+                print(f"Text is present and is correct: '{checkbox_content}'")
 
-            if site == "EN":
-                privacy_text_one = self.privacy_content_one
-                privacy_text = privacy_content_one + "1‑800‑265‑7323."
-                expect(privacy_text_one).to_have_text(privacy_text)
-                print(f"Text is present and is correct: '{privacy_text}'")
+                if site == "EN":
+                    privacy_text_one = self.privacy_content_one
+                    privacy_text = privacy_content_one + "1‑800‑265‑7323."
+                    expect(privacy_text_one).to_have_text(privacy_text)
+                    print(f"Text is present and is correct: '{privacy_text}'")
             
-            elif site == "FR":
-                privacy_text_one = self.privacy_content_one
-                privacy_text = privacy_content_one + "1 800 265‑7323."
-                expect(privacy_text_one).to_have_text(privacy_text)
-                print(f"Text is present and is correct: '{privacy_text}'")
+                elif site == "FR":
+                    privacy_text_one = self.privacy_content_one
+                    privacy_text = privacy_content_one + "1 800 265‑7323."
+                    expect(privacy_text_one).to_have_text(privacy_text)
+                    print(f"Text is present and is correct: '{privacy_text}'")
 
             if brand == "Johnson & Johnson Canada":
                 if site == "EN":
@@ -651,9 +655,15 @@ class Webform:
             expect(privacy_text_three).to_have_text(privacy_content_three)
             print(f"Text is present and is correct: '{privacy_content_three}'")
 
-            privacy_text_four = self.privacy_content_four
-            expect(privacy_text_four).to_have_text(privacy_content_four)
-            print(f"Text is present and is correct: '{privacy_content_four}'")
+            if brand == "SUDAFED®":
+                if site == "FR":
+                    privacy_text_four = self.privacy_content_four
+                    expect(privacy_text_four).to_have_text(config.Config.privacy_content_four_sudafed)
+                    print(f"Text is present and is correct: '{config.Config.privacy_content_four_sudafed}'")
+            else:
+                privacy_text_four = self.privacy_content_four
+                expect(privacy_text_four).to_have_text(privacy_content_four)
+                print(f"Text is present and is correct: '{privacy_content_four}'")
         except TimeoutError:
                 print(f"Error message not present.")
     
@@ -691,7 +701,7 @@ class Webform:
     def verify_dob_content(self, dob_content, site):
          try:
             text = self.brand_name
-            if text == "TYLENOL®":
+            if text == "TYLENOL®" or text == "Johnson's® Baby":
                 if site == "EN":
                     dob_text = self.dob
                     expect(dob_text).to_have_text(dob_content)

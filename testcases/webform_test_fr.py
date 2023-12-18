@@ -72,32 +72,32 @@ testdata_form = "./test_data/form_data.csv"
 #     webform_obj.check_href_lang("EN", href_en)
 #     webform_obj.check_href_lang("FR", href_fr)
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
-# def test_privacy_policy(url, page: Page) -> None:
-#     page.set_default_timeout(300000)
-#     page.goto(url)
-#     webform_obj = Webform(page)
-#     webform_obj.check_privacy_policy("FR")
-
 # # @pytest.mark.webform
 # # @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
-# # def test_form_page_fr(url, browser : Browser) -> None:
-# #     context = browser.new_context(
-# #         #record_video_dir= "video/"
-# #     )
-# #     page = context.new_page()
-# #     page.set_default_timeout(80000)
+# # def test_privacy_policy(url, page: Page) -> None:
+# #     page.set_default_timeout(300000)
 # #     page.goto(url)
-# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-# #     firstname, emailid, verify_email, birthdate, thank_you_content_one, page_content_two, expected_url = data[0], data[1], data[2], data[3], data[13], data[14], data[15]
 # #     webform_obj = Webform(page)
-# #     action_obj = Action(page)
-# #     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, "")
-# #     webform_obj.submit_button()
-# #     action_obj.verify_current_url(expected_url)
-# #     webform_obj.verify_thankyou_page_content(thank_you_content_one, page_content_two)
-# #     page.close()
+# #     webform_obj.check_privacy_policy("FR")
+
+# # # @pytest.mark.webform
+# # # @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+# # # def test_form_page_fr(url, browser : Browser) -> None:
+# # #     context = browser.new_context(
+# # #         #record_video_dir= "video/"
+# # #     )
+# # #     page = context.new_page()
+# # #     page.set_default_timeout(80000)
+# # #     page.goto(url)
+# # #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# # #     firstname, emailid, verify_email, birthdate, thank_you_content_one, page_content_two, expected_url = data[0], data[1], data[2], data[3], data[13], data[14], data[15]
+# # #     webform_obj = Webform(page)
+# # #     action_obj = Action(page)
+# # #     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, "")
+# # #     webform_obj.submit_button()
+# # #     action_obj.verify_current_url(expected_url)
+# # #     webform_obj.verify_thankyou_page_content(thank_you_content_one, page_content_two)
+# # #     page.close()
 
 # @pytest.mark.webform # will update the code once new updates are deployed
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
@@ -132,18 +132,18 @@ testdata_form = "./test_data/form_data.csv"
 #     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
 #     page.close()
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
-def test_webform_links(url, browser : Browser) -> None:
-    context = browser.new_context(
-        #record_video_dir= "video/"
-    )
-    page = context.new_page()
-    page.set_default_timeout(300000)
-    page.goto(url)
-    webform_obj = Webform(page)
-    webform_obj.verify_links('FR')
-    page.close()
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+# def test_webform_links(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/"
+#     )
+#     page = context.new_page()
+#     page.set_default_timeout(300000)
+#     page.goto(url)
+#     webform_obj = Webform(page)
+#     webform_obj.verify_links('FR')
+#     page.close()
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_thankyou_page)

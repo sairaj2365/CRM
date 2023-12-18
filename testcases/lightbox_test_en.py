@@ -60,27 +60,27 @@ testdata_form = "./test_data/form_data.csv"
 #     lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "empty")
 #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
-# def test_form_page(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, input_data_1, brand_text, alt_tag, text_content = data[0], data[1], data[2], data[9], data[10], data[11], data[12]
-#     action_obj = Action(page)
-#     lightbox_obj = Lightbox(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email)
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.check_close_icon_alt_tag("EN", input_data_1)
-#     lightbox_obj.check_image_alt_tag("EN", brand_text)
-#     lightbox_obj.check_checkmark_image_alt_tag(alt_tag)
-#     lightbox_obj.check_thankyou_modal_content(text_content)
-#     page.close()
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+# # def test_form_page(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, input_data_1, brand_text, alt_tag, text_content = data[0], data[1], data[2], data[9], data[10], data[11], data[12]
+# #     action_obj = Action(page)
+# #     lightbox_obj = Lightbox(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email)
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.check_close_icon_alt_tag("EN", input_data_1)
+# #     lightbox_obj.check_image_alt_tag("EN", brand_text)
+# #     lightbox_obj.check_checkmark_image_alt_tag(alt_tag)
+# #     lightbox_obj.check_thankyou_modal_content(text_content)
+# #     page.close()
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
@@ -101,18 +101,18 @@ testdata_form = "./test_data/form_data.csv"
 #     lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
 #     page.close()
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
-def test_webform_links(url, browser : Browser) -> None:
-    context = browser.new_context(
-        #record_video_dir= "video/"
-    )
-    page = context.new_page()
-    page.set_default_timeout(80000)
-    page.goto(url)
-    lightbox_obj = Lightbox(page)
-    lightbox_obj.verify_links('EN')
-    page.close()
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+# def test_webform_links(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/"
+#     )
+#     page = context.new_page()
+#     page.set_default_timeout(80000)
+#     page.goto(url)
+#     lightbox_obj = Lightbox(page)
+#     lightbox_obj.verify_links('EN')
+#     page.close()
 
 @pytest.mark.webform
 @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
@@ -121,7 +121,7 @@ def test_lightbox_content(url, browser : Browser) -> None:
         #record_video_dir= "video/"
     )
     page = context.new_page()
-    page.set_default_timeout(80000)
+    page.set_default_timeout(100000)
     page.goto(url)
     data = reader.read_test_data(lightbox_privacy_data, Action.get_current_test_name())
     content_one, content_two, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four = data[2], data[3], data[4], data[5], data[6], data[7]

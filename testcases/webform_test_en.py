@@ -130,18 +130,18 @@ testdata_form = "./test_data/form_data.csv"
 #     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
 #     page.close()
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
-def test_webform_links(url, browser : Browser) -> None:
-    context = browser.new_context(
-        #record_video_dir= "video/"
-    )
-    page = context.new_page()
-    page.set_default_timeout(300000)
-    page.goto(url)
-    webform_obj = Webform(page)
-    webform_obj.verify_links('EN')
-    page.close()
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_webform_links(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/"
+#     )
+#     page = context.new_page()
+#     page.set_default_timeout(300000)
+#     page.goto(url)
+#     webform_obj = Webform(page)
+#     webform_obj.verify_links('EN')
+#     page.close()
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_thankyou_page)

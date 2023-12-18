@@ -38,6 +38,7 @@ class Lightbox:
         self.verify_email_error_message_invalid_2 = page.locator("#edit-lightbox div:nth-child(4) .error-format")
         self.content_one = page.locator("#care-club-lightbox-title")
         self.content_two = page.locator(".lightbox-header p:nth-child(3)")
+        self.content_two_1 = page.locator(".lightbox-header p:nth-child(4)")
         self.content_three = page.locator(".lightbox-warnings p:nth-child(1)")
         self.privacy_content_two = page.locator(".lightbox-warnings p:nth-child(2)")
         self.privacy_content_three = page.locator(".lightbox-warnings p:nth-child(3)")
@@ -559,9 +560,15 @@ class Lightbox:
             expect(main_title).to_have_text(content_one)
             print(f"Text is present and is correct: '{content_one}'")
 
-            textcontent_one = self.content_two
-            expect(textcontent_one).to_have_text(content_two)
-            print(f"Text is present and is correct: '{content_two}'")
+            if brand == "Quit Smoking with Our Products & Resources | NICORETTE®" or brand == "Cessez de fumer avec nos produits et ressources | NICORETTE®":
+                textcontent_one = self.content_two_1
+                expect(textcontent_one).to_have_text(content_two)
+                print(f"Text is present and is correct: '{content_two}'")
+
+            else:
+                textcontent_one = self.content_two
+                expect(textcontent_one).to_have_text(content_two)
+                print(f"Text is present and is correct: '{content_two}'")
 
             if site == "EN":
                 privacy_text_one = self.content_three
@@ -589,13 +596,25 @@ class Lightbox:
                 expect(privacy_text_two).to_have_text(privacy_content_two)
                 print(f"Text is present and is correct: '{privacy_content_two}'")
 
-            privacy_text_three = self.privacy_content_three
-            expect(privacy_text_three).to_have_text(privacy_content_three)
-            print(f"Text is present and is correct: '{privacy_content_three}'")
+            if brand == "SUDAFED®":
+                if site == "FR":
+                    privacy_text_three = config.Config.privacy_content_three_sudafed
+                    expect(privacy_text_three).to_have_text(privacy_content_three)
+                    print(f"Text is present and is correct: '{privacy_content_three}'")
+            else:
+                privacy_text_three = self.privacy_content_three
+                expect(privacy_text_three).to_have_text(privacy_content_three)
+                print(f"Text is present and is correct: '{privacy_content_three}'")
 
-            privacy_text_four = self.privacy_content_four
-            expect(privacy_text_four).to_have_text(privacy_content_four)
-            print(f"Text is present and is correct: '{privacy_content_four}'")
+            if brand == "SUDAFED®":
+                if site == "FR":
+                    privacy_text_four = config.Config.privacy_content_four_sudafed_lb
+                    expect(privacy_text_four).to_have_text(privacy_content_four)
+                    print(f"Text is present and is correct: '{privacy_content_four}'")
+            else:
+                privacy_text_four = self.privacy_content_four
+                expect(privacy_text_four).to_have_text(privacy_content_four)
+                print(f"Text is present and is correct: '{privacy_content_four}'")
         except TimeoutError:
                 print(f"Error message not present.")
 

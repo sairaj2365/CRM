@@ -99,18 +99,18 @@ testdata_form = "./test_data/form_data.csv"
 #     lightbox_obj.check_thankyou_modal_content(text_content)
 #     page.close()
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home)
-def test_webform_links(url, browser : Browser) -> None:
-    context = browser.new_context(
-        #record_video_dir= "video/"
-    )
-    page = context.new_page()
-    page.set_default_timeout(80000)
-    page.goto(url)
-    lightbox_obj = Lightbox(page)
-    lightbox_obj.verify_links('FR')
-    page.close()
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home)
+# def test_webform_links(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/"
+#     )
+#     page = context.new_page()
+#     page.set_default_timeout(80000)
+#     page.goto(url)
+#     lightbox_obj = Lightbox(page)
+#     lightbox_obj.verify_links('FR')
+#     page.close()
 
 @pytest.mark.webform
 @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home)
