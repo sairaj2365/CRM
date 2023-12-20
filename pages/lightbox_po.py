@@ -598,8 +598,8 @@ class Lightbox:
 
             if brand == "SUDAFED®":
                 if site == "FR":
-                    privacy_text_three = config.Config.privacy_content_three_sudafed
-                    expect(privacy_text_three).to_have_text(privacy_content_three)
+                    privacy_text_three = self.privacy_content_three
+                    expect(privacy_text_three).to_have_text(config.Config.privacy_content_three_sudafed)
                     print(f"Text is present and is correct: '{privacy_content_three}'")
             else:
                 privacy_text_three = self.privacy_content_three
@@ -608,9 +608,9 @@ class Lightbox:
 
             if brand == "SUDAFED®":
                 if site == "FR":
-                    privacy_text_four = config.Config.privacy_content_four_sudafed_lb
-                    expect(privacy_text_four).to_have_text(privacy_content_four)
-                    print(f"Text is present and is correct: '{privacy_content_four}'")
+                    privacy_text_four = self.privacy_content_four
+                    expect(privacy_text_four).to_have_text(config.Config.privacy_content_four_sudafed_lb)
+                    print(f"Text is present and is correct: '{config.Config.privacy_content_four_sudafed_lb}'")
             else:
                 privacy_text_four = self.privacy_content_four
                 expect(privacy_text_four).to_have_text(privacy_content_four)
