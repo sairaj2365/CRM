@@ -51,27 +51,27 @@ class Config:
 
     URLs_to_test_en_prod = [
         "https://www.aveeno.ca/careclub",
-        "https://www.bandaid.ca/careclub",
-        "https://www.benadryl.ca/careclub",
-        "https://www.cleanandclear.ca/careclub",
-        "https://www.johnsonsbaby.ca/careclub",
-        "https://www.listerine.ca/careclub",
-        "https://www.neutrogena.ca/careclub",
-        "https://www.nicorette.ca/careclub",
-        "https://www.jnjcanada.com/careclub",
-        "https://www.benylin.ca/careclub",
-        "https://www.imodium.ca/careclub",
-        "https://www.motrin.ca/careclub",
-        "https://www.nicoderm.ca/careclub",
-        "https://www.penaten.ca/careclub",
-        "https://www.pepcid.ca/careclub",
-        "https://www.polysporin.ca/careclub",
-        "https://www.reactine.ca/careclub",
-        "https://www.rogaine.ca/careclub",
-        "https://www.sudafed.ca/careclub",
-        "https://www.tylenol.ca/careclub",
-        "https://www.visine.ca/careclub",
-        "https://www.zarbees.ca/careclub"
+        # "https://www.bandaid.ca/careclub",
+        # "https://www.benadryl.ca/careclub",
+        # "https://www.cleanandclear.ca/careclub",
+        # "https://www.johnsonsbaby.ca/careclub",
+        # "https://www.listerine.ca/careclub",
+        # "https://www.neutrogena.ca/careclub",
+        # "https://www.nicorette.ca/careclub",
+        # "https://www.jnjcanada.com/careclub",
+        # "https://www.benylin.ca/careclub",
+        # "https://www.imodium.ca/careclub",
+        # "https://www.motrin.ca/careclub",
+        # "https://www.nicoderm.ca/careclub",
+        # "https://www.penaten.ca/careclub",
+        # "https://www.pepcid.ca/careclub",
+        # "https://www.polysporin.ca/careclub",
+        # "https://www.reactine.ca/careclub",
+        # "https://www.rogaine.ca/careclub",
+        # "https://www.sudafed.ca/careclub",
+        # "https://www.tylenol.ca/careclub",
+        # "https://www.visine.ca/careclub",
+        # "https://www.zarbees.ca/careclub"
     ]
 
     URLs_to_test_en_prod_thankyou_page = [
@@ -99,104 +99,104 @@ class Config:
         "https://www.zarbees.ca/thank-you-for-joining-care-club"
     ]
 
-    URLs_to_test_fr_prod_thankyou_page = [
-        "https://fr.aveeno.ca/",
-        "https://fr.bandaid.ca/",
-        "https://fr.benadryl.ca/",
-        "https://fr.cleanandclear.ca/",
-        "https://fr.johnsonsbaby.ca/",
-        "https://fr.listerine.ca/",
-        "https://fr.neutrogena.ca/",
-        "https://fr.nicorette.ca/",
-        "https://fr.jnjcanada.com/",
-        "https://fr.benylin.ca/",
-        "https://fr.imodium.ca/",
-        "https://fr.motrin.ca/",
-        "https://fr.nicoderm.ca/",
-        "https://fr.penaten.ca/",
-        "https://fr.pepcid.ca/",
-        "https://fr.polysporin.ca/",
-        "https://fr.reactine.ca/",
-        "https://fr.rogaine.ca/",
-        "https://fr.sudafed.ca/",
-        "https://fr.tylenol.ca/",
-        "https://fr.visine.ca/",
-        "https://fr.zarbees.ca/"
+    URLs_to_test_en_home_prod= [
+        "https://www.aveeno.ca/",
+        # "https://www.bandaid.ca/",
+        # "https://www.benadryl.ca/",
+        # "https://www.cleanandclear.ca/",
+        # "https://www.johnsonsbaby.ca/",
+        # "https://www.listerine.ca/",
+        # "https://www.neutrogena.ca/",
+        # "https://www.nicorette.ca/",
+        # "https://www.jnjcanada.com/",
+        # "https://www.benylin.ca/",
+        # "https://www.imodium.ca/",
+        # "https://www.motrin.ca/",
+        # "https://www.nicoderm.ca/",
+        # "https://www.penaten.ca/",
+        # "https://www.pepcid.ca/",
+        # "https://www.polysporin.ca/",
+        # "https://www.reactine.ca/",
+        # "https://www.rogaine.ca/",
+        # "https://www.sudafed.ca/",
+        # "https://www.tylenol.ca/",
+        # "https://www.visine.ca/",
+        # "https://www.zarbees.ca/"
     ]
 
     URLs_to_test_fr_prod = [
         "https://fr.aveeno.ca/clubbonssoins",
-        "https://fr.bandaid.ca/clubbonssoins",
-        "https://fr.benadryl.ca/clubbonssoins",
-        "https://fr.cleanandclear.ca/clubbonssoins",
-        "https://fr.johnsonsbaby.ca/clubbonssoins",
-        "https://fr.listerine.ca/clubbonssoins",
-        "https://fr.neutrogena.ca/clubbonssoins",
-        "https://fr.nicorette.ca/clubbonssoins",
-        "https://fr.jnjcanada.com/clubbonssoins",
-        "https://fr.benylin.ca/clubbonssoins",
-        "https://fr.imodium.ca/clubbonssoins",
-        "https://fr.motrin.ca/clubbonssoins",
-        "https://fr.nicoderm.ca/clubbonssoins",
-        "https://fr.penaten.ca/clubbonssoins",
-        "https://fr.pepcid.ca/clubbonssoins",
-        "https://fr.polysporin.ca/clubbonssoins",
-        "https://fr.reactine.ca/clubbonssoins",
-        "https://fr.rogaine.ca/clubbonssoins",
-        "https://fr.sudafed.ca/clubbonssoins",
-        "https://fr.tylenol.ca/clubbonssoins",
-        "https://fr.visine.ca/clubbonssoins",
-        "https://fr.zarbees.ca/clubbonssoins"
+        # "https://fr.bandaid.ca/clubbonssoins",
+        # "https://fr.benadryl.ca/clubbonssoins",
+        # "https://fr.cleanandclear.ca/clubbonssoins",
+        # "https://fr.johnsonsbaby.ca/clubbonssoins",
+        # "https://fr.listerine.ca/clubbonssoins",
+        # "https://fr.neutrogena.ca/clubbonssoins",
+        # "https://fr.nicorette.ca/clubbonssoins",
+        # "https://fr.jnjcanada.com/clubbonssoins",
+        # "https://fr.benylin.ca/clubbonssoins",
+        # "https://fr.imodium.ca/clubbonssoins",
+        # "https://fr.motrin.ca/clubbonssoins",
+        # "https://fr.nicoderm.ca/clubbonssoins",
+        # "https://fr.penaten.ca/clubbonssoins",
+        # "https://fr.pepcid.ca/clubbonssoins",
+        # "https://fr.polysporin.ca/clubbonssoins",
+        # "https://fr.reactine.ca/clubbonssoins",
+        # "https://fr.rogaine.ca/clubbonssoins",
+        # "https://fr.sudafed.ca/clubbonssoins",
+        # "https://fr.tylenol.ca/clubbonssoins",
+        # "https://fr.visine.ca/clubbonssoins",
+        # "https://fr.zarbees.ca/clubbonssoins"
     ]
 
     URLs_to_test_fr_home_prod = [
-        "https://fr.aveeno.ca/",
-        "https://fr.bandaid.ca/",
-        "https://fr.benadryl.ca/",
-        "https://fr.cleanandclear.ca/",
-        "https://fr.johnsonsbaby.ca/",
-        "https://fr.listerine.ca/",
-        "https://fr.neutrogena.ca/",
-        "https://fr.nicorette.ca/",
+        # "https://fr.aveeno.ca/",
+        # "https://fr.bandaid.ca/",
+        # "https://fr.benadryl.ca/",
+        # "https://fr.cleanandclear.ca/",
+        # "https://fr.johnsonsbaby.ca/",
+        # "https://fr.listerine.ca/",
+        # "https://fr.neutrogena.ca/",
+        # "https://fr.nicorette.ca/",
         "https://fr.jnjcanada.com/",
-        "https://fr.benylin.ca/",
-        "https://fr.imodium.ca/",
-        "https://fr.motrin.ca/",
-        "https://fr.nicoderm.ca/",
-        "https://fr.penaten.ca/",
-        "https://fr.pepcid.ca/",
-        "https://fr.polysporin.ca/",
-        "https://fr.reactine.ca/",
-        "https://fr.rogaine.ca/",
-        "https://fr.sudafed.ca/",
-        "https://fr.tylenol.ca/",
-        "https://fr.visine.ca/",
-        "https://fr.zarbees.ca/"
+        # "https://fr.benylin.ca/",
+        # "https://fr.imodium.ca/",
+        # "https://fr.motrin.ca/",
+        # "https://fr.nicoderm.ca/",
+        # "https://fr.penaten.ca/",
+        # "https://fr.pepcid.ca/",
+        # "https://fr.polysporin.ca/",
+        # "https://fr.reactine.ca/",
+        # "https://fr.rogaine.ca/",
+        # "https://fr.sudafed.ca/",
+        # "https://fr.tylenol.ca/",
+        # "https://fr.visine.ca/",
+        # "https://fr.zarbees.ca/"
     ]
 
-    URLs_to_test_en_home_prod = [
-        "https://www.aveeno.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.bandaid.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.benadryl.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.cleanandclear.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.johnsonsbaby.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.listerine.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.neutrogena.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.nicorette.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.jnjcanada.com/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.benylin.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.imodium.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.motrin.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.nicoderm.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.penaten.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.pepcid.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.polysporin.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.reactine.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.rogaine.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.sudafed.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.tylenol.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.visine.ca/merci-de-votre-abonnement-au-club-bons-soins",
-        "https://www.zarbees.ca/merci-de-votre-abonnement-au-club-bons-soins"
+    URLs_to_test_fr_prod_thankyou_page = [
+        "https://fr.aveeno.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.bandaid.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.benadryl.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.cleanandclear.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.johnsonsbaby.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.listerine.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.neutrogena.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.nicorette.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.jnjcanada.com/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.benylin.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.imodium.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.motrin.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.nicoderm.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.penaten.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.pepcid.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.polysporin.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.reactine.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.rogaine.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.sudafed.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.tylenol.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.visine.ca/merci-de-votre-abonnement-au-club-bons-soins",
+        # "https://fr.zarbees.ca/merci-de-votre-abonnement-au-club-bons-soins"
     ]
 
     URLs_to_test_en_home = [
@@ -253,7 +253,7 @@ class Config:
         "https://jjuser:JJJJpassword2022!@con-na-consumer-ca-en.jnjnab13d6-test.jjc-devops.com/thank-you-for-joining-care-club",
         "https://jjuser:JJJJpassword2022!@con-na-tylenol-ca-en.jnjnab13d6-test.jjc-devops.com/thank-you-for-joining-care-club",
         "https://jjuser:JJJJpassword2022!@con-na-aveeno2-ca-en.jnjnab11d6-test.jjc-devops.com/thank-you-for-joining-care-club",
-         "https://jjuser:JJJJpassword2022!@con-na-nicorette-ca-en.jnjnab11d6-test.jjc-devops.com/thank-you-for-joining-care-club",
+        "https://jjuser:JJJJpassword2022!@con-na-nicorette-ca-en.jnjnab11d6-test.jjc-devops.com/thank-you-for-joining-care-club",
         "https://jjuser:JJJJpassword2022!@con-na-benylin-ca-en.jnjnab13d6-test.jjc-devops.com/thank-you-for-joining-care-club",
         "https://jjuser:JJJJpassword2022!@con-na-polysporin-ca-en.jnjnab13d6-test.jjc-devops.com/thank-you-for-joining-care-club",
         "https://jjuser:JJJJpassword2022!@con-na-reactine-ca-en.jnjnab13d6-test.jjc-devops.com/thank-you-for-joining-care-club",
@@ -367,3 +367,31 @@ class Config:
     privacy_content_four_sudafed = "Le coupon expire 2 semaines après la date d’impression.  Cette offre n’est pas valable sur certains produits au Québec. Détails complets sur le coupon."
     privacy_content_three_sudafed = "**Résidents du Canada seulement. Une seule offre par inscription par courriel. L’inscription avec plusieurs adresses courriel entraînera la suspension du programme."
     privacy_content_four_sudafed_lb = "Le coupon expire 2 semaines après la date d’impression. Cette offre n’est pas valable sur certains produits au Québec. Détails complets sur le coupon."
+
+    email_utm = "?utm_source=sfmc&utm_medium=email"
+    
+    jnj_privacy_policy_prod = ["https://www.jnjcanada.com/privacy-policy"]
+    jnj_ad_choices_prod = ["https://www.jnjcanada.com/ad-choices"]
+    jnj_accessibility_statement_prod = ["https://www.jnjcanada.com/accessibility-statement"]
+    jnj_legal_notice_prod = ["https://www.jnjcanada.com/accessibility-statement/legal-notice"]
+    aveeno_hcp_prod = ["https://www.aveeno.ca/hcp"]
+
+    jnj_privacy_policy_prod_fr = ["https://fr.jnjcanada.com/confidentialite"]
+    jnj_ad_choices_prod_fr = ["https://fr.jnjcanada.com/choixdepub"]
+    jnj_accessibility_statement_prod_fr = ["https://fr.jnjcanada.com/accessibility"]
+    jnj_legal_notice_prod_fr = ["https://fr.jnjcanada.com/avis-juridique"]
+    aveeno_hcp_prod_fr = ["https://fr.aveeno.ca/hcp"]
+
+    page_not_found_path = "pagenotfound"
+
+    jnj_ad_choices_stage = ["https://jjuser:JJJJpassword2022!@con-na-consumer-ca-en.jnjnab13d6-test.jjc-devops.com/ad-choices"]
+    jnj_privacy_policy_stage = ["https://jjuser:JJJJpassword2022!@con-na-consumer-ca-en.jnjnab13d6-test.jjc-devops.com/privacy-policy"]
+    jnj_accessibility_statement_stage = ["https://jjuser:JJJJpassword2022!@con-na-consumer-ca-en.jnjnab13d6-test.jjc-devops.com/accessibility-statement"]
+    jnj_legal_notice_stage = ["https://jjuser:JJJJpassword2022!@con-na-consumer-ca-en.jnjnab13d6-test.jjc-devops.com/legal-notice"]
+    aveeno_hcp_stage = ["https://jjuser:JJJJpassword2022!@con-na-aveeno2-ca-en.jnjnab11d6-test.jjc-devops.com/hcp"]
+
+    jnj_ad_choices_stage_fr = ["https://jjuser:JJJJpassword2022!@con-na-consumer-ca-fr.jnjnab13d6-test.jjc-devops.com/choixdepub"]
+    jnj_privacy_policy_stage_fr = ["https://jjuser:JJJJpassword2022!@con-na-consumer-ca-fr.jnjnab13d6-test.jjc-devops.com/confidentialite"]
+    jnj_accessibility_statement_stage_fr = ["https://jjuser:JJJJpassword2022!@con-na-consumer-ca-fr.jnjnab13d6-test.jjc-devops.com/accessibility"]
+    jnj_legal_notice_stage_fr = ["https://jjuser:JJJJpassword2022!@con-na-consumer-ca-fr.jnjnab13d6-test.jjc-devops.com/avis-juridique"]
+    aveeno_hcp_stage_fr = ["https://jjuser:JJJJpassword2022!@con-na-aveeno2-ca-fr.jnjnab11d6-test.jjc-devops.com/hcp"]

@@ -239,6 +239,13 @@ class Webform:
                         print("Meta description is as expected:", meta_desc)
                     else:
                         assert False, print(f"Meta description is not as expected: {meta_desc}")
+                elif text == "Zarbee's® Canada":
+                        meta_desc = "Get more out of Zarbee's® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+                        if  meta_desc == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc}")
                 elif text != "Johnson & Johnson Canada":
                     meta_desc = "Get more out of "+ text +" by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
                     if  meta_desc == self.meta_description:
@@ -321,6 +328,13 @@ class Webform:
                             assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
                 elif text == "PEPCID® Canada":
                         meta_desc_fr = meta + " " + "PEPCID®" + "!"   
+                        if  meta_desc_fr == self.meta_description:
+                            assert True, f"Meta description is as expected"
+                            print("Meta description is as expected:", meta_desc_fr)
+                        else:
+                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+                elif text == "Zarbee's® Canada":
+                        meta_desc_fr = meta + " " + "Zarbee's®" + "!"   
                         if  meta_desc_fr == self.meta_description:
                             assert True, f"Meta description is as expected"
                             print("Meta description is as expected:", meta_desc_fr)
@@ -611,7 +625,17 @@ class Webform:
         try:
             brand = self.brand_name
             if brand == "BAND-AID® Brand" or brand == "Marque BAND-AID®" or brand == "BENADRYL®" or brand == "CLEAN & CLEAR® Canada" or brand == "CLEAN & CLEAR® Canada" or brand == "BENYLIN® Canada" or brand == "Motrin" or brand == "IMODIUM®" or brand == "PEPCID® Canada" or brand == "SUDAFED®" or brand == "VISINE®" or brand == "NICODERM®":
-                main_title = self.content_one_1 
+                main_title = self.content_one_1
+                expect(main_title).to_have_text(content_one)
+                print(f"Text is present and is correct: '{content_one}'")
+
+                textcontent_one = self.content_two
+                expect(textcontent_one).to_have_text(content_two)
+                print(f"Text is present and is correct: '{content_two}'")
+
+                checkbox = self.checkbox_content
+                expect(checkbox).to_have_text(checkbox_content)
+                print(f"Text is present and is correct: '{checkbox_content}'")  
             else:
                 main_title = self.content_one
                 expect(main_title).to_have_text(content_one)

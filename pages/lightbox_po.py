@@ -36,15 +36,20 @@ class Lightbox:
         self.name_error_invalid_2 = page.locator("#edit-lightbox div:nth-child(2) .error-format")
         self.email_error_invalid_2 = page.locator("#edit-lightbox div:nth-child(3) .error-format")
         self.verify_email_error_message_invalid_2 = page.locator("#edit-lightbox div:nth-child(4) .error-format")
-        self.content_one = page.locator("#care-club-lightbox-title")
+        self.content_one = page.locator(".brand-text-lightbox")
+        self.content_one_1 = page.locator(".lightbox-header #content-main")
+        self.content_one_2 = page.locator(".lightbox-header h1")
         self.content_two = page.locator(".lightbox-header p:nth-child(3)")
         self.content_two_1 = page.locator(".lightbox-header p:nth-child(4)")
+        self.content_two_2 = page.locator(".lightbox-header p:nth-child(2)")
         self.content_three = page.locator(".lightbox-warnings p:nth-child(1)")
         self.privacy_content_two = page.locator(".lightbox-warnings p:nth-child(2)")
         self.privacy_content_three = page.locator(".lightbox-warnings p:nth-child(3)")
         self.privacy_content_four = page.locator(".lightbox-warnings p:nth-child(4)")
         self.alt_text_checkmark = page.locator("#lightbox-thank-you-message p:nth-child(1) img")
         self.content = page.locator("#lightbox-thank-you-message p:nth-child(2)")
+        self.alt_text_1 = page.locator(".lightbox-header-top img")
+        self.lb_form = page.locator(".lightbox-content")
 
     """
     Function to verify privacy policy content
@@ -118,7 +123,7 @@ class Lightbox:
                     else:
                         assert False, f"Image has no Alt Text."
                 elif text=="Zarbee's® Canada":
-                    alt_text = self.alt_text.get_attribute('alt')
+                    alt_text = self.alt_text_1.get_attribute('alt')
                     if alt_text == config.Config.zarbees_alt_text:
                         assert True
                         print(f"Image Alt Text: {alt_text}")
@@ -274,7 +279,7 @@ class Lightbox:
                     else:
                         assert False, f"Image has no Alt Text."
                 elif text=="Zarbee's® Canada":
-                    alt_text = self.alt_text.get_attribute('alt')
+                    alt_text = self.alt_text_1.get_attribute('alt')
                     if alt_text == config.Config.zarbees_alt_text_fr:
                         assert True
                         print(f"Image Alt Text: {alt_text}")
@@ -509,22 +514,22 @@ class Lightbox:
             brand = self.brand_name
             if type == 'empty':
                 #name
-                error_name = self.name_error_2
+                error_name = self.name_error
                 expect(error_name).to_have_text(name_error)
                 print(f"Error message is present and is correct: '{name_error}'")
 
                 #email
-                error_email = self.email_error_2
+                error_email = self.email_error
                 expect(error_email).to_have_text(email_error)
                 print(f"Error message is present and is correct: '{email_error}'")
 
                 #verify email
-                error_verify_email = self.verify_email_error_message_2
+                error_verify_email = self.verify_email_error_message
                 expect(error_verify_email).to_have_text(verify_email_error)
                 print(f"Error message is present and is correct: '{verify_email_error}'")
 
                 #recaptcha
-                error_recaptcha = self.recaptcha_error_message_2
+                error_recaptcha = self.recaptcha_error_message
                 expect(error_recaptcha).to_have_text(recaptcha_error)
                 print(f"Error message is present and is correct: '{recaptcha_error}'")
             elif type == 'invalid':
@@ -556,15 +561,27 @@ class Lightbox:
     def verify_lightbox_content(self, site, content_one, content_two, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four):
         try:
             brand = self.brand_name
-            main_title = self.content_one
-            expect(main_title).to_have_text(content_one)
-            print(f"Text is present and is correct: '{content_one}'")
+            if brand == "AVEENO®" or brand == "Johnson's® Baby":
+                main_title = self.content_one_1
+                expect(main_title).to_have_text(content_one)
+                print(f"Text is present and is correct: '{content_one}'")
+            elif brand == "Quit Smoking with Our Products & Resources | NICORETTE®" or brand == "Johnson & Johnson Canada" or brand == "Polysporin® Canada" or brand == "TYLENOL®" or brand == "Zarbee's® Canada" or brand == "REACTINE®" or brand == "Cessez de fumer avec nos produits et ressources | NICORETTE®":
+                main_title = self.content_one_2
+                expect(main_title).to_have_text(content_one)
+                print(f"Text is present and is correct: '{content_one}'")
+            else:
+                main_title = self.content_one
+                expect(main_title).to_have_text(content_one)
+                print(f"Text is present and is correct: '{content_one}'")
 
             if brand == "Quit Smoking with Our Products & Resources | NICORETTE®" or brand == "Cessez de fumer avec nos produits et ressources | NICORETTE®":
                 textcontent_one = self.content_two_1
                 expect(textcontent_one).to_have_text(content_two)
                 print(f"Text is present and is correct: '{content_two}'")
-
+            elif brand == "Zarbee's® Canada":
+                textcontent_one = self.content_two_2
+                expect(textcontent_one).to_have_text(content_two)
+                print(f"Text is present and is correct: '{content_two}'")
             else:
                 textcontent_one = self.content_two
                 expect(textcontent_one).to_have_text(content_two)
@@ -659,6 +676,32 @@ class Lightbox:
                 error_recaptcha = self.recaptcha_error_message_2
                 expect(error_recaptcha).to_have_text(recaptcha_error)
                 print(f"Error message is present and is correct: '{recaptcha_error}'")
+         except TimeoutError:
+                print(f"Error message not present.")
+    
+    """
+    Function to verify lightbox not present on careclub page
+    """
+    def lightbox_not_displayed(self):
+         try:
+            lb_form = self.lb_form
+            expect(lb_form).not_to_be_visible()
+            print(f"lightbox not present or displayed")
+         except TimeoutError:
+                print(f"Error message not present.")
+    
+    """
+    Function to verify lightbox not displayed once closed
+    """
+    def lightbox_not_displayed_on_close(self):
+         try:
+            lb_form = self.lb_form
+            icon = alt_text = self.close_icon
+            icon.highlight()
+            icon.click()
+            self.page.reload()
+            expect(lb_form).not_to_be_visible()
+            print(f"lightbox not present or displayed")
          except TimeoutError:
                 print(f"Error message not present.")
   
