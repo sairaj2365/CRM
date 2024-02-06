@@ -44,7 +44,7 @@ testdata_form = "./test_data/form_data.csv"
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home_prod)
 # def test_empty_form_fr(url, browser : Browser) -> None:
 #     context = browser.new_context(
-#         #record_video_dir= "video/"
+#         record_video_dir= "video/content/french/LB/missing_entries"
 #     )
 #     page = context.new_page()
 #     page.set_default_timeout(100000)
@@ -62,7 +62,7 @@ testdata_form = "./test_data/form_data.csv"
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home_prod)
 # def test_form_invalid_data_fr(url, browser : Browser) -> None:
 #     context = browser.new_context(
-#         #record_video_dir= "video/"
+#         record_video_dir= "video/content/french/LB/invalid_entries"
 #     )
 #     page = context.new_page()
 #     page.set_default_timeout(100000)
@@ -113,7 +113,7 @@ testdata_form = "./test_data/form_data.csv"
 #     page.close()
 
 @pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home_prod)
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home)
 def test_lightbox_content_fr(url, browser : Browser) -> None:
     context = browser.new_context(
         #record_video_dir= "video/"
@@ -186,9 +186,10 @@ def test_lightbox_content_fr(url, browser : Browser) -> None:
 #     page.close()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home_prod)
 # def test_lightbox_not_displayed_on_close(url, page: Page) -> None:
 #     page.set_default_timeout(300000)
 #     page.goto(url)
 #     lightbox_obj = Lightbox(page)
 #     lightbox_obj.lightbox_not_displayed_on_close()
+#     page.close()

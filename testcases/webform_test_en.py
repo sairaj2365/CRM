@@ -6,6 +6,7 @@ from pages.webform_po import Webform
 from pages.lightbox_po import Lightbox
 from utils.actions import Action
 
+
 testdata = "./test_data/test_webform.csv"
 testdata_form = "./test_data/form_data.csv"
 
@@ -102,7 +103,8 @@ testdata_form = "./test_data/form_data.csv"
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
 # def test_empty_form(url, browser : Browser) -> None:
 #     context = browser.new_context(
-#         #record_video_dir= "video/"
+#         record_video_dir= "video/content/english/CC/missing_entries",
+#         record_video_size={"width": 640, "height": 480}
 #     )
 #     page = context.new_page()
 #     page.set_default_timeout(80000)
@@ -118,7 +120,8 @@ testdata_form = "./test_data/form_data.csv"
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
 # def test_form_invalid_data(url, browser : Browser) -> None:
 #     context = browser.new_context(
-#         #record_video_dir= "video/"
+#         record_video_dir= "video/content/english/CC/invalid_entries",
+#         record_video_size={"width": 640, "height": 480}
 #     )
 #     page = context.new_page()
 #     page.set_default_timeout(80000)
@@ -126,10 +129,13 @@ testdata_form = "./test_data/form_data.csv"
 #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
 #     firstname, emailid, verify_email, birthdate, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
 #     webform_obj = Webform(page)
-#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, "")
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, "invalid")
 #     webform_obj.submit_button()
 #     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
 #     page.close()
+
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
@@ -145,10 +151,10 @@ testdata_form = "./test_data/form_data.csv"
 #     page.close()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_thankyou_page)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod_thankyou_page)
 # def test_thankyou_page_url(url, browser : Browser) -> None:
 #     context = browser.new_context(
-#         #record_video_dir= "video/"
+#         record_video_dir= "video/content/english/CC/thankyou_page"
 #     )
 #     page = context.new_page()
 #     page.set_default_timeout(80000)
@@ -160,7 +166,7 @@ testdata_form = "./test_data/form_data.csv"
 #     page.close()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_thankyou_page)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod_thankyou_page)
 # def test_thankyou_page_content(url, browser : Browser) -> None:
 #     context = browser.new_context(
 #         #record_video_dir= "video/"
@@ -175,10 +181,10 @@ testdata_form = "./test_data/form_data.csv"
 #     page.close()
 
 @pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
 def test_webform_content(url, browser : Browser) -> None:
     context = browser.new_context(
-        #record_video_dir= "video/"
+        #record_video_dir= "video/content/english/CC"
     )
     page = context.new_page()
     page.set_default_timeout(200000)
@@ -189,20 +195,20 @@ def test_webform_content(url, browser : Browser) -> None:
     webform_obj.verify_webform_content("EN", content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four)
     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
-# def test_dob_text(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(200000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata, Action.get_current_test_name())
-#     dob_content = data[18]
-#     webform_obj = Webform(page)
-#     webform_obj.verify_dob_content(dob_content, "EN")
-#     page.close()
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+def test_dob_text(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/CC"
+    )
+    page = context.new_page()
+    page.set_default_timeout(200000)
+    page.goto(url)
+    data = reader.read_test_data(testdata, Action.get_current_test_name())
+    dob_content = data[18]
+    webform_obj = Webform(page)
+    webform_obj.verify_dob_content(dob_content, "EN")
+    page.close()
 
 # # @pytest.mark.webform
 # # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
@@ -256,7 +262,7 @@ def test_webform_content(url, browser : Browser) -> None:
 #     page.close()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_thankyou_page)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod_thankyou_page)
 # def test_href_lang(url, page: Page) -> None:
 #     page.set_default_timeout(80000)
 #     page.goto(url)
@@ -267,7 +273,7 @@ def test_webform_content(url, browser : Browser) -> None:
 #     webform_obj.check_href_lang("FR", href_fr)
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
 # def test_lightbox_not_displayed_on_careclub_page(url, page: Page) -> None:
 #     page.set_default_timeout(100000)
 #     page.goto(url)
@@ -275,7 +281,7 @@ def test_webform_content(url, browser : Browser) -> None:
 #     lightbox_obj.lightbox_not_displayed()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
 # def test_lightbox_not_displayed_for_email_traffic(url, page: Page) -> None:
 #     page.set_default_timeout(300000)
 #     page.goto(url + config.Config.email_utm)
@@ -283,7 +289,7 @@ def test_webform_content(url, browser : Browser) -> None:
 #     lightbox_obj.lightbox_not_displayed()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.jnj_privacy_policy_stage)
+# @pytest.mark.parametrize("url", config.Config.jnj_privacy_policy_prod)
 # def test_lightbox_not_displayed_on_privacy_policy_page(url, page: Page) -> None:
 #     page.set_default_timeout(100000)
 #     page.goto(url)
@@ -291,7 +297,7 @@ def test_webform_content(url, browser : Browser) -> None:
 #     lightbox_obj.lightbox_not_displayed()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.jnj_ad_choices_stage)
+# @pytest.mark.parametrize("url", config.Config.jnj_ad_choices_prod)
 # def test_lightbox_not_displayed_on_ad_choices_page(url, page: Page) -> None:
 #     page.set_default_timeout(100000)
 #     page.goto(url)
@@ -299,20 +305,20 @@ def test_webform_content(url, browser : Browser) -> None:
 #     lightbox_obj.lightbox_not_displayed()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.jnj_accessibility_statement_stage)
+# @pytest.mark.parametrize("url", config.Config.jnj_accessibility_statement_prod)
 # def test_lightbox_not_displayed_on_acessibility_statement_page(url, page: Page) -> None:
 #     page.set_default_timeout(100000)
 #     page.goto(url)
 #     lightbox_obj = Lightbox(page)
 #     lightbox_obj.lightbox_not_displayed()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_lightbox_not_displayed_on_page_not_found_page(url, page: Page) -> None:
-#     page.set_default_timeout(100000)
-#     page.goto(url + config.Config.page_not_found_path)
-#     lightbox_obj = Lightbox(page)
-#     lightbox_obj.lightbox_not_displayed()
+# # # @pytest.mark.webform
+# # # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # # def test_lightbox_not_displayed_on_page_not_found_page(url, page: Page) -> None:
+# # #     page.set_default_timeout(100000)
+# # #     page.goto(url + config.Config.page_not_found_path)
+# # #     lightbox_obj = Lightbox(page)
+# # #     lightbox_obj.lightbox_not_displayed()
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.jnj_legal_notice_prod)
@@ -323,7 +329,7 @@ def test_webform_content(url, browser : Browser) -> None:
 #     lightbox_obj.lightbox_not_displayed()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.aveeno_hcp_stage)
+# @pytest.mark.parametrize("url", config.Config.aveeno_hcp_prod)
 # def test_lightbox_not_displayed_on_aveeno_hcp_page(url, page: Page) -> None:
 #     page.set_default_timeout(100000)
 #     page.goto(url)

@@ -37,7 +37,7 @@ class Lightbox:
         self.email_error_invalid_2 = page.locator("#edit-lightbox div:nth-child(3) .error-format")
         self.verify_email_error_message_invalid_2 = page.locator("#edit-lightbox div:nth-child(4) .error-format")
         self.content_one = page.locator(".brand-text-lightbox")
-        self.content_one_1 = page.locator(".lightbox-header #content-main")
+        self.content_one_1 = page.locator("#care-club-lightbox-title")#care-club-lightbox-title #.lightbox-header #content-main
         self.content_one_2 = page.locator(".lightbox-header h1")
         self.content_two = page.locator(".lightbox-header p:nth-child(3)")
         self.content_two_1 = page.locator(".lightbox-header p:nth-child(4)")
@@ -462,7 +462,7 @@ class Lightbox:
             #firstname
             self.first_name.fill(name)
             
-            if type == "recaptcha" or type == "verify_email":
+            if type == "recaptcha" or type == "verify_email" or type == 'invalid':
                 #email
                 self.email.fill(email_id)
 
@@ -514,22 +514,22 @@ class Lightbox:
             brand = self.brand_name
             if type == 'empty':
                 #name
-                error_name = self.name_error
+                error_name = self.name_error_2
                 expect(error_name).to_have_text(name_error)
                 print(f"Error message is present and is correct: '{name_error}'")
 
                 #email
-                error_email = self.email_error
+                error_email = self.email_error_2
                 expect(error_email).to_have_text(email_error)
                 print(f"Error message is present and is correct: '{email_error}'")
 
                 #verify email
-                error_verify_email = self.verify_email_error_message
+                error_verify_email = self.verify_email_error_message_2
                 expect(error_verify_email).to_have_text(verify_email_error)
                 print(f"Error message is present and is correct: '{verify_email_error}'")
 
                 #recaptcha
-                error_recaptcha = self.recaptcha_error_message
+                error_recaptcha = self.recaptcha_error_message_invalid
                 expect(error_recaptcha).to_have_text(recaptcha_error)
                 print(f"Error message is present and is correct: '{recaptcha_error}'")
             elif type == 'invalid':
@@ -566,11 +566,11 @@ class Lightbox:
                 expect(main_title).to_have_text(content_one)
                 print(f"Text is present and is correct: '{content_one}'")
             elif brand == "Quit Smoking with Our Products & Resources | NICORETTE®" or brand == "Johnson & Johnson Canada" or brand == "Polysporin® Canada" or brand == "TYLENOL®" or brand == "Zarbee's® Canada" or brand == "REACTINE®" or brand == "Cessez de fumer avec nos produits et ressources | NICORETTE®":
-                main_title = self.content_one_2
+                main_title = self.content_one_1
                 expect(main_title).to_have_text(content_one)
                 print(f"Text is present and is correct: '{content_one}'")
             else:
-                main_title = self.content_one
+                main_title = self.content_one_1
                 expect(main_title).to_have_text(content_one)
                 print(f"Text is present and is correct: '{content_one}'")
 

@@ -46,7 +46,7 @@ testdata_form = "./test_data/form_data.csv"
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
 # def test_empty_form(url, browser : Browser) -> None:
 #     context = browser.new_context(
-#         #record_video_dir= "video/"
+#         record_video_dir= "video/content/english/LB/missing_entries"
 #     )
 #     page = context.new_page()
 #     page.set_default_timeout(100000)
@@ -86,7 +86,7 @@ testdata_form = "./test_data/form_data.csv"
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
 # def test_form_invalid_data(url, browser : Browser) -> None:
 #     context = browser.new_context(
-#         #record_video_dir= "video/"
+#         record_video_dir= "video/content/english/LB/invalid_entries"
 #     )
 #     page = context.new_page()
 #     page.set_default_timeout(100000)
@@ -95,7 +95,7 @@ testdata_form = "./test_data/form_data.csv"
 #     firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[4], data[5], data[6], data[8]
 #     action_obj = Action(page)
 #     lightbox_obj = Lightbox(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "")
+#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
 #     action_obj.closeCookiePopup()
 #     lightbox_obj.submit_button()
 #     lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
@@ -115,7 +115,7 @@ testdata_form = "./test_data/form_data.csv"
 #     page.close()
 
 @pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
 def test_lightbox_content(url, browser : Browser) -> None:
     context = browser.new_context(
         #record_video_dir= "video/"
@@ -183,11 +183,13 @@ def test_lightbox_content(url, browser : Browser) -> None:
 #     action_obj.closeCookiePopup()
 #     lightbox_obj.submit_button()
 #     webform_obj.email_address_error_check(email_error_text)
+#     page.close()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
 # def test_lightbox_not_displayed_on_close(url, page: Page) -> None:
 #     page.set_default_timeout(300000)
 #     page.goto(url)
 #     lightbox_obj = Lightbox(page)
 #     lightbox_obj.lightbox_not_displayed_on_close()
+#     page.close()
