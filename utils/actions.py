@@ -8,6 +8,7 @@ class Action:
         self.page = page
         self.cookieCloseButton = page.locator("#popup-buttons .agree-button")
         self.brand_name = page.get_attribute("meta[name='apple-mobile-web-app-title']", "content")
+        self.cookieCloseButton_aveeno = page.locator("#adchoice-buttons .click-processed")
 
 
     def verify_current_url(self, expected_partial_url):
@@ -15,9 +16,9 @@ class Action:
             self.page.wait_for_timeout(1000)
             current_url = self.page.url
             assert expected_partial_url in current_url, f"Expected '{expected_partial_url}' to be present in URL, but it is not. Current URL: {current_url}"
-            print(f"URL verified to contain : '{expected_partial_url}'")
+            print(f"URL verified to contain : '{current_url}'")
         except TimeoutError:
-            print(f"URL did not contain '{expected_partial_url}'")
+            print(f"URL did not contain '{current_url}'")
 
     @classmethod
     def get_current_test_name(cls):
@@ -66,13 +67,25 @@ class Action:
     def closeCookiePopup(self):
         try:
             text = self.brand_name
-            if text == "CLEAN & CLEAR® Canada":
-                print(f"No cookie banner displayed")
+            # if text == "CLEAN & CLEAR® Canada":
+            #     print(f"No cookie banner displayed")
+            # el
+            if text == "Zarbee's® Canada":
+                #submit
+                button = self.cookieCloseButton_aveeno
+                self.page.mouse.down()
+                button.highlight()
+                button.click()
+            # if text=="NEUTROGENA®":
+            #     print(f"Cookie banner not present")
             else:
                 #submit
-                button = self.cookieCloseButton
+                button = self.cookieCloseButton #changes on 19/04/24
                 self.page.mouse.down()
                 button.highlight()
                 button.click()
         except TimeoutError:
                 print(f"Timeout Error")
+
+    
+            

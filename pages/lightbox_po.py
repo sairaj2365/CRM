@@ -1,7 +1,10 @@
 import config
-from playwright.sync_api import Playwright, sync_playwright, Page, BrowserContext, Browser, expect
+# import numpy as np
+from playwright.sync_api import Page, expect
 from utils.actions import Action
 from faker import Faker
+# from PIL import Image
+# from skimage.metrics import structural_similarity as ssim
 
 
 class Lightbox:
@@ -50,6 +53,11 @@ class Lightbox:
         self.content = page.locator("#lightbox-thank-you-message p:nth-child(2)")
         self.alt_text_1 = page.locator(".lightbox-header-top img")
         self.lb_form = page.locator(".lightbox-content")
+        self.req_text = page.locator(".lightbox-header p:nth-child(3)")
+        self.submit_zarbees = page.locator("#edit-submit")
+        self.bold_text = page.locator(".care-club-lightbox-subheader strong")
+        self.reference_image_path = "reference_image.png"
+        self.email_address_error_message = page.locator(".error-no-match")
 
     """
     Function to verify privacy policy content
@@ -490,6 +498,7 @@ class Lightbox:
             privacy_policy_en = self.privacy_policy_data_link
             href_link = privacy_policy_en.get_attribute('href')
             action_obj.new_tab_validate_url(privacy_policy_en, href_link)
+            self.page.wait_for_load_state()
             #self.page.go_back()
 
             # if sitename == 'EN':
@@ -684,11 +693,35 @@ class Lightbox:
     """
     def lightbox_not_displayed(self):
          try:
+            brand = self.brand_name
+            # if brand == "PEPCID® Canada" or brand == "Quit Smoking with Our Products & Resources | NICORETTE®" or brand == "Cessez de fumer avec nos produits et ressources | NICORETTE®" or brand == "REACTINE®" or brand == "TYLENOL®":
+            #     lb_form = self.lb_form
+            #     expect(lb_form).to_be_visible()
+            #     print(f"lightbox should be present or displayed")
+            # else:
             lb_form = self.lb_form
             expect(lb_form).not_to_be_visible()
-            print(f"lightbox not present or displayed")
+            print(f"lightbox should not be present or displayed")
          except TimeoutError:
-                print(f"Error message not present.")
+                print(f"Timeout Error")
+    
+    """
+    Function to verify lightbox present on careclub page after 35 seconds
+    """
+    def lightbox_displayed(self, sec):
+         try:
+            brand = self.brand_name
+            # if brand == "PEPCID® Canada" or brand == "Quit Smoking with Our Products & Resources | NICORETTE®" or brand == "Cessez de fumer avec nos produits et ressources | NICORETTE®" or brand == "REACTINE®" or brand == "TYLENOL®":
+            #     lb_form = self.lb_form
+            #     expect(lb_form).to_be_visible()
+            #     print(f"lightbox should be present or displayed")
+            # else:
+            lb_form = self.lb_form
+            self.page.wait_for_selector(".lightbox-content", timeout=sec)
+            expect(lb_form).to_be_visible(timeout=sec)
+            print(f"lightbox should be present or displayed")
+         except TimeoutError:
+                print(f"Timeout Error")
     
     """
     Function to verify lightbox not displayed once closed
@@ -696,7 +729,7 @@ class Lightbox:
     def lightbox_not_displayed_on_close(self):
          try:
             lb_form = self.lb_form
-            icon = alt_text = self.close_icon
+            icon = self.close_icon
             icon.highlight()
             icon.click()
             self.page.reload()
@@ -704,4 +737,89 @@ class Lightbox:
             print(f"lightbox not present or displayed")
          except TimeoutError:
                 print(f"Error message not present.")
-  
+
+    """
+    Function to verify lightbox required text
+    """
+    def verify_lightbox_required_text(self, text_content):
+         try:
+            req_text = self.req_text
+            expect(req_text).to_have_text(text_content)
+            print(f"Text is present and is correct: '{text_content}'")
+         except TimeoutError:
+                print(f"Text not present.")
+
+    """
+    Function to verify "email address" error text
+    """
+    def email_address_error_check(self, email_error, email_error_text, message):
+         try:
+            error_email = self.verify_email_error_message_invalid_2
+            expect(error_email).to_have_text(email_error)
+            print(f"Error message is present and is correct: '{email_error}'")
+            #verifyemail
+            if message == "no-match":
+                error_verifyemail= self.email_address_error_message
+                expect(error_verifyemail).to_have_text(email_error_text)
+                print(f"Error message is present and is correct: '{email_error_text}'")
+            else:
+                error_verifyemail= self.verify_email_error_message_invalid_2
+                expect(error_verifyemail).to_have_text(email_error_text)
+                print(f"Error message is present and is correct: '{email_error_text}'")
+         except TimeoutError:
+                print(f"Error message not present.")      
+
+    # """
+    # Function for visual checks
+    # """
+    # def verify_bold_text(self):
+    #     bold_element = self.bold_text
+    #     if bold_element:
+    #         # Scroll to the element to ensure it's visible
+    #         bold_element.scroll_into_view_if_needed()
+
+    #         # Capture a screenshot of the specific element containing the bold text
+    #         bold_element.screenshot(path="screenshot.png")
+    #         screenshot_path = "screenshot.png"
+
+    #         # Open the images
+    #         image1 = Image.open(screenshot_path)
+    #         image2 = Image.open(self.reference_image_path)
+
+    #         mask=None
+
+    #         # Convert images to grayscale
+    #         image1_gray = image1.convert("L")
+    #         image2_gray = image2.convert("L")
+
+    #         # Resize images if they are too small
+    #         min_dimension = min(image1.size[0], image1.size[1], image2.size[0], image2.size[1])
+    #         min_dimension_threshold = 7  # Adjust this value as needed
+    #         if min_dimension < min_dimension_threshold:
+    #             resize_factor = min_dimension_threshold / min_dimension
+    #             new_size = (int(image1.size[0] * resize_factor), int(image1.size[1] * resize_factor))
+    #             image1 = image1.resize(new_size, Image.ANTIALIAS)
+    #             image2 = image2.resize(new_size, Image.ANTIALIAS)
+
+    #         if mask is not None:
+    #             image1_array = np.array(image1_gray)
+    #             image2_array = np.array(image2_gray)
+    #             image1_array[mask] = 255
+    #             image2_array[mask] = 255
+    #             image1_gray = Image.fromarray(image1_array)
+    #             image2_gray = Image.fromarray(image2_array)
+
+    #         # Calculate structural similarity index
+    #         # Compare the captured screenshot with the reference image
+    #         win_size = 7  # Adjust this value as needed
+    #         similarity_index = ssim(np.array(image1), np.array(image2), win_size=win_size)
+
+    #         print(f"Similarity Index: {similarity_index}")
+
+    #         if similarity_index > 0.95:  # Adjust the threshold as needed
+    #             print("Bold text matches with reference image.")
+    #         else:
+    #             print("Bold text does not match with reference image.")
+    #     else:
+    #         print("Bold element not found!")
+        

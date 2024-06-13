@@ -1,5 +1,5 @@
 import config
-from playwright.sync_api import Playwright, sync_playwright, Page, BrowserContext, Browser, expect
+from playwright.sync_api import Page, expect
 from utils.actions import Action
 from faker import Faker
 
@@ -56,6 +56,7 @@ class Webform:
         self.privacy_content_three = page.locator(".careclub-warnings p:nth-child(4)")
         self.privacy_content_four = page.locator(".careclub-warnings p:nth-child(5)")
         self.page_content_two = page.locator(".main-row.region-row p:nth-child(1)")
+        self.page_content_two_4 = page.locator(".main-row.region-row p:nth-child(2)")
         self.dob = page.locator(".field-birthdate em")
         self.dob_fr = page.locator(".field-birthdate i")
         self.page_content_two_2 = page.locator(".field--label-hidden p")
@@ -65,6 +66,10 @@ class Webform:
         self.email_address_error_message = page.locator(".error-no-match")
         self.content_one_1 = page.locator(".careclub-title")
         self.content_one_1_benadryl_stage = page.locator(".careclub-header h1")
+        self.checkbox_neutrogena = page.locator(".careclub-term label")
+        self.username = page.locator("#username")
+        self.password = page.locator("#pass")
+        self.cloud_page_submit = page.locator(".btn-primary")
         
 
     """
@@ -452,6 +457,7 @@ class Webform:
     """
     def webform_form(self, name, email_id, email_verify, date, type):
         try:
+            brand = self.brand_name
             #firstname
             self.first_name.fill(name)
 
@@ -474,9 +480,14 @@ class Webform:
             self.birthdate.fill(date)
 
             #checkbox
-            check_box = self.checkbox
-            check_box.highlight()
-            check_box.check()  
+            if brand == "NEUTROGENA®":
+                check_box = self.checkbox_neutrogena
+                check_box.highlight()
+                check_box.check()  
+            else:
+                check_box = self.checkbox
+                check_box.highlight()
+                check_box.check()  
         except TimeoutError:
                 print(f"Timeout Error")
 
@@ -501,22 +512,22 @@ class Webform:
             try:
                 if brand == "Johnson & Johnson Canada":
                     #name
-                    error_name = self.name_error
+                    error_name = self.name_error_2
                     expect(error_name).to_have_text(name_error)
                     print(f"Error message is present and is correct: '{name_error}'")
 
                     #email
-                    error_email = self.email_error
+                    error_email = self.email_error_2
                     expect(error_email).to_have_text(email_error)
                     print(f"Error message is present and is correct: '{email_error}'")
 
                     #verify email
-                    error_verify_email = self.verify_email_error_message
+                    error_verify_email = self.verify_email_error_message_2
                     expect(error_verify_email).to_have_text(verify_email_error)
                     print(f"Error message is present and is correct: '{verify_email_error}'")
 
                     #checkbox
-                    error_checkbox = self.checkbox_error_message_1
+                    error_checkbox = self.checkbox_error_message_2
                     expect(error_checkbox).to_have_text(checkbox_birthdate_error)
                     print(f"Error message is present and is correct: '{checkbox_birthdate_error}'")
                 else:
@@ -553,17 +564,17 @@ class Webform:
             try:
                 if brand == "Johnson & Johnson Canada":
                     #name
-                    error_name = self.name_error_invalid
+                    error_name = self.name_error_invalid_2
                     expect(error_name).to_have_text(name_error)
                     print(f"Error message is present and is correct: '{name_error}'")
 
                     #email
-                    error_email = self.email_error_invalid
+                    error_email = self.email_error_invalid_2
                     expect(error_email).to_have_text(email_error)
                     print(f"Error message is present and is correct: '{email_error}'")
 
                     #verify email
-                    error_verify_email = self.verify_email_error_message_invalid
+                    error_verify_email = self.verify_email_error_message_invalid_2
                     expect(error_verify_email).to_have_text(verify_email_error)
                     print(f"Error message is present and is correct: '{verify_email_error}'")
                 else:
@@ -605,6 +616,7 @@ class Webform:
         privacy_policy_en = self.privacy_policy_data_link
         href_link = privacy_policy_en.get_attribute('href')
         action_obj.new_tab_validate_url(privacy_policy_en, href_link)
+        self.page.wait_for_load_state()
         #self.page.go_back()
 
         # if sitename == 'EN':
@@ -716,12 +728,12 @@ class Webform:
             expect(main_title).to_have_text(thank_you_content_one)
             print(f"Text is present and is correct: '{thank_you_content_one}'")
 
-            if text == "CLEAN & CLEAR® Canada" or text == "SUDAFED®":
+            if text == "CLEAN & CLEAR® Canada" or text == "SUDAFED®" or text == "BENADRYL®":
                 content_two = self.page_content_two_2
                 expect(content_two).to_have_text(page_content_two)
                 print(f"Text is present and is correct: '{page_content_two}'")
-            elif text == "BENADRYL®":
-                content_two = self.page_content_two_3
+            elif text == "Zarbee's® Canada":
+                content_two = self.page_content_two_4
                 expect(content_two).to_have_text(page_content_two)
                 print(f"Text is present and is correct: '{page_content_two}'")
             else:
@@ -775,16 +787,33 @@ class Webform:
     """
     Function to verify "email address" error text
     """
-    def email_address_error_check(self, email_error_text):
+    def email_address_error_check(self, email_error, email_error_text, message):
          try:
-            #recaptcha
-            error_recaptcha = self.email_address_error_message
-            expect(error_recaptcha).to_have_text(email_error_text)
-            print(f"Error message is present and is correct: '{email_error_text}'")
+            error_email = self.verify_email_error_message_invalid_2
+            expect(error_email).to_have_text(email_error)
+            print(f"Error message is present and is correct: '{email_error}'")
+            #verifyemail
+            if message == "no-match":
+                error_verifyemail= self.email_address_error_message
+                expect(error_verifyemail).to_have_text(email_error_text)
+                print(f"Error message is present and is correct: '{email_error_text}'")
+            else:
+                error_verifyemail= self.verify_email_error_message_invalid_2
+                expect(error_verifyemail).to_have_text(email_error_text)
+                print(f"Error message is present and is correct: '{email_error_text}'")
          except TimeoutError:
                 print(f"Error message not present.")              
             
             
-
+    """
+    Function for cloud page login
+    """
+    def verify_login(self):
+         try:
+           self.username.fill(config.Config.username)
+           self.password.fill(config.Config.password)
+           self.cloud_page_submit.click()
+         except TimeoutError:
+                print(f"Text not present.")
     
             
