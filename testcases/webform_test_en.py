@@ -11,7 +11,7 @@ testdata = "./test_data/test_webform.csv"
 testdata_form = "./test_data/form_data.csv"
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
 # def test_page_url_path(url, browser : Browser) -> None:
 #     context = browser.new_context(
 #         #record_video_dir= "video/"
@@ -22,26 +22,30 @@ testdata_form = "./test_data/form_data.csv"
 #     data = reader.read_test_data(testdata, Action.get_current_test_name())
 #     expected_partial_url = data[0]
 #     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
 #     action_obj.verify_current_url(expected_partial_url)
 #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
-# def test_page_title(url, page: Page) -> None:
-#     page.set_default_timeout(300000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata, Action.get_current_test_name())
-#     page_title = data[1]
-#     webform_obj = Webform(page)
-#     webform_obj.verify_page_title(page_title)
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+def test_page_title(url, page: Page) -> None:
+    page.set_default_timeout(300000)
+    page.goto(url)
+    data = reader.read_test_data(testdata, Action.get_current_test_name())
+    page_title = data[1]
+    webform_obj = Webform(page)
+    action_obj = Action(page)
+    action_obj.closeCookiePopup()
+    webform_obj.verify_page_title(page_title)
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
-# def test_meta_description(url, page: Page) -> None:
-#     page.set_default_timeout(300000)
-#     page.goto(url)
-#     webform_obj = Webform(page)
-#     webform_obj.meta_description_check('EN', "")
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+def test_meta_description(url, page: Page) -> None:
+    page.goto(url)
+    webform_obj = Webform(page)
+    action_obj = Action(page)
+    action_obj.closeCookiePopup()
+    webform_obj.meta_description_check('EN', "")
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
@@ -345,13 +349,13 @@ testdata_form = "./test_data/form_data.csv"
 #     action_obj.verify_current_url(expected_partial_url)
 #     page.close()
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-def test_lightbox_displayed_on_canada_en_pages(url, page: Page) -> None:
-    #page.set_default_timeout(100000)
-    page.goto(url, timeout= 200000)
-    lightbox_obj = Lightbox(page)
-    lightbox_obj.lightbox_displayed(0)
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# def test_lightbox_displayed_on_canada_en_pages(url, page: Page) -> None:
+#     #page.set_default_timeout(100000)
+#     page.goto(url, timeout= 200000)
+#     lightbox_obj = Lightbox(page)
+#     lightbox_obj.lightbox_displayed(0)
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod_thankyou_page)

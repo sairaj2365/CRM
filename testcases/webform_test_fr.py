@@ -24,25 +24,29 @@ testdata_form = "./test_data/form_data.csv"
 #     action_obj.verify_current_url(expected_partial_url)
 #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_prod)
-# def test_page_title_fr(url, page: Page) -> None:
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata, Action.get_current_test_name())
-#     page_title = data[1]
-#     webform_obj = Webform(page)
-#     webform_obj.verify_page_title(page_title)
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+def test_page_title_fr(url, page: Page) -> None:
+    page.set_default_timeout(80000)
+    page.goto(url)
+    data = reader.read_test_data(testdata, Action.get_current_test_name())
+    page_title = data[1]
+    webform_obj = Webform(page)
+    action_obj = Action(page)
+    action_obj.closeCookiePopup()
+    webform_obj.verify_page_title(page_title)
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_prod)
-# def test_meta_description(url, page: Page) -> None:
-#     page.set_default_timeout(100000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata, Action.get_current_test_name())
-#     meta_fr = data[6]
-#     webform_obj = Webform(page)
-#     webform_obj.meta_description_check('FR', meta_fr)
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+def test_meta_description(url, page: Page) -> None:
+    page.set_default_timeout(100000)
+    page.goto(url)
+    data = reader.read_test_data(testdata, Action.get_current_test_name())
+    meta_fr = data[6]
+    webform_obj = Webform(page)
+    action_obj = Action(page)
+    action_obj.closeCookiePopup()
+    webform_obj.meta_description_check('FR', meta_fr)
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_prod)
@@ -342,12 +346,12 @@ testdata_form = "./test_data/form_data.csv"
 #     lightbox_obj = Lightbox(page)
 #     lightbox_obj.lightbox_not_displayed()
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home_prod)
-def test_lightbox_displayed_on_canada_fr_pages(url, page: Page) -> None:
-    page.goto(url, timeout= 200000)
-    lightbox_obj = Lightbox(page)
-    lightbox_obj.lightbox_displayed(0)
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_home_prod)
+# def test_lightbox_displayed_on_canada_fr_pages(url, page: Page) -> None:
+#     page.goto(url, timeout= 200000)
+#     lightbox_obj = Lightbox(page)
+#     lightbox_obj.lightbox_displayed(0)
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_prod)

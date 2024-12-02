@@ -1,27 +1,28 @@
 class Config:
     URLs_to_test_en = [
         #  "https://jjuser:JJJJpassword2022!@con-na-consumer-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-tylenol-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-        "https://jjuser:JJJJpassword2022!@con-na-aveeno2-ca-en.jnjnab11d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-nicorette-ca-en.jnjnab11d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-benylin-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-polysporin-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-reactine-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-lis-ca-en.jnjnab11d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-jbaby3-ca-en.jnjnab11d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-bandaid-ca-en.jnjnab11d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-benadryl-ca-en.jnjnab11d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-motrin-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-cnc-ca-en.jnjnab11d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-imodium-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-nicoderm-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-penaten-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-pepcid-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-rogaine-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-sudafed-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-         "https://jjuser:JJJJpassword2022!@con-na-visine-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
-        "https://jjuser:JJJJpassword2022!@con-na-neutrogena-ca-en.jnjnab11d6-test.jjc-devops.com/careclub",
-        # "https://jjuser:JJJJpassword2022!@con-na-zarbees-ca-en.jnjnab13d6-test.jjc-devops.com/careclub",
+        # "https://jjuser:JJpassw0rd2024!@con-na-consumer-ca-en.jnjnab13d6-test.jjc-devops.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-aveeno-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-nicorette-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-tylenol-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-zarbees-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-benylin-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-polysporin-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-reactine-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-listerine-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-johnsonsbaby-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-band-aid-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-benadryl-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-motrin-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-cleanandclear-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-imodium-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-nicoderm-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-penaten-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-pepcid-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-regaine-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/care-club",
+        # "https://kenvueuser:KenvuePassword2024!@na-sudafed-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-neutrogena-ca.staging.dxp.kenvue.com/",
     ]
 
     URLs_to_test_en_4_site = [
@@ -34,27 +35,27 @@ class Config:
 
     URLs_to_test_fr = [
         # "https://jjuser:JJJJpassword2022!@con-na-consumer-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-tylenol-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-aveeno2-ca-fr.jnjnab11d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-nicorette-ca-fr.jnjnab11d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-benylin-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-polysporin-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-reactine-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-lis-ca-fr.jnjnab11d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-jbaby3-ca-fr.jnjnab11d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-bandaid-ca-fr.jnjnab11d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-benadryl-ca-fr.jnjnab11d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-motrin-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-cnc-ca-fr.jnjnab11d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-imodium-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-nicoderm-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-penaten-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-pepcid-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-rogaine-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-visine-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-sudafed-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
-        "https://jjuser:JJJJpassword2022!@con-na-neutrogena-ca-fr.jnjnab11d6-test.jjc-devops.com/clubbonssoins",
-        # "https://jjuser:JJJJpassword2022!@con-na-zarbees-ca-fr.jnjnab13d6-test.jjc-devops.com/clubbonssoins",
+        # "https://kenvueuser:KenvuePassword2024!@na-aveeno-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-nicorette-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-tylenol-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-zarbees-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-benylin-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-polysporin-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-reactine-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-listerine-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-johnsonsbaby-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-band-aid-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-benadryl-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-motrin-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-cleanandclear-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-imodium-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-nicoderm-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-penaten-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-pepcid-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-regaine-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/fr/care-club",
+        # "https://kenvueuser:KenvuePassword2024!@na-sudafed-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-neutrogena-ca.staging.dxp.kenvue.com/fr",
     ]
 
     URLs_to_test_fr_4_site = [
@@ -598,7 +599,7 @@ class Config:
     rogaine_site_name ="Hair Loss Treatment for Hair Regrowth | ROGAINE® Canada"
     sudafed_site_name ="Sinus Pressure Pain & Congestion Relief | SUDAFED® | Canada"
     tylenol_site_name ="The Official TYLENOL® Canada Website | TYLENOL®"
-    visine_site_name = "VISINE® Official Site"
+    visine_site_name = "Visine-Canada"
     jbaby_site_name = "Improved Baby Products for Your Family | Johnson's® Baby"
     zarbees_site_name = "Zarbee's® Canada | Cough & Immunity Solutions"
 
@@ -620,7 +621,29 @@ class Config:
     rogaine_site_name_fr ="Traitement pour la repousse des cheveux | ROGAINE®"
     sudafed_site_name_fr ="Sinus Pressure Pain & Congestion Relief | SUDAFED® | Canada"
     tylenol_site_name_fr ="TYLENOL® | Le site Web canadien officiel de TYLENOL®"
-    visine_site_name_fr = "Site officiel de VISINE®"
+    visine_site_name_fr = "Visine-Canada"
     jbaby_site_name_fr = "Produits pour bébés améliorés pour votre famille | Johnson's® Baby"
     zarbees_site_name_fr = "Zarbee's® Canada | Solutions Toux et immunité"
+
+    aveeno_brand_name = "AVEENO®"
+    bandaid_brand_name = "BAND-AID®"
+    benadryl_brand_name = "BENADRYL®"
+    benylin_brand_name = "BENYLIN®"
+    cnc_brand_name = "CLEAN & CLEAR®"
+    imodium_brand_name = "IMODIUM®"
+    listerine_brand_name = "LISTERINE®"
+    motrin_brand_name = "MOTRIN®"
+    neutrogena_brand_name = "NEUTROGENA®"
+    nicoderm_brand_name = "NICODERM®"
+    nicorette_brand_name = "NICORETTE®"
+    penaten_brand_name = "PENATEN®"
+    pepcid_brand_name = "PEPCID®"
+    polysporin_brand_name ="POLYSPORIN®"
+    reactine_brand_name ="REACTINE®"
+    rogaine_brand_name ="ROGAINE®"
+    sudafed_brand_name ="SUDAFED®"
+    tylenol_brand_name ="TYLENOL®"
+    visine_brand_name = "VISINE®"
+    jbaby_brand_name = "JOHNSON's® BABY"
+    zarbees_brand_name = "ZARBEES®"
 

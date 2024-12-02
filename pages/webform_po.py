@@ -15,7 +15,6 @@ class Webform:
 
     def __init__(self, page : Page):
         self.page = page
-        self.brand_name = page.get_attribute("meta[property='og:title']", "content")
         self.meta_description = page.get_attribute("meta[name='description']", "content")
         self.logo_image = page.locator(".care-club-bar-logo img")
         self.brand_image = page.locator("#block-care-club-care-club-brands-block img")
@@ -76,74 +75,53 @@ class Webform:
     Function to verify page titles
     """
     def verify_page_title(self, page_title):
-        text = self.brand_name
         try:
-            self.page.wait_for_timeout(10000)
-            if text=="Johnson & Johnson Canada":
-                page_title_modified = page_title + Webform.jnj_title_text
-                print(f"Title verified to be : '{page_title_modified}'")
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "Quit Smoking with Our Products & Resources | NICORETTE®":
-                page_title_modified = page_title + "NICORETTE®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "BENYLIN® Canada":
-                page_title_modified = page_title + "BENYLIN®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "BAND-AID® Brand":
-                page_title_modified = page_title + "BANDAID®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "Polysporin® Canada":
-                page_title_modified = page_title + "POLYSPORIN®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "LISTERINE® Antiseptic Mouthwash, Rinse & Oral Care Products":
-                page_title_modified = page_title + "LISTERINE®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "Johnson's® Baby":
-                page_title_modified = page_title + "JOHNSON'S® Baby"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "Marque BAND-AID®":
-                page_title_modified = page_title + "BANDAID®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "CLEAN & CLEAR® Canada":
-                page_title_modified = page_title + "CLEAN & CLEAR®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "Motrin":
-                page_title_modified = page_title + "MOTRIN®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "PENATEN® Canada":
-                page_title_modified = page_title + "PENATEN®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "PEPCID® Canada":
-                page_title_modified = page_title + "PEPCID®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "Rogaine":
-                page_title_modified = page_title + "ROGAINE®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "ROGAINE® Canada":
-                page_title_modified = page_title + "ROGAINE®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text == "Cessez de fumer avec nos produits et ressources | NICORETTE®":
-                page_title_modified = page_title + "NICORETTE®"
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
-            elif text != "Johnson & Johnson Canada":
-                page_title_modified = page_title + text
-                expect(self.page).to_have_title(page_title_modified)
-                print(f"Title verified to be : '{page_title_modified}'")
+            action_obj = Action(self.page)
+            text = action_obj.validate_brand()
+            if text == config.Config.visine_site_name:
+                action_obj.validate_page_title(page_title, config.Config.visine_brand_name)
+            elif text == config.Config.tylenol_site_name:
+                action_obj.validate_page_title(page_title, config.Config.tylenol_brand_name)
+            elif text == config.Config.neutrogena_site_name:
+                action_obj.validate_page_title(page_title, config.Config.neutrogena_brand_name)
+            elif text == config.Config.reactine_site_name:
+               action_obj.validate_page_title(page_title, config.Config.reactine_brand_name)
+            elif text == config.Config.nicorette_site_name:
+               action_obj.validate_page_title(page_title, config.Config.nicorette_brand_name)
+            elif text == config.Config.aveeno_site_name:
+                action_obj.validate_page_title(page_title, config.Config.aveeno_brand_name)
+            elif text == config.Config.polysporin_site_name:
+               action_obj.validate_page_title(page_title, config.Config.polysporin_brand_name)
+            elif text == config.Config.jbaby_site_name:
+                action_obj.validate_page_title(page_title, config.Config.jbaby_brand_name)
+            elif text == config.Config.listerine_site_name:
+                action_obj.validate_page_title(page_title, config.Config.listerine_brand_name)
+            elif text == config.Config.benylin_site_name:
+                action_obj.validate_page_title(page_title, config.Config.benylin_brand_name)
+            elif text == config.Config.benadryl_site_name:
+                action_obj.validate_page_title(page_title, config.Config.benadryl_brand_name)
+            elif text == config.Config.zarbees_site_name:
+               action_obj.validate_page_title(page_title, config.Config.zarbees_brand_name)
+            elif text == config.Config.motrin_site_name:
+               action_obj.validate_page_title(page_title, config.Config.motrin_brand_name)
+            elif text == config.Config.bandaid_site_name:
+                action_obj.validate_page_title(page_title, config.Config.bandaid_brand_name)
+            elif text == config.Config.rogaine_site_name:
+               action_obj.validate_page_title(page_title, config.Config.rogaine_brand_name)
+            elif text == config.Config.imodium_site_name:
+               action_obj.validate_page_title(page_title, config.Config.imodium_brand_name)
+            elif text == config.Config.nicoderm_site_name:
+               action_obj.validate_page_title(page_title, config.Config.nicoderm_brand_name)
+            elif text == config.Config.pepcid_site_name:
+               action_obj.validate_page_title(page_title, config.Config.pepcid_brand_name)
+            elif text == config.Config.cnc_site_name:
+               action_obj.validate_page_title(page_title, config.Config.cnc_brand_name)
+            elif text == config.Config.penaten_site_name:
+                action_obj.validate_page_title(page_title, config.Config.penaten_brand_name)
+            elif text == config.Config.visine_site_name:
+              action_obj.validate_page_title(page_title, config.Config.visine_brand_name)
+            elif text == config.Config.sudafed_site_name:
+               action_obj.validate_page_title(page_title, config.Config.sudafed_brand_name)
         except TimeoutError:
             print("Page title not verified")
 
@@ -152,222 +130,100 @@ class Webform:
     """
     def meta_description_check(self, site, meta):
         try:
+            action_obj = Action(self.page)
+            meta_desc = self.meta_description
+            text = action_obj.validate_brand()
             if site == "EN":
-                text = self.brand_name
-                if text == "Johnson & Johnson Canada":
-                    meta_desc = Webform.jnj_meta_text
-                    if meta_desc == self.meta_description:
-                        assert True, f"Meta description is as expected"
-                        print("Meta description is as expected:", meta_desc)
-                    else:
-                        assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "Quit Smoking with Our Products & Resources | NICORETTE®":
-                    meta_desc = "Get more out of NICORETTE® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-                    if  meta_desc == self.meta_description:
-                        assert True, f"Meta description is as expected"
-                        print("Meta description is as expected:", meta_desc)
-                    else:
-                        assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "BENYLIN® Canada":
-                        meta_desc = "Get more out of BENYLIN® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-                        if  meta_desc == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "Polysporin® Canada":
-                        meta_desc = "Get more out of POLYSPORIN® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-                        if  meta_desc == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "LISTERINE® Antiseptic Mouthwash, Rinse & Oral Care Products":
-                        meta_desc = "Get more out of LISTERINE® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"  
-                        if  meta_desc == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "Johnson's® Baby":
-                        meta_desc = "Get more out of JOHNSON'S® Baby by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-                        if  meta_desc == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "BAND-AID® Brand":
-                        meta_desc = "Get more out of BANDAID® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"  
-                        if  meta_desc == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "Motrin":
-                        meta_desc = "Get more out of MOTRIN® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-                        if  meta_desc == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "CLEAN & CLEAR® Canada":
-                        meta_desc = "Get more out of CLEAN & CLEAR® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-                        if  meta_desc == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "PENATEN® Canada":
-                        meta_desc = "Get more out of PENATEN® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-                        if  meta_desc == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "PEPCID® Canada":
-                        meta_desc = "Get more out of PEPCID® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-                        if  meta_desc == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "ROGAINE® Canada":
-                        meta_desc = "Get more out of ROGAINE® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-                        if  meta_desc == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "TYLENOL®":
-                    meta_desc = "Looking to get more out of "+ text +"? Sign up to be a Care Club member to receive exclusive offers, personalized emails & access to new product releases."   
-                    if  meta_desc == self.meta_description:
-                        assert True, f"Meta description is as expected"
-                        print("Meta description is as expected:", meta_desc)
-                    else:
-                        assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text == "Zarbee's® Canada":
-                        meta_desc = "Get more out of Zarbee's® by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-                        if  meta_desc == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc}")
-                elif text != "Johnson & Johnson Canada":
-                    meta_desc = "Get more out of "+ text +" by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
-                    if  meta_desc == self.meta_description:
-                        assert True, f"Meta description is as expected"
-                        print("Meta description is as expected:", meta_desc)
-                    else:
-                        assert False, print(f"Meta description is not as expected: {meta_desc}")
+                if text == config.Config.visine_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.visine_brand_name, site,"")
+                elif text == config.Config.tylenol_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.tylenol_brand_name, site,"")
+                elif text == config.Config.neutrogena_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.neutrogena_brand_name, site,"")
+                elif text == config.Config.reactine_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.reactine_brand_name, site,"")
+                elif text == config.Config.nicorette_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.nicorette_brand_name, site,"")
+                elif text == config.Config.aveeno_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.aveeno_brand_name, site,"")
+                elif text == config.Config.polysporin_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.polysporin_brand_name, site,"")
+                elif text == config.Config.jbaby_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.jbaby_brand_name, site,"")
+                elif text == config.Config.listerine_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.listerine_brand_name, site,"")
+                elif text == config.Config.benylin_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.benylin_brand_name, site,"")
+                elif text == config.Config.benadryl_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.benadryl_brand_name, site,"")
+                elif text == config.Config.zarbees_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.zarbees_brand_name, site,"")
+                elif text == config.Config.motrin_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.motrin_brand_name, site,"")
+                elif text == config.Config.bandaid_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.bandaid_brand_name, site,"")
+                elif text == config.Config.rogaine_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.rogaine_brand_name, site,"")
+                elif text == config.Config.imodium_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.imodium_brand_name, site,"")
+                elif text == config.Config.nicoderm_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.nicoderm_brand_name, site,"")
+                elif text == config.Config.pepcid_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.pepcid_brand_name, site,"")
+                elif text == config.Config.cnc_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.cnc_brand_name, site,"")
+                elif text == config.Config.penaten_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.penaten_brand_name, site,"")
+                elif text == config.Config.visine_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.visine_brand_name, site,"")
+                elif text == config.Config.sudafed_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.sudafed_brand_name, site,"")
 
-            elif site == "FR":
-                text = self.brand_name
-                if text == "Johnson & Johnson Canada":
-                    meta_desc_fr = Webform.jnj_meta_text_fr
-                    if meta_desc_fr == self.meta_description:
-                        assert True, f"Meta description is as expected"
-                        print("Meta description is as expected:", meta_desc_fr)
-                    else:
-                        assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "Cessez de fumer avec nos produits et ressources | NICORETTE®":
-                        meta_desc_fr = meta + " " + "NICORETTE®" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "BENYLIN® Canada":
-                        meta_desc_fr = meta + " " + "BENYLIN®" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "Polysporin® Canada":
-                        meta_desc_fr = meta + " " + "POLYSPORIN®" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "LISTERINE® Antiseptic Mouthwash, Rinse & Oral Care Products":
-                        meta_desc_fr = meta + " " + "LISTERINE®" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "Johnson's® Baby":
-                        meta_desc_fr = meta + " " + "JOHNSON'S® Baby" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "Marque BAND-AID®":
-                        meta_desc_fr = meta + " " + "BAND-AID®" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "Motrin":
-                        meta_desc_fr = meta + " " + "MOTRIN®" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "CLEAN & CLEAR® Canada":
-                        meta_desc_fr = meta + " " + "CLEAN & CLEAR®" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "PENATEN® Canada":
-                        meta_desc_fr = meta + " " + "PENATEN®" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "PEPCID® Canada":
-                        meta_desc_fr = meta + " " + "PEPCID®" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "Zarbee's® Canada":
-                        meta_desc_fr = meta + " " + "Zarbee's®" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text == "Rogaine":
-                        meta_desc_fr = meta + " " + "ROGAINE®" + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                elif text != "Johnson & Johnson Canada":
-                    if text == "TYLENOL®":
-                        meta_desc_fr = config.Config.meta_tylenol_fr + " " + text + "."   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
-                    else:
-                        meta_desc_fr = meta + " " + text + "!"   
-                        if  meta_desc_fr == self.meta_description:
-                            assert True, f"Meta description is as expected"
-                            print("Meta description is as expected:", meta_desc_fr)
-                        else:
-                            assert False, print(f"Meta description is not as expected: {meta_desc_fr}")
+            elif site == "FR":    
+                if text == config.Config.visine_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.visine_brand_name, site, meta)
+                elif text == config.Config.tylenol_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.tylenol_brand_name, site, meta)
+                elif text == config.Config.neutrogena_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.neutrogena_brand_name, site, meta)
+                elif text == config.Config.reactine_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.reactine_brand_name, site, meta)
+                elif text == config.Config.nicorette_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.nicorette_brand_name, site, meta)
+                elif text == config.Config.aveeno_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.aveeno_brand_name, site, meta)
+                elif text == config.Config.polysporin_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.polysporin_brand_name, site, meta)
+                elif text == config.Config.jbaby_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.jbaby_brand_name, site, meta)
+                elif text == config.Config.listerine_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.listerine_brand_name, site, meta)
+                elif text == config.Config.benylin_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.benylin_brand_name, site, meta)
+                elif text == config.Config.benadryl_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.benadryl_brand_name, site, meta)
+                elif text == config.Config.zarbees_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.zarbees_brand_name, site, meta)
+                elif text == config.Config.motrin_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.motrin_brand_name, site, meta)
+                elif text == config.Config.bandaid_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.bandaid_brand_name, site, meta)
+                elif text == config.Config.rogaine_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.rogaine_brand_name, site, meta)
+                elif text == config.Config.imodium_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.imodium_brand_name, site, meta)
+                elif text == config.Config.nicoderm_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.nicoderm_brand_name, site, meta)
+                elif text == config.Config.pepcid_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.pepcid_brand_name, site, meta)
+                elif text == config.Config.cnc_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.cnc_brand_name, site, meta)
+                elif text == config.Config.penaten_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.penaten_brand_name, site, meta)
+                elif text == config.Config.visine_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.visine_brand_name, site, meta)
+                elif text == config.Config.sudafed_site_name:
+                    action_obj.validate_meta_desc( meta_desc, config.Config.sudafed_brand_name, site, meta)
         except TimeoutError:
             print("Page title not verified")    
 

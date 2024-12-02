@@ -13,7 +13,7 @@ class Lightbox:
         self.page = page
         self.privacy_policy_data_1 = page.locator(".lightbox-warnings p:nth-child(1)")
         self.privacy_policy_data_2 = page.locator(".lightbox-warnings p:nth-child(2)")
-        self.brand_name = page.get_attribute("meta[property='og:title']", "content")
+        #self.brand_name = page.get_attribute("meta[property='og:title']", "content")
         self.alt_text = page.locator(".vds-max-w_358 img")
         self.alt_text_nicorette = page.locator("#lightbox-form p:nth-child(2) img")
         self.close_icon = page.locator("#radix-\:r0\: svg")
@@ -109,17 +109,16 @@ class Lightbox:
     Function to verify lightbox image alt tag
     """
 
-    def check_image_alt_tag(self,site_name, alt_tag):
+    def check_image_alt_tag(self,site_name):
         try:
+            alt_text = self.alt_text.get_attribute('alt')
             action_obj = Action(self.page)
             self.lightbox_displayed(10000)
-            text = self.brand_name
+            text = action_obj.validate_brand()
             if site_name == "EN":
                 if  text==config.Config.tylenol_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.tylenol_alt_text)
                 elif text==config.Config.aveeno_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.aveeno_alt_text)
                 # elif text=="Johnson & Johnson Canada":
                 #     alt_text = self.alt_text.get_attribute('alt')
@@ -128,70 +127,49 @@ class Lightbox:
                 #         print(f"Image Alt Text: {alt_text}")
                 #     else:
                 #         assert False, f"Image has no Alt Text."
-                elif text==config.Config.zarbees_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
+                elif text==config.Config.zarbees_site_name:              
                     action_obj.validate_alt_text(alt_text, config.Config.zarbees_alt_text)
                 elif text==config.Config.nicorette_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.nicorette_alt_text)
                 elif text==config.Config.benylin_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.benylin_alt_text)
                 elif text==config.Config.polysporin_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.polysporin_alt_text)
                 elif text==config.Config.reactine_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.reactine_alt_text)
                 elif text==config.Config.listerine_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.listerine_alt_text)
                 elif text==config.Config.jbaby_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.jbaby_alt_text)
                 elif text==config.Config.bandaid_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.bandaid_alt_text)
                 elif text==config.Config.benadryl_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.benadryl_alt_text)
                 elif text==config.Config.motrin_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.motrin_alt_text)
                 elif text==config.Config.cnc_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.cnc_alt_text)
                 elif text==config.Config.imodium_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.imodium_alt_text)
                 elif text==config.Config.nicoderm_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.nicoderm_alt_text)
                 elif text==config.Config.penaten_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.penaten_alt_text)
                 elif text==config.Config.pepcid_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.pepcid_alt_text)
                 elif text==config.Config.rogaine_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.rogaine_alt_text)
                 elif text==config.Config.visine_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.visine_alt_text)
                 elif text==config.Config.sudafed_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.sudafed_alt_text)
                 elif text==config.Config.neutrogena_site_name:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.neutrogena_alt_text)
 
             if site_name == "FR":
                 if  text==config.Config.tylenol_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.tylenol_alt_text_fr)
                 elif text==config.Config.aveeno_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.aveeno_alt_text_fr)
                 # elif text=="Johnson & Johnson Canada":
                 #     alt_text = self.alt_text.get_attribute('alt')
@@ -201,61 +179,42 @@ class Lightbox:
                 #     else:
                 #         assert False, f"Image has no Alt Text."
                 elif text==config.Config.zarbees_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.zarbees_alt_text_fr)
                 elif text==config.Config.nicorette_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.nicorette_alt_text_fr)
                 elif text==config.Config.benylin_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.benylin_alt_text_fr)
                 elif text==config.Config.polysporin_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.polysporin_alt_text_fr)
                 elif text==config.Config.reactine_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.reactine_alt_text_fr)
                 elif text==config.Config.listerine_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.listerine_alt_text_fr)
                 elif text==config.Config.jbaby_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.jbaby_alt_text_fr)
                 elif text==config.Config.bandaid_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.bandaid_alt_text_fr)
                 elif text==config.Config.benadryl_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.benadryl_alt_text_fr)
                 elif text==config.Config.motrin_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.motrin_alt_text_fr)
                 elif text==config.Config.cnc_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.cnc_alt_text_fr)
                 elif text==config.Config.imodium_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.imodium_alt_text_fr)
                 elif text==config.Config.nicoderm_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.nicoderm_alt_text_fr)
                 elif text==config.Config.penaten_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.penaten_alt_text_fr)
                 elif text==config.Config.pepcid_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.pepcid_alt_text_fr)
                 elif text==config.Config.rogaine_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.rogaine_alt_text_fr)
                 elif text==config.Config.visine_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.visine_alt_text_fr)
                 elif text==config.Config.sudafed_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.sudafed_alt_text_fr)
                 elif text==config.Config.neutrogena_site_name_fr:
-                    alt_text = self.alt_text.get_attribute('alt')
                     action_obj.validate_alt_text(alt_text, config.Config.neutrogena_alt_text_fr)
         except TimeoutError:
             print(f"Text not present or Timeout error.")
@@ -265,15 +224,14 @@ class Lightbox:
     """
     def check_close_icon_alt_tag(self,site,alt):
         try:
+            alt_text = self.close_icon.get_attribute('aria-label')
             action_obj = Action(self.page)
             if site == "EN":
-                #self.page.wait_for_selector()
-                alt_text = self.close_icon.get_attribute('aria-label')
+                #self.page.wait_for_selector()               
                 action_obj.validate_alt_text(alt_text, alt)
         
             if site == "FR":
                 #self.page.wait_for_selector()
-                alt_text = self.close_icon.get_attribute('aria-label')
                 action_obj.validate_alt_text(alt_text, alt)
         except TimeoutError:
             print("Timeout Error")
@@ -351,22 +309,20 @@ class Lightbox:
     """
     def error_messages_fields(self, name_error, email_error, verify_email_error, recaptcha_error, type):
         try:
+            action_obj = Action(self.page)
             #brand = self.brand_name
             if type == 'empty':
                 #name
                 error_name = self.name_error_2
-                expect(error_name).to_have_text(name_error)
-                print(f"Error message is present and is correct: '{name_error}'")
+                action_obj.compare_text(error_name, name_error, "error")
 
                 #email
                 error_email = self.email_error_2
-                expect(error_email).to_have_text(email_error)
-                print(f"Error message is present and is correct: '{email_error}'")
+                action_obj.compare_text(error_email, email_error, "error")
 
                 #verify email
                 error_verify_email = self.verify_email_error_message_2
-                expect(error_verify_email).to_have_text(verify_email_error)
-                print(f"Error message is present and is correct: '{verify_email_error}'")
+                action_obj.compare_text(error_verify_email, verify_email_error, "error")
 
                 # #recaptcha
                 # error_recaptcha = self.recaptcha_error_message_invalid
@@ -375,18 +331,15 @@ class Lightbox:
             elif type == 'invalid':
                 #name
                 error_name = self.name_error_invalid_2
-                expect(error_name).to_have_text(name_error)
-                print(f"Error message is present and is correct: '{name_error}'")
+                action_obj.compare_text(error_name, name_error, "error")
 
                 #email
                 error_email = self.email_error_invalid_2
-                expect(error_email).to_have_text(email_error)
-                print(f"Error message is present and is correct: '{email_error}'")
+                action_obj.compare_text(error_email, email_error, "error")
 
                 #verify email
                 error_verify_email = self.verify_email_error_message_invalid_2
-                expect(error_verify_email).to_have_text(verify_email_error)
-                print(f"Error message is present and is correct: '{verify_email_error}'")
+                action_obj.compare_text(error_verify_email, verify_email_error, "error")
 
                 # #recaptcha
                 # error_recaptcha = self.recaptcha_error_message_invalid
@@ -517,7 +470,7 @@ class Lightbox:
     """
     def lightbox_not_displayed(self):
          try:
-            brand = self.brand_name
+            #brand = self.brand_name
             # if brand == "PEPCID® Canada" or brand == "Quit Smoking with Our Products & Resources | NICORETTE®" or brand == "Cessez de fumer avec nos produits et ressources | NICORETTE®" or brand == "REACTINE®" or brand == "TYLENOL®":
             #     lb_form = self.lb_form
             #     expect(lb_form).to_be_visible()

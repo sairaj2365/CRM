@@ -7,7 +7,7 @@ class Action:
     def __init__(self, page : Page):
         self.page = page
         self.cookieCloseButton = page.locator("#onetrust-button-group #onetrust-accept-btn-handler")
-        self.brand_name = page.get_attribute("meta[property='og:title']", "content")
+        self.brand_name = page.locator(".vds-d_flex > a svg")
         self.cookieCloseButton_aveeno = page.locator("#adchoice-buttons .click-processed")
 
 
@@ -113,5 +113,39 @@ class Action:
             print(f"Image Alt Text: {alt_text}")
         else:
             assert False, f"Image has no Alt Text."
+
+    """
+    Function to verify which brand
+    """
+    def validate_brand(self):
+        return self.brand_name.get_attribute('aria-labelledby')
+
+    """
+    Function to verify page title
+    """
+    def validate_page_title(self, page_title, brand_name):
+        page_title_modified = page_title + brand_name
+        expect(self.page).to_have_title(page_title_modified)
+        print(f"Title verified to be : '{page_title_modified}'")
     
+    """
+    Function to validate meta desc
+    """
+    def validate_meta_desc(self, meta_text, brand_name, site, meta):
+        if site == "EN":
+            meta_desc = "Get more out of "+ brand_name +" by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to product releases!"   
+            if meta_desc == meta_text:
+                assert True, f"Meta description is as expected"
+                print("Meta description is as expected:", meta_desc)
+            else:
+                assert False, print(f"Meta description is not as expected: {meta_desc}")
+
+        elif site == "FR":  
+            meta_desc_fr = meta + " " + brand_name + "!"   
+            if  meta_desc_fr == meta_text:
+                assert True, f"Meta description is as expected"
+                print("Meta description is as expected:", meta_desc_fr)
+            else:
+                assert False, print(f"Meta description is not as expected: {meta_desc_fr}")    
+         
             
