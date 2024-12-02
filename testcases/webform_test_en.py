@@ -351,7 +351,7 @@ def test_lightbox_displayed_on_canada_en_pages(url, page: Page) -> None:
     #page.set_default_timeout(100000)
     page.goto(url, timeout= 200000)
     lightbox_obj = Lightbox(page)
-    lightbox_obj.lightbox_displayed(25000)
+    lightbox_obj.lightbox_displayed(0)
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod_thankyou_page)

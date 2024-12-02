@@ -347,7 +347,7 @@ testdata_form = "./test_data/form_data.csv"
 def test_lightbox_displayed_on_canada_fr_pages(url, page: Page) -> None:
     page.goto(url, timeout= 200000)
     lightbox_obj = Lightbox(page)
-    lightbox_obj.lightbox_displayed(25000)
+    lightbox_obj.lightbox_displayed(0)
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_prod)

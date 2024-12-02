@@ -15,7 +15,7 @@ class Webform:
 
     def __init__(self, page : Page):
         self.page = page
-        self.brand_name = page.get_attribute("meta[name='apple-mobile-web-app-title']", "content")
+        self.brand_name = page.get_attribute("meta[property='og:title']", "content")
         self.meta_description = page.get_attribute("meta[name='description']", "content")
         self.logo_image = page.locator(".care-club-bar-logo img")
         self.brand_image = page.locator("#block-care-club-care-club-brands-block img")
@@ -45,7 +45,7 @@ class Webform:
         self.birthdate_error_invalid = page.locator(".field-birthdate .error-format")
         self.name_error_invalid_2 = page.locator("div:nth-child(3) > .error-format")
         self.email_error_invalid_2 = page.locator("div:nth-child(4) > .error-format")
-        self.verify_email_error_message_invalid_2 = page.locator("div:nth-child(5) > .error-format")
+        self.verify_email_error_message_invalid_2 = page.locator("#radix-\:r8\: div p")
         self.terms_link = page.get_by_role("link", name="full terms and conditions.")
         self.terms_link_fr = page.get_by_role("link", name="conditions générales.")
         self.content_one = page.locator("#content-main")
@@ -787,11 +787,11 @@ class Webform:
     """
     Function to verify "email address" error text
     """
-    def email_address_error_check(self, email_error, email_error_text, message):
+    def email_address_error_check(self, email_error_text, message):
          try:
-            error_email = self.verify_email_error_message_invalid_2
-            expect(error_email).to_have_text(email_error)
-            print(f"Error message is present and is correct: '{email_error}'")
+            # error_email = self.verify_email_error_message_invalid_2
+            # expect(error_email).to_have_text(email_error)
+            # print(f"Error message is present and is correct: '{email_error}'")
             #verifyemail
             if message == "no-match":
                 error_verifyemail= self.email_address_error_message

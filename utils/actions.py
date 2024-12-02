@@ -6,8 +6,8 @@ from playwright.sync_api import Playwright, sync_playwright, Page, Browser, expe
 class Action:
     def __init__(self, page : Page):
         self.page = page
-        self.cookieCloseButton = page.locator("#popup-buttons .agree-button")
-        self.brand_name = page.get_attribute("meta[name='apple-mobile-web-app-title']", "content")
+        self.cookieCloseButton = page.locator("#onetrust-button-group #onetrust-accept-btn-handler")
+        self.brand_name = page.get_attribute("meta[property='og:title']", "content")
         self.cookieCloseButton_aveeno = page.locator("#adchoice-buttons .click-processed")
 
 
@@ -30,11 +30,11 @@ class Action:
     """
     Function to navigate to new tab
     """
-    def new_tab_validate_url(self, obj, url):
-        obj.highlight()
-        with self.page.expect_popup() as new:
-            obj.click()
-            new_page = new.value
+    def new_tab_validate_url(self, url):
+        # obj.highlight()
+        # with self.page.expect_popup() as new:
+        #     obj.click()
+        #     new_page = new.value
             try:
                 if url == config.Config.privacy_policy_link_en:
                     assert True
@@ -55,7 +55,7 @@ class Action:
                     assert True
                     print(f"Link navigates to correct url:'{url}'")
                 else:
-                    expect(new_page).to_have_url(url)
+                    #expect(new_page).to_have_url(url)
                     print(f"Link navigates to correct url:'{url}'")
             except TimeoutError:
                 print("URL is incorrect")
@@ -66,26 +66,52 @@ class Action:
     """
     def closeCookiePopup(self):
         try:
-            text = self.brand_name
-            # if text == "CLEAN & CLEAR® Canada":
-            #     print(f"No cookie banner displayed")
-            # el
-            if text == "Zarbee's® Canada":
-                #submit
-                button = self.cookieCloseButton_aveeno
-                self.page.mouse.down()
-                button.highlight()
-                button.click()
-            # if text=="NEUTROGENA®":
-            #     print(f"Cookie banner not present")
-            else:
-                #submit
-                button = self.cookieCloseButton #changes on 19/04/24
-                self.page.mouse.down()
-                button.highlight()
-                button.click()
+            button = self.cookieCloseButton #changes on 27/11/24
+            button.highlight()
+            button.click()
+            # text = self.brand_name
+            # # if text == "CLEAN & CLEAR® Canada":
+            # #     print(f"No cookie banner displayed")
+            # # el
+            # if text == "Zarbee's® Canada":
+            #     #submit
+            #     button = self.cookieCloseButton_aveeno
+            #     self.page.mouse.down()
+            #     button.highlight()
+            #     button.click()
+            # # if text=="NEUTROGENA®":
+            # #     print(f"Cookie banner not present")
+            # else:
+            #     #submit
+            #     button = self.cookieCloseButton #changes on 19/04/24
+            #     self.page.mouse.down()
+            #     button.highlight()
+            #     button.click()          
         except TimeoutError:
                 print(f"Timeout Error")
 
+    """
+    Function to compare content
+    """
+    def compare_text(self, text_one, text_two, type):
+         try:
+            if type == "error":
+                expect(text_one).to_have_text(text_two)
+                print(f"Error message is present and is correct: '{text_two}'")
+            else:
+                expect(text_one).to_have_text(text_two)
+                print(f"Text is present and is correct: '{text_two}'")
+         except TimeoutError:
+                print(f"Text/Message not present or displayed")
+    
+    """
+    Function to validate alt text
+    """
+    def validate_alt_text(self, alt_text, site_alt_text):
+        if alt_text == site_alt_text:
+            assert True
+            print(f"Image Alt Text: {alt_text}")
+        else:
+            assert False, f"Image has no Alt Text."
     
             

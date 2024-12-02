@@ -17,7 +17,7 @@ test_dob_text,,,,,,,,,,,,,,,,,,,optional
 test_dob_text_fr,,,,,,,,,,,,,,,,,,,facultative
 test_thankyou_page_content_fr,,,,,,,,,,,,,,,,,Merci pour votre inscription au Club Bons soins Canada!,Vous allez recevoir votre r?compense exclusive dans votre bo?te de r?ception.,
 test_href_lang_thank_you,,,,,en-CA,fr-CA,,,,,,,,,,,,,
-test_lightbox_required_text,,,,,*REQUIRED FIELD,,,,,,,,,,,,,,
-test_lightbox_required_text_fr,,,,,*CHAMP OBLIGATOIRE,,,,,,,,,,,,,,
+test_lightbox_required_field_text,,,,,*REQUIRED FIELD,First Name*,Email*,Verify email*,,,,,,,,,,,
+test_lightbox_required_field_text_fr,,,,,*CHAMP OBLIGATOIRE,Prénom*,Courriel*,Vérifier l'adresse courriel*,,,,,,,,,,,
 test_page_url_path_careclub_page_redirection,,,,,,,,,,,,,,,,,,,
 test_page_url_path_thankyou_page_redirection,,,,,,,,,,,,,,,,,,,
