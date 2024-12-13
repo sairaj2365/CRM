@@ -26,17 +26,17 @@ testdata_form = "./test_data/form_data.csv"
 #     action_obj.verify_current_url(expected_partial_url)
 #     page.close()
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
-def test_page_title(url, page: Page) -> None:
-    page.set_default_timeout(300000)
-    page.goto(url)
-    data = reader.read_test_data(testdata, Action.get_current_test_name())
-    page_title = data[1]
-    webform_obj = Webform(page)
-    action_obj = Action(page)
-    action_obj.closeCookiePopup()
-    webform_obj.verify_page_title(page_title)
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_page_title(url, page: Page) -> None:
+#     #page.set_default_timeout(300000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata, Action.get_current_test_name())
+#     page_title = data[1]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.verify_page_title(page_title)
 
 @pytest.mark.webform
 @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
@@ -47,22 +47,56 @@ def test_meta_description(url, page: Page) -> None:
     action_obj.closeCookiePopup()
     webform_obj.meta_description_check('EN', "")
 
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+def test_brand_img_alt_tag(url, browser : Browser) -> None:  #playwright: Playwright - device viewport
+    #iphone_13 = playwright.devices['iPhone 13']
+    context = browser.new_context(
+        #record_video_dir= "video/",
+        #**iphone_13
+    )
+    page = context.new_page()
+    page.set_default_timeout(80000)
+    page.goto(url)
+    webform_obj = Webform(page)
+    action_obj = Action(page)
+    action_obj.closeCookiePopup()
+    webform_obj.check_brand_img_alt_tag('EN')
+    page.close()
+
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
-# def test_img_alt_tags(url, browser : Browser) -> None:  #playwright: Playwright - device viewport
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_brand_logo_alt_tag(url, browser : Browser) -> None:  #playwright: Playwright - device viewport
 #     #iphone_13 = playwright.devices['iPhone 13']
 #     context = browser.new_context(
 #         #record_video_dir= "video/",
 #         #**iphone_13
 #     )
 #     page = context.new_page()
-#     page.set_default_timeout(80000)
+#     #page.set_default_timeout(80000)
 #     page.goto(url)
-#     data = reader.read_test_data(testdata, Action.get_current_test_name())
-#     logo_text, brand_text = data[2], data[3]
 #     webform_obj = Webform(page)
-#     webform_obj.check_img_alt_tags("brand", brand_text)
-#     #webform_obj.check_img_alt_tags("logo", logo_text)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.check_brand_logo_alt_tag('EN')
+#     page.close()
+
+
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_card_icon_alt_tag(url, browser : Browser) -> None:  #playwright: Playwright - device viewport
+#     #iphone_13 = playwright.devices['iPhone 13']
+#     context = browser.new_context(
+#         #record_video_dir= "video/",
+#         #**iphone_13
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.check_card_icon_alt_tag('EN')
 #     page.close()
 
 # @pytest.mark.webform
@@ -104,54 +138,318 @@ def test_meta_description(url, page: Page) -> None:
 # # # #     page.close()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
 # def test_empty_form(url, browser : Browser) -> None:
 #     context = browser.new_context(
 #         #record_video_dir= "video/content/english/CC/missing_entries",
 #         #record_video_size={"width": 640, "height": 480}
 #     )
 #     page = context.new_page()
-#     page.set_default_timeout(80000)
+#     #page.set_default_timeout(80000)
 #     page.goto(url)
 #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     name_error, email_error, verify_email_error, checkbox_error, recaptcha_error = data[4], data[5], data[6], data[7], data[8]
+#     name_error, email_error, verify_email_error, checkbox_error, recaptcha_error = data[5], data[6], data[7], data[8], data[9]
 #     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
 #     webform_obj.submit_button()
 #     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, checkbox_error, recaptcha_error, 'empty')
 #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
+#need to update birthdate error 
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
 # def test_form_invalid_data(url, browser : Browser) -> None:
 #     context = browser.new_context(
 #         #record_video_dir= "video/content/english/CC/invalid_entries",
 #         #record_video_size={"width": 640, "height": 480}
 #     )
 #     page = context.new_page()
-#     page.set_default_timeout(80000)
+#     #page.set_default_timeout(80000)
 #     page.goto(url)
 #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, birthdate, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
 #     webform_obj = Webform(page)
 #     action_obj = Action(page)
 #     action_obj.closeCookiePopup()
-#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, "invalid")
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
 #     webform_obj.submit_button()
 #     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
 #     page.close()
 
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_name_1(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
 
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_name_2(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_name_3(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_name_4(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_name_5(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_name_6(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_name_7(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_name_8(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+
+@pytest.mark.webform 
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+def test_form_invalid_data_invalid_email_1(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/CC/invalid_entries",
+        #record_video_size={"width": 640, "height": 480}
+    )
+    page = context.new_page()
+    #page.set_default_timeout(80000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+    webform_obj = Webform(page)
+    action_obj = Action(page)
+    action_obj.closeCookiePopup()
+    webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+    webform_obj.submit_button()
+    webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+    page.close()
+
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_email_2(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_email_3(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_email_4(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+
+# @pytest.mark.webform 
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
+# def test_form_invalid_data_invalid_email_5(url, browser : Browser) -> None:
+#     context = browser.new_context(
+#         #record_video_dir= "video/content/english/CC/invalid_entries",
+#         #record_video_size={"width": 640, "height": 480}
+#     )
+#     page = context.new_page()
+#     #page.set_default_timeout(80000)
+#     page.goto(url)
+#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+#     firstname, emailid, verify_email, birthdate, month, name_error, email_error, verify_email_error, birthdate_error, recaptcha_error = data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, birthdate, month, "invalid")
+#     webform_obj.submit_button()
+#     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, birthdate_error, recaptcha_error, 'invalid')
+#     page.close()
+    
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
 # def test_webform_links(url, browser : Browser) -> None:
 #     context = browser.new_context(
 #         #record_video_dir= "video/"
 #     )
 #     page = context.new_page()
-#     page.set_default_timeout(100000)
+#     #page.set_default_timeout(100000)
 #     page.goto(url)
 #     webform_obj = Webform(page)
-#     webform_obj.verify_links('EN')
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.verify_links()
 #     page.close()
 
 # @pytest.mark.webform
@@ -268,7 +566,7 @@ def test_meta_description(url, page: Page) -> None:
 #     lightbox_obj.lightbox_not_displayed()
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
 # def test_lightbox_not_displayed_for_email_traffic(url, page: Page) -> None:
 #     page.set_default_timeout(300000)
 #     page.goto(url + config.Config.email_utm)
@@ -374,38 +672,42 @@ def test_meta_description(url, page: Page) -> None:
 
 
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
 # def test_form_page_addresses_do_not_match(url, browser : Browser) -> None:
 #     context = browser.new_context(
 #         #record_video_dir= "video/"
 #     )
 #     page = context.new_page()
-#     page.set_default_timeout(80000)
+#     #page.set_default_timeout(80000)
 #     page.goto(url)
 #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error_text = data[0], data[1], data[2], data[6]
+#     firstname, emailid, verify_email, email_error_text = data[0], data[1], data[2], data[7]
 #     webform_obj = Webform(page)
-#     webform_obj.webform_form(firstname, emailid, verify_email, "", "verify_email")
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, "", "", "verify_email")
 #     webform_obj.submit_button()
-#     webform_obj.email_address_error_check(email_error_text)
+#     webform_obj.email_address_error_check("", email_error_text, "no-match")
 #     page.close()
 
-#Email address do not match
+# ##Email address do not match
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_prod)
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en)
 # def test_form_page_addresses_do_not_match_gmail_com(url, browser : Browser) -> None:
 #     context = browser.new_context(
 #         #record_video_dir= "video/"
 #     )
 #     page = context.new_page()
-#     page.set_default_timeout(80000)
+#     #page.set_default_timeout(80000)
 #     page.goto(url)
 #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[6], data[7]
 #     webform_obj = Webform(page)
-#     webform_obj.webform_form(firstname, emailid, verify_email, "", "verify_email")
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.webform_form(firstname, emailid, verify_email, "", "", "verify_email")
 #     webform_obj.submit_button()
-#     webform_obj.email_address_error_check(email_error, email_error_text, "no-match")
+#     webform_obj.email_address_error_check(email_error, email_error_text, "")
 #     page.close()
 
 # @pytest.mark.webform

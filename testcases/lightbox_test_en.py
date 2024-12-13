@@ -16,24 +16,25 @@ testdata_form = "./test_data/form_data.csv"
 def test_img_alt_tags(url, page: Page) -> None:
     #page.set_default_timeout(80000)
     page.goto(url)
-    data = reader.read_test_data(testdata, Action.get_current_test_name())
-    brand_text = data[3]
     action_obj = Action(page)
     lightbox_obj = Lightbox(page)
     action_obj.closeCookiePopup()
-    lightbox_obj.check_image_alt_tag("EN", brand_text)
+    page.reload()
+    lightbox_obj.check_image_alt_tag("EN")
 
-# @pytest.mark.lightbox
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
-# def test_close_icon_alt_en(url, page: Page) -> None:
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(lightbox_privacy_data, Action.get_current_test_name())
-#     input_data_1 = data[0]
-#     action_obj = Action(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.check_close_icon_alt_tag("EN", input_data_1)
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_close_icon_alt_en(url, page: Page) -> None:
+    page.set_default_timeout(80000)
+    page.goto(url)
+    data = reader.read_test_data(lightbox_privacy_data, Action.get_current_test_name())
+    input_data_1 = data[0]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.check_close_icon_alt_tag("EN", input_data_1)
+    page.close()
 
 @pytest.mark.lightbox
 @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
@@ -45,10 +46,11 @@ def test_empty_form(url, browser : Browser) -> None:
     page.set_default_timeout(100000)
     page.goto(url)
     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-    name_error, email_error, verify_email_error, recaptcha_error = data[4], data[5], data[6], data[8]
+    name_error, email_error, verify_email_error, recaptcha_error = data[5], data[6], data[7], data[9]
     action_obj = Action(page)
     lightbox_obj = Lightbox(page)
     action_obj.closeCookiePopup()
+    page.reload()
     lightbox_obj.submit_button()
     lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "empty")
     page.close()
@@ -82,47 +84,309 @@ def test_form_invalid_data(url, browser : Browser) -> None:
         #record_video_dir= "video/content/english/LB/invalid_entries"
     )
     page = context.new_page()
-    page.set_default_timeout(100000)
+    page.set_default_timeout(800000)
     page.goto(url)
     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[4], data[5], data[6], data[8]
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
     action_obj = Action(page)
     lightbox_obj = Lightbox(page)
     action_obj.closeCookiePopup()
+    page.reload()
     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
     lightbox_obj.submit_button()
     lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
     page.close()
 
-# @pytest.mark.lightbox
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
-# def test_lightbox_links(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     #page.set_default_timeout(100000)
-#     page.goto(url)
-#     action_obj = Action(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.verify_links()
-#     page.close()
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_name_1(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(800000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
 
-# # @pytest.mark.webform
-# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# # def test_lightbox_content(url, browser : Browser) -> None:
-# #     context = browser.new_context(
-# #         #record_video_dir= "video/"
-# #     )
-# #     page = context.new_page()
-# #     page.set_default_timeout(200000)
-# #     page.goto(url)
-# #     data = reader.read_test_data(lightbox_privacy_data, Action.get_current_test_name())
-# #     content_one, content_two, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four = data[2], data[3], data[4], data[5], data[6], data[7]
-# #     lightbox_obj = Lightbox(page)
-# #     lightbox_obj.verify_lightbox_content("EN", content_one, content_two, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four)
-# #     page.close()
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_name_2(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(800000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_name_3(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(800000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_name_4(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(800000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_name_5(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(800000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_name_6(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(800000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_name_7(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(800000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_name_8(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(800000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_email_1(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(100000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_email_2(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(100000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_email_3(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(100000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_email_4(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(100000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_form_invalid_data_invalid_email_5(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/LB/invalid_entries"
+    )
+    page = context.new_page()
+    page.set_default_timeout(100000)
+    page.goto(url)
+    data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+    firstname, emailid, verify_email, name_error, email_error, verify_email_error, recaptcha_error = data[0], data[1], data[2], data[5], data[6], data[7], data[9]
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_form(firstname, emailid, verify_email, "invalid")
+    lightbox_obj.submit_button()
+    lightbox_obj.error_messages_fields(name_error, email_error, verify_email_error, recaptcha_error, "invalid")
+    page.close()
+
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_lightbox_links(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/"
+    )
+    page = context.new_page()
+    page.set_default_timeout(100000)
+    page.goto(url)
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.verify_links()
+    page.close()
+
+# # # @pytest.mark.webform
+# # # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # # def test_lightbox_content(url, browser : Browser) -> None:
+# # #     context = browser.new_context(
+# # #         #record_video_dir= "video/"
+# # #     )
+# # #     page = context.new_page()
+# # #     page.set_default_timeout(200000)
+# # #     page.goto(url)
+# # #     data = reader.read_test_data(lightbox_privacy_data, Action.get_current_test_name())
+# # #     content_one, content_two, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four = data[2], data[3], data[4], data[5], data[6], data[7]
+# # #     lightbox_obj = Lightbox(page)
+# # #     lightbox_obj.verify_lightbox_content("EN", content_one, content_two, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four)
+# # #     page.close()
 
 # # @pytest.mark.webform
 # # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
@@ -137,28 +401,28 @@ def test_form_invalid_data(url, browser : Browser) -> None:
 # #     firstname, emailid, verify_email, recaptcha_error = data[0], data[1], data[2], data[8]
 # #     action_obj = Action(page)
 # #     lightbox_obj = Lightbox(page)
-# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "recaptcha")
 # #     action_obj.closeCookiePopup()
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "recaptcha")  
 # #     lightbox_obj.submit_button()
 # #     lightbox_obj.recaptcha_error_check(recaptcha_error, "generic")
 
-# # @pytest.mark.webform
-# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
-# # def test_form_page_registered_error_message(url, browser : Browser) -> None:
-# #     context = browser.new_context(
-# #         #record_video_dir= "video/"
-# #     )
-# #     page = context.new_page()
-# #     page.set_default_timeout(80000)
-# #     page.goto(url)
-# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-# #     firstname, emailid, verify_email, recaptcha_error = data[0], data[1], data[2], data[8]
-# #     action_obj = Action(page)
-# #     lightbox_obj = Lightbox(page)
-# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "recaptcha")
-# #     action_obj.closeCookiePopup()
-# #     lightbox_obj.submit_button()
-# #     lightbox_obj.recaptcha_error_check(recaptcha_error, "registered")
+# # # @pytest.mark.webform
+# # # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+# # # def test_form_page_registered_error_message(url, browser : Browser) -> None:
+# # #     context = browser.new_context(
+# # #         #record_video_dir= "video/"
+# # #     )
+# # #     page = context.new_page()
+# # #     page.set_default_timeout(80000)
+# # #     page.goto(url)
+# # #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# # #     firstname, emailid, verify_email, recaptcha_error = data[0], data[1], data[2], data[8]
+# # #     action_obj = Action(page)
+# # #     lightbox_obj = Lightbox(page)
+# # #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "recaptcha")
+# # #     action_obj.closeCookiePopup()
+# # #     lightbox_obj.submit_button()
+# # #     lightbox_obj.recaptcha_error_check(recaptcha_error, "registered")
 
 @pytest.mark.lightbox
 @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
@@ -167,29 +431,30 @@ def test_form_page_addresses_do_not_match(url, browser : Browser) -> None:
         #record_video_dir= "video/"
     )
     page = context.new_page()
-    page.set_default_timeout(80000)
+    page.set_default_timeout(300000)
     page.goto(url)
     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-    firstname, emailid, verify_email, email_error_text = data[0], data[1], data[2], data[6]
+    firstname, emailid, verify_email, email_error_text = data[0], data[1], data[2], data[7]
     action_obj = Action(page)
-    webform_obj = Webform(page)
     lightbox_obj = Lightbox(page)
     action_obj.closeCookiePopup()
+    page.reload()
     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
     lightbox_obj.submit_button()
-    webform_obj.email_address_error_check(email_error_text, "")
+    lightbox_obj.email_address_error_check("", email_error_text, "no-match")
     page.close()
 
-# @pytest.mark.lightbox
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
-# def test_lightbox_not_displayed_on_close(url, page: Page) -> None:
-#     #page.set_default_timeout(300000)
-#     page.goto(url)
-#     action_obj = Action(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.lightbox_not_displayed_on_close()
-#     page.close()
+@pytest.mark.lightbox
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home)
+def test_lightbox_not_displayed_on_close(url, page: Page) -> None:
+    page.set_default_timeout(300000)
+    page.goto(url)
+    action_obj = Action(page)
+    lightbox_obj = Lightbox(page)
+    action_obj.closeCookiePopup()
+    page.reload()
+    lightbox_obj.lightbox_not_displayed_on_close()
+    page.close()
 
 #Email address do not match
 @pytest.mark.lightbox
@@ -202,234 +467,235 @@ def test_form_page_addresses_do_not_match_gmail_com(url, browser : Browser) -> N
     page.set_default_timeout(80000)
     page.goto(url)
     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-    firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+    firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[6], data[7]
     lightbox_obj = Lightbox(page)
     action_obj = Action(page)
     action_obj.closeCookiePopup()
+    page.reload()
     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
     lightbox_obj.submit_button()
-    lightbox_obj.email_address_error_check(email_error, email_error_text, "no-match")
+    lightbox_obj.email_address_error_check(email_error,email_error_text, "")
     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_form_page_addresses_do_not_match_gmail_ca(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
-#     webform_obj = Webform(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj = Action(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.email_address_error_check(email_error, email_error_text, "no-match")
-#     page.close()
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # def test_form_page_addresses_do_not_match_gmail_ca(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+# #     webform_obj = Webform(page)
+# #     lightbox_obj = Lightbox(page)
+# #     action_obj = Action(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.email_address_error_check(email_error, email_error_text, "no-match")
+# #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_form_page_addresses_do_not_match_hotmail_com(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
-#     webform_obj = Webform(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj = Action(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.email_address_error_check(email_error, email_error_text, "no-match")
-#     page.close()
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # def test_form_page_addresses_do_not_match_hotmail_com(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+# #     webform_obj = Webform(page)
+# #     lightbox_obj = Lightbox(page)
+# #     action_obj = Action(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.email_address_error_check(email_error, email_error_text, "no-match")
+# #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_form_page_addresses_do_not_match_hotmail_ca(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
-#     webform_obj = Webform(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj = Action(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.email_address_error_check(email_error, email_error_text, "no-match")
-#     page.close()
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # def test_form_page_addresses_do_not_match_hotmail_ca(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+# #     webform_obj = Webform(page)
+# #     lightbox_obj = Lightbox(page)
+# #     action_obj = Action(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.email_address_error_check(email_error, email_error_text, "no-match")
+# #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_form_page_addresses_do_not_match_outlook_com(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
-#     webform_obj = Webform(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj = Action(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.email_address_error_check(email_error, email_error_text, "no-match")
-#     page.close()
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # def test_form_page_addresses_do_not_match_outlook_com(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+# #     webform_obj = Webform(page)
+# #     lightbox_obj = Lightbox(page)
+# #     action_obj = Action(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.email_address_error_check(email_error, email_error_text, "no-match")
+# #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_form_page_addresses_do_not_match_outlook_ca(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
-#     webform_obj = Webform(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj = Action(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.email_address_error_check(email_error, email_error_text, "no-match")
-#     page.close()
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # def test_form_page_addresses_do_not_match_outlook_ca(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+# #     webform_obj = Webform(page)
+# #     lightbox_obj = Lightbox(page)
+# #     action_obj = Action(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.email_address_error_check(email_error, email_error_text, "no-match")
+# #     page.close()
 
 
-# #Form invalid addressess
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_form_invalid_addresses_gmail_com(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
-#     webform_obj = Webform(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj = Action(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
-#     page.close()
+# # #Form invalid addressess
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # def test_form_invalid_addresses_gmail_com(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+# #     webform_obj = Webform(page)
+# #     lightbox_obj = Lightbox(page)
+# #     action_obj = Action(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
+# #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_form_invalid_addresses_gmail_ca(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
-#     webform_obj = Webform(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj = Action(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
-#     page.close()
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # def test_form_invalid_addresses_gmail_ca(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+# #     webform_obj = Webform(page)
+# #     lightbox_obj = Lightbox(page)
+# #     action_obj = Action(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
+# #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_form_invalid_addresses_hotmail_com(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
-#     webform_obj = Webform(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj = Action(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
-#     page.close()
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # def test_form_invalid_addresses_hotmail_com(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+# #     webform_obj = Webform(page)
+# #     lightbox_obj = Lightbox(page)
+# #     action_obj = Action(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
+# #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_form_invalid_addresses_hotmail_ca(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
-#     webform_obj = Webform(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj = Action(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
-#     page.close()
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # def test_form_invalid_addresses_hotmail_ca(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+# #     webform_obj = Webform(page)
+# #     lightbox_obj = Lightbox(page)
+# #     action_obj = Action(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
+# #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_form_invalid_addresses_outlook_com(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
-#     webform_obj = Webform(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj = Action(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
-#     page.close()
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # def test_form_invalid_addresses_outlook_com(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+# #     webform_obj = Webform(page)
+# #     lightbox_obj = Lightbox(page)
+# #     action_obj = Action(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
+# #     page.close()
 
-# @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
-# def test_form_invalid_addresses_outlook_ca(url, browser : Browser) -> None:
-#     context = browser.new_context(
-#         #record_video_dir= "video/"
-#     )
-#     page = context.new_page()
-#     page.set_default_timeout(80000)
-#     page.goto(url)
-#     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
-#     webform_obj = Webform(page)
-#     lightbox_obj = Lightbox(page)
-#     action_obj = Action(page)
-#     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
-#     action_obj.closeCookiePopup()
-#     lightbox_obj.submit_button()
-#     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
-#     page.close()
+# # @pytest.mark.webform
+# # @pytest.mark.parametrize("url", config.Config.URLs_to_test_en_home_prod)
+# # def test_form_invalid_addresses_outlook_ca(url, browser : Browser) -> None:
+# #     context = browser.new_context(
+# #         #record_video_dir= "video/"
+# #     )
+# #     page = context.new_page()
+# #     page.set_default_timeout(80000)
+# #     page.goto(url)
+# #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
+# #     firstname, emailid, verify_email, email_error, email_error_text = data[0], data[1], data[2], data[5], data[6]
+# #     webform_obj = Webform(page)
+# #     lightbox_obj = Lightbox(page)
+# #     action_obj = Action(page)
+# #     lightbox_obj.lightbox_form(firstname, emailid, verify_email, "verify_email")
+# #     action_obj.closeCookiePopup()
+# #     lightbox_obj.submit_button()
+# #     lightbox_obj.email_address_error_check(email_error, email_error_text, "")
+# #     page.close()
 

@@ -8,7 +8,9 @@ class Action:
         self.page = page
         self.cookieCloseButton = page.locator("#onetrust-button-group #onetrust-accept-btn-handler")
         self.brand_name = page.locator(".vds-d_flex > a svg")
+        self.logo_alt = page.locator(".vds-d_flex > a > img")
         self.cookieCloseButton_aveeno = page.locator("#adchoice-buttons .click-processed")
+        self.date = page.locator('div[role="menuitemradio"]')
 
 
     def verify_current_url(self, expected_partial_url):
@@ -88,7 +90,7 @@ class Action:
             #     button.highlight()
             #     button.click()          
         except TimeoutError:
-                print(f"Timeout Error")
+            print(f"Timeout Error")
 
     """
     Function to compare content
@@ -117,8 +119,12 @@ class Action:
     """
     Function to verify which brand
     """
-    def validate_brand(self):
-        return self.brand_name.get_attribute('aria-labelledby')
+    def get_brand_text(self):
+        try:
+            return self.brand_name.get_attribute('aria-labelledby')
+        except Exception:
+            return None
+        
 
     """
     Function to verify page title
@@ -147,5 +153,65 @@ class Action:
                 print("Meta description is as expected:", meta_desc_fr)
             else:
                 assert False, print(f"Meta description is not as expected: {meta_desc_fr}")    
-         
+
+    
+    """
+    Function to get logo alt text
+    """
+    def get_logo_alt(self):
+        try:
+            return self.logo_alt.get_attribute('alt')
+        except Exception:
+            return None
+        
+    """
+    Function to select dropdown option
+    """
+    def select_dropdown_option(self, dropdown_selector, option_value):
+        dropdown_selector.click()
+        options = self.date
+        option_found = False
+        for i in range(options.count()):
+            if options.nth(i).inner_text().strip() == str(option_value):
+                options.nth(i).click()
+                option_found = True
+                break
+        if not option_found:
+            raise ValueError(f"Option with value '{option_value}' not found")
+
+    """
+    Function to validate h1 title
+    """
+
+    def validate_h1_title(self,expected_title):
+        
+        # Find all H1 elements
+        h1_elements = self.page.query_selector_all('h1')
+
+        # Check if there's exactly one H1 element
+        assert len(h1_elements) == 1, f"Expected 1 H1 element, but found {len(h1_elements)}"
+
+        # Get the text content of the H1 element
+        actual_title = h1_elements[0].inner_text()
+
+        # Validate the title text
+        assert actual_title == expected_title, f"Expected title '{expected_title}', but found '{actual_title}'"
+
+        print(f"H1 validation successful: {expected_title}")
+
+
+    """
+    Function to validate placeholder text
+    """
+
+    def validate_placeholder(self, element, expected_placeholder):
+        try:
+            actual_placeholder = element.get_attribute("placeholder")
+            expect(element).to_have_attribute("placeholder", expected_placeholder)
+            print(f"Placeholder validation passed. Expected: '{expected_placeholder}', Actual: '{actual_placeholder}'")
+            return True
+        except Exception:
+            return False
+
+  
             

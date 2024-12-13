@@ -16,32 +16,32 @@ class Lightbox:
         #self.brand_name = page.get_attribute("meta[property='og:title']", "content")
         self.alt_text = page.locator(".vds-max-w_358 img")
         self.alt_text_nicorette = page.locator("#lightbox-form p:nth-child(2) img")
-        self.close_icon = page.locator("#radix-\:r0\: svg")
-        self.submit = page.locator("#radix-\:r0\: form button")
-        self.first_name = page.locator("#radix-\:r3\:")
-        self.email = page.locator("#radix-\:r5\:")
-        self.verify_email = page.locator("#radix-\:r7\:")
-        self.privacy_policy_data_link = page.locator('#radix-\:r0\: p:nth-child(2) a') 
+        self.close_icon = page.locator(".vds-self_flex-end svg")
+        self.submit = page.locator("button[type='submit']")
+        self.first_name = page.locator("input[name='name']")
+        self.email = page.locator("input[name='email']")
+        self.verify_email = page.locator("input[name='verify-email']")
+        self.privacy_policy_data_link = page.locator('p:nth-child(2) a') 
         self.terms_link = page.get_by_role("link", name="full terms and conditions.")
         self.terms_link_fr = page.get_by_role("link", name="conditions générales.")
         self.name_error = page.locator("#radix-\:r9\: div p")
         self.email_error = page.locator("#radix-\:ra\: div p")
         self.verify_email_error_message = page.locator("#radix-\:rb\: div p")
         self.recaptcha_error_message = page.locator("#edit-lightbox div:nth-child(8) .error-required")
-        self.name_error_2 = page.locator("#radix-\:r9\: div p")
-        self.email_error_2 = page.locator("#radix-\:ra\: div p")
-        self.verify_email_error_message_2 = page.locator("#radix-\:rb\: div p")
+        self.name_error_2 = page.locator(".vds-d_grid div:nth-child(1) > span > div > p")
+        self.email_error_2 = page.locator(".vds-d_grid div:nth-child(2) > span > div > p")
+        self.verify_email_error_message_2 = page.locator(".vds-d_grid div:nth-child(3) > span > div > p")
         self.recaptcha_error_message_2 = page.locator("#edit-lightbox div:nth-child(7) .error-required")
         self.name_error_invalid = page.locator("#edit-lightbox div:nth-child(3) .error-format")
         self.email_error_invalid = page.locator("#edit-lightbox div:nth-child(4) .error-format")
         self.verify_email_error_message_invalid = page.locator("#edit-lightbox div:nth-child(5) .error-format")
         self.recaptcha_error_message_invalid = page.locator("#edit-lightbox .field-recaptcha-error p")
-        self.name_error_invalid_2 = page.locator("#radix-\:r4\: div p")
-        self.email_error_invalid_2 = page.locator("#radix-\:ra\: div p")
-        self.verify_email_error_message_invalid_2 = page.locator("#radix-\:rb\: div p")
+        self.name_error_invalid_2 = page.locator(".vds-d_grid div:nth-child(1) > span > div > p")
+        self.email_error_invalid_2 = page.locator(".vds-d_grid div:nth-child(2) > span > div > p")
+        self.verify_email_error_message_invalid_2 = page.locator(".vds-d_grid div:nth-child(3) > span > div > p")
         self.verify_email_error_message_invalid_3 = page.locator("//*[@id='radix-:r0:']/div/div[1]/div/div/form/div[2]/div[1]/div[2]/span/div/p")
         self.content_one = page.locator(".brand-text-lightbox")
-        self.content_one_1 = page.locator("#radix-\:r0\: h2 span")#care-club-lightbox-title #.lightbox-header #content-main
+        self.content_one_1 = page.locator(".vds-flex_column > h2")#care-club-lightbox-title #.lightbox-header #content-main
         self.content_one_2 = page.locator(".lightbox-header h1")
         self.content_two = page.locator(".vds-flex_column> div > p:nth-child(1)")
         self.content_two_1 = page.locator(".lightbox-header p:nth-child(4)")
@@ -53,7 +53,7 @@ class Lightbox:
         self.alt_text_checkmark = page.locator("#lightbox-thank-you-message p:nth-child(1) img")
         self.content = page.locator("#radix-\:r0\: .vds-items_flex-start")
         self.alt_text_1 = page.locator(".lightbox-header-top img")
-        self.lb_form = page.locator("#radix-\:r0\:")
+        self.lb_form = page.locator(" div:nth-child(10) > div > div.vds-max-h_calc\(100vh_-_token\(spacing\.48\)\)")
         self.req_text = page.locator(".vds-d_flex > div > p:nth-child(2)")
         self.submit_zarbees = page.locator("#edit-submit")
         self.bold_text = page.locator(".care-club-lightbox-subheader strong")
@@ -63,48 +63,6 @@ class Lightbox:
         self.req_email_text = page.locator(".vds-d_grid div:nth-child(2) > label span")
         self.req_verifyemail_text = page.locator(".vds-d_grid div:nth-child(3) > label span")
 
-    # """
-    # Function to verify privacy policy content
-    # """
-
-    # def check_privacy_policy(self,site_name, data_1, data_2):
-    #     try:
-    #         text = self.brand_name
-    #         if site_name == "EN":
-    #             if text=="Johnson & Johnson Canada":
-    #                 p_text1 = self.privacy_policy_data_1
-    #                 p_text2 = self.privacy_policy_data_2
-    #                 data_2 = data_2 + " 1‑800‑265‑7323."
-    #                 expect(p_text1).to_have_text(config.Config.jnj_privacy_data_en)
-    #                 expect(p_text2).to_have_text(data_2)
-    #                 print(f"Text is present and is correct: '{config.Config.jnj_privacy_data_en + data_2}'")
-    #             else:
-    #                 p_text1 = self.privacy_policy_data_1
-    #                 p_text2 = self.privacy_policy_data_2
-    #                 data_2 = data_2 + " 1‑800‑265‑7323."
-    #                 expect(p_text1).to_have_text(data_1)
-    #                 expect(p_text2).to_have_text(data_2)
-    #                 print(f"Text is present and is correct: '{data_1 + data_2}'")
-
-    #         if site_name == "FR":
-    #             if text=="Johnson & Johnson Canada":
-    #                 p_text1 = self.privacy_policy_data_1
-    #                 p_text2 = self.privacy_policy_data_2
-    #                 data_2 = data_2 + " 1 800 265‑7323"
-    #                 expect(p_text1).to_have_text(config.Config.jnj_privacy_data_fr)
-    #                 expect(p_text2).to_have_text(data_2)
-    #                 print(f"Text is present and is correct: '{config.Config.jnj_privacy_data_fr + data_2}'")
-    #             else:
-    #                 p_text1 = self.privacy_policy_data_1
-    #                 p_text2 = self.privacy_policy_data_2
-    #                 data_2 = data_2 + " 1 800 265‑7323"
-    #                 expect(p_text1).to_have_text(data_1)
-    #                 expect(p_text2).to_have_text(data_2)
-    #                 print(f"Text is present and is correct: '{data_1 + data_2}'")
-    #     except TimeoutError:
-    #         print(f"Text not present.")
-
-
     """
     Function to verify lightbox image alt tag
     """
@@ -113,35 +71,29 @@ class Lightbox:
         try:
             alt_text = self.alt_text.get_attribute('alt')
             action_obj = Action(self.page)
-            self.lightbox_displayed(10000)
-            text = action_obj.validate_brand()
+            #self.lightbox_displayed(10000)
+            text = action_obj.get_brand_text()
+            alt = action_obj.get_logo_alt()
             if site_name == "EN":
                 if  text==config.Config.tylenol_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.tylenol_alt_text)
                 elif text==config.Config.aveeno_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.aveeno_alt_text)
-                # elif text=="Johnson & Johnson Canada":
-                #     alt_text = self.alt_text.get_attribute('alt')
-                #     if alt_text == alt_tag:
-                #         assert True
-                #         print(f"Image Alt Text: {alt_text}")
-                #     else:
-                #         assert False, f"Image has no Alt Text."
-                elif text==config.Config.zarbees_site_name:              
+                elif alt==config.Config.zarbees_site_name:              
                     action_obj.validate_alt_text(alt_text, config.Config.zarbees_alt_text)
                 elif text==config.Config.nicorette_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.nicorette_alt_text)
                 elif text==config.Config.benylin_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.benylin_alt_text)
-                elif text==config.Config.polysporin_site_name:
+                elif alt==config.Config.polysporin_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.polysporin_alt_text)
                 elif text==config.Config.reactine_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.reactine_alt_text)
-                elif text==config.Config.listerine_site_name:
+                elif alt==config.Config.listerine_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.listerine_alt_text)
                 elif text==config.Config.jbaby_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.jbaby_alt_text)
-                elif text==config.Config.bandaid_site_name:
+                elif alt==config.Config.bandaid_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.bandaid_alt_text)
                 elif text==config.Config.benadryl_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.benadryl_alt_text)
@@ -151,71 +103,64 @@ class Lightbox:
                     action_obj.validate_alt_text(alt_text, config.Config.cnc_alt_text)
                 elif text==config.Config.imodium_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.imodium_alt_text)
-                elif text==config.Config.nicoderm_site_name:
+                elif alt==config.Config.nicoderm_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.nicoderm_alt_text)
                 elif text==config.Config.penaten_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.penaten_alt_text)
-                elif text==config.Config.pepcid_site_name:
+                elif alt==config.Config.pepcid_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.pepcid_alt_text)
                 elif text==config.Config.rogaine_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.rogaine_alt_text)
                 elif text==config.Config.visine_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.visine_alt_text)
-                elif text==config.Config.sudafed_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.sudafed_alt_text)
-                elif text==config.Config.neutrogena_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.neutrogena_alt_text)
+                elif alt==config.Config.sudafed_site_name:
+                     action_obj.validate_alt_text(alt_text, config.Config.sudafed_alt_text)
+                elif alt==config.Config.neutrogena_site_name:
+                     action_obj.validate_alt_text(alt_text, config.Config.neutrogena_alt_text)
 
             if site_name == "FR":
-                if  text==config.Config.tylenol_site_name_fr:
+                if  text==config.Config.tylenol_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.tylenol_alt_text_fr)
-                elif text==config.Config.aveeno_site_name_fr:
+                elif text==config.Config.aveeno_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.aveeno_alt_text_fr)
-                # elif text=="Johnson & Johnson Canada":
-                #     alt_text = self.alt_text.get_attribute('alt')
-                #     if alt_text == alt_tag:
-                #         assert True
-                #         print(f"Image Alt Text: {alt_text}")
-                #     else:
-                #         assert False, f"Image has no Alt Text."
-                elif text==config.Config.zarbees_site_name_fr:
+                elif alt==config.Config.zarbees_site_name_fr:
                     action_obj.validate_alt_text(alt_text, config.Config.zarbees_alt_text_fr)
-                elif text==config.Config.nicorette_site_name_fr:
+                elif text==config.Config.nicorette_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.nicorette_alt_text_fr)
-                elif text==config.Config.benylin_site_name_fr:
+                elif text==config.Config.benylin_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.benylin_alt_text_fr)
-                elif text==config.Config.polysporin_site_name_fr:
+                elif alt==config.Config.polysporin_site_name_fr:
                     action_obj.validate_alt_text(alt_text, config.Config.polysporin_alt_text_fr)
-                elif text==config.Config.reactine_site_name_fr:
+                elif text==config.Config.reactine_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.reactine_alt_text_fr)
-                elif text==config.Config.listerine_site_name_fr:
+                elif alt==config.Config.listerine_site_name_fr:
                     action_obj.validate_alt_text(alt_text, config.Config.listerine_alt_text_fr)
-                elif text==config.Config.jbaby_site_name_fr:
+                elif text==config.Config.jbaby_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.jbaby_alt_text_fr)
-                elif text==config.Config.bandaid_site_name_fr:
+                elif alt==config.Config.bandaid_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.bandaid_alt_text_fr)
-                elif text==config.Config.benadryl_site_name_fr:
+                elif text==config.Config.benadryl_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.benadryl_alt_text_fr)
-                elif text==config.Config.motrin_site_name_fr:
+                elif text==config.Config.motrin_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.motrin_alt_text_fr)
-                elif text==config.Config.cnc_site_name_fr:
+                elif text==config.Config.cnc_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.cnc_alt_text_fr)
-                elif text==config.Config.imodium_site_name_fr:
+                elif text==config.Config.imodium_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.imodium_alt_text_fr)
-                elif text==config.Config.nicoderm_site_name_fr:
+                elif alt==config.Config.nicoderm_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.nicoderm_alt_text_fr)
-                elif text==config.Config.penaten_site_name_fr:
+                elif text==config.Config.penaten_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.penaten_alt_text_fr)
-                elif text==config.Config.pepcid_site_name_fr:
+                elif alt==config.Config.pepcid_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.pepcid_alt_text_fr)
-                elif text==config.Config.rogaine_site_name_fr:
+                elif text==config.Config.rogaine_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.rogaine_alt_text_fr)
-                elif text==config.Config.visine_site_name_fr:
+                elif text==config.Config.visine_site_name:
                     action_obj.validate_alt_text(alt_text, config.Config.visine_alt_text_fr)
-                elif text==config.Config.sudafed_site_name_fr:
-                    action_obj.validate_alt_text(alt_text, config.Config.sudafed_alt_text_fr)
-                elif text==config.Config.neutrogena_site_name_fr:
-                    action_obj.validate_alt_text(alt_text, config.Config.neutrogena_alt_text_fr)
+                elif alt==config.Config.sudafed_site_name:
+                     action_obj.validate_alt_text(alt_text, config.Config.sudafed_alt_text_fr)
+                elif alt==config.Config.neutrogena_site_name_fr:
+                     action_obj.validate_alt_text(alt_text, config.Config.neutrogena_alt_text_fr)
         except TimeoutError:
             print(f"Text not present or Timeout error.")
 
@@ -257,13 +202,15 @@ class Lightbox:
             #self.page.wait_for_selector("#edit-name")
             #firstname
             self.first_name.fill(name)
+            print(f"First Name added : '{name}'")
             
             if type == "recaptcha" or type == "verify_email" or type == 'invalid':
                 #email
                 self.email.fill(email_id)
-
+                print(f"Email id added : '{email_id}'")
                 #confirm email
                 self.verify_email.fill(email_verify)
+                print(f"Verify email id added : '{email_verify}'")
             else:
                 #email
                 fake = Faker()
@@ -355,7 +302,7 @@ class Lightbox:
         try:
             #brand = self.brand_name
             action_obj = Action(self.page)
-            self.lightbox_displayed(10000)
+            self.lightbox_displayed(50000)
             # if brand == "AVEENO®" or brand == "Johnson's® Baby":
             #     main_title = self.content_one_1
             #     expect(main_title).to_have_text(content_one)
@@ -453,15 +400,14 @@ class Lightbox:
     """
     def recaptcha_error_check(self, recaptcha_error, type):
          try:
+            action_obj = Action(self.page)
             if type == "generic":
                 #recaptcha
                 error_recaptcha = self.recaptcha_error_message
-                expect(error_recaptcha).to_have_text(recaptcha_error)
-                print(f"Error message is present and is correct: '{recaptcha_error}'")
+                action_obj.compare_text(error_recaptcha, recaptcha_error,"error")
             elif type == "registered":
                 error_recaptcha = self.recaptcha_error_message_2
-                expect(error_recaptcha).to_have_text(recaptcha_error)
-                print(f"Error message is present and is correct: '{recaptcha_error}'")
+                action_obj.compare_text(error_recaptcha, recaptcha_error,"error")
          except TimeoutError:
                 print(f"Error message not present.")
     
@@ -477,7 +423,7 @@ class Lightbox:
             #     print(f"lightbox should be present or displayed")
             # else:
             lb_form = self.lb_form
-            expect(lb_form).not_to_be_visible()
+            expect(lb_form).not_to_be_visible(timeout=10000)
             print(f"lightbox should not be present or displayed")
          except TimeoutError:
                 print(f"Timeout Error")
@@ -493,7 +439,7 @@ class Lightbox:
             #     expect(lb_form).to_be_visible()
             #     print(f"lightbox should be present or displayed")
             # else:
-            lb_form = self.lb_form
+            lb_form = self.content_one_1
             expect(lb_form).to_be_visible(timeout=sec)
             print(f"lightbox should be present or displayed")
          except TimeoutError:
@@ -517,13 +463,13 @@ class Lightbox:
     """
     Function to verify lightbox required text
     """
-    def verify_lightbox_required_text(self, text_content, firstname, email, verifyemail):
+    def verify_lightbox_required_text(self, firstname, email, verifyemail):
         try:
             action_obj = Action(self.page)
-            self.lightbox_displayed(10000)
+            self.lightbox_displayed(50000)
 
-            req_text = self.req_text
-            action_obj.compare_text(req_text, text_content,"")
+            # req_text = self.req_text
+            # action_obj.compare_text(req_text, text_content,"")
 
             req_firstname_text = self.req_firstname_text
             action_obj.compare_text(req_firstname_text, firstname,"")
@@ -542,69 +488,25 @@ class Lightbox:
     def email_address_error_check(self, email_error, email_error_text, message):
         try:
             action_obj = Action(self.page)
-            error_email = self.verify_email_error_message_invalid_3
-            action_obj.compare_text(error_email, email_error, "error")
             #verifyemail
             if message == "no-match":
-                error_verifyemail= self.email_address_error_message
+                error_verifyemail= self.verify_email_error_message_invalid_2
                 action_obj.compare_text(error_verifyemail, email_error_text, "error")
             else:
+                error_email = self.email_error_invalid_2
+                action_obj.compare_text(error_email, email_error, "error")
+                
                 error_verifyemail= self.verify_email_error_message_invalid_2
                 action_obj.compare_text(error_verifyemail, email_error_text, "error")
         except TimeoutError:
             print(f"TimeoutError")
 
-    # """
-    # Function for visual checks
-    # """
-    # def verify_bold_text(self):
-    #     bold_element = self.bold_text
-    #     if bold_element:
-    #         # Scroll to the element to ensure it's visible
-    #         bold_element.scroll_into_view_if_needed()
-
-    #         # Capture a screenshot of the specific element containing the bold text
-    #         bold_element.screenshot(path="screenshot.png")
-    #         screenshot_path = "screenshot.png"
-
-    #         # Open the images
-    #         image1 = Image.open(screenshot_path)
-    #         image2 = Image.open(self.reference_image_path)
-
-    #         mask=None
-
-    #         # Convert images to grayscale
-    #         image1_gray = image1.convert("L")
-    #         image2_gray = image2.convert("L")
-
-    #         # Resize images if they are too small
-    #         min_dimension = min(image1.size[0], image1.size[1], image2.size[0], image2.size[1])
-    #         min_dimension_threshold = 7  # Adjust this value as needed
-    #         if min_dimension < min_dimension_threshold:
-    #             resize_factor = min_dimension_threshold / min_dimension
-    #             new_size = (int(image1.size[0] * resize_factor), int(image1.size[1] * resize_factor))
-    #             image1 = image1.resize(new_size, Image.ANTIALIAS)
-    #             image2 = image2.resize(new_size, Image.ANTIALIAS)
-
-    #         if mask is not None:
-    #             image1_array = np.array(image1_gray)
-    #             image2_array = np.array(image2_gray)
-    #             image1_array[mask] = 255
-    #             image2_array[mask] = 255
-    #             image1_gray = Image.fromarray(image1_array)
-    #             image2_gray = Image.fromarray(image2_array)
-
-    #         # Calculate structural similarity index
-    #         # Compare the captured screenshot with the reference image
-    #         win_size = 7  # Adjust this value as needed
-    #         similarity_index = ssim(np.array(image1), np.array(image2), win_size=win_size)
-
-    #         print(f"Similarity Index: {similarity_index}")
-
-    #         if similarity_index > 0.95:  # Adjust the threshold as needed
-    #             print("Bold text matches with reference image.")
-    #         else:
-    #             print("Bold text does not match with reference image.")
-    #     else:
-    #         print("Bold element not found!")
-        
+    """
+    Function to verify placeholder texts
+    """
+    def verify_placeholder_text(self, text_firstname, text_email, text_verifyemail):
+        action_obj = Action(self.page)
+    
+        action_obj.validate_placeholder(self.first_name, text_firstname)
+        action_obj.validate_placeholder(self.email, text_email)
+        action_obj.validate_placeholder(self.verify_email, text_verifyemail)

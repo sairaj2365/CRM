@@ -298,7 +298,7 @@ class Config:
         # "https://kenvueuser:KenvuePassword2024!@na-tylenol-ca.staging.dxp.kenvue.com/",
         # "https://kenvueuser:KenvuePassword2024!@na-zarbees-ca.staging.dxp.kenvue.com/",
         # "https://kenvueuser:KenvuePassword2024!@na-benylin-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-polysporin-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-polysporin-ca.staging.dxp.kenvue.com/",
         # "https://kenvueuser:KenvuePassword2024!@na-reactine-ca.staging.dxp.kenvue.com/",
         # "https://kenvueuser:KenvuePassword2024!@na-listerine-ca.staging.dxp.kenvue.com/",
         # "https://kenvueuser:KenvuePassword2024!@na-johnsonsbaby-ca.staging.dxp.kenvue.com/",
@@ -309,10 +309,10 @@ class Config:
         # "https://kenvueuser:KenvuePassword2024!@na-imodium-ca.staging.dxp.kenvue.com/",
         # "https://kenvueuser:KenvuePassword2024!@na-nicoderm-ca.staging.dxp.kenvue.com/",
         # "https://kenvueuser:KenvuePassword2024!@na-penaten-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-pepcid-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-regaine-ca.staging.dxp.kenvue.com/",
-         "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-sudafed-ca.staging.dxp.kenvue.com/",
+        #  "https://kenvueuser:KenvuePassword2024!@na-pepcid-ca.staging.dxp.kenvue.com/",
+        #  "https://kenvueuser:KenvuePassword2024!@na-regaine-ca.staging.dxp.kenvue.com/",
+        # "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/",
+        #  "https://kenvueuser:KenvuePassword2024!@na-sudafed-ca.staging.dxp.kenvue.com/",
         # "https://kenvueuser:KenvuePassword2024!@na-neutrogena-ca.staging.dxp.kenvue.com/",
 
         # "https://jjuser:JJJJpassword2022!@con-na-consumer-ca-en.jnjnab13d6-test.jjc-devops.com/explore-our-brands",
@@ -360,22 +360,22 @@ class Config:
         # "https://kenvueuser:KenvuePassword2024!@na-aveeno-ca.staging.dxp.kenvue.com/fr",
         # "https://kenvueuser:KenvuePassword2024!@na-nicorette-ca.staging.dxp.kenvue.com/fr",
         # "https://kenvueuser:KenvuePassword2024!@na-tylenol-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-zarbees-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-benylin-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-polysporin-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-reactine-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-listerine-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-johnsonsbaby-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-band-aid-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-benadryl-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-motrin-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-cleanandclear-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-imodium-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-nicoderm-ca.staging.dxp.kenvue.com/fr",
+        # # "https://kenvueuser:KenvuePassword2024!@na-zarbees-ca.staging.dxp.kenvue.com/fr",
+        #  "https://kenvueuser:KenvuePassword2024!@na-benylin-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-polysporin-ca.staging.dxp.kenvue.com/fr",
+        # # "https://kenvueuser:KenvuePassword2024!@na-reactine-ca.staging.dxp.kenvue.com/fr",
+        # # "https://kenvueuser:KenvuePassword2024!@na-listerine-ca.staging.dxp.kenvue.com/fr",
+        # # "https://kenvueuser:KenvuePassword2024!@na-johnsonsbaby-ca.staging.dxp.kenvue.com/fr",
+        # # "https://kenvueuser:KenvuePassword2024!@na-band-aid-ca.staging.dxp.kenvue.com/fr",
+        #  "https://kenvueuser:KenvuePassword2024!@na-benadryl-ca.staging.dxp.kenvue.com/fr",
+        # # "https://kenvueuser:KenvuePassword2024!@na-motrin-ca.staging.dxp.kenvue.com/fr",
+        #  "https://kenvueuser:KenvuePassword2024!@na-cleanandclear-ca.staging.dxp.kenvue.com/fr",
+        #  "https://kenvueuser:KenvuePassword2024!@na-imodium-ca.staging.dxp.kenvue.com/fr",
+        #  "https://kenvueuser:KenvuePassword2024!@na-nicoderm-ca.staging.dxp.kenvue.com/fr",
         # "https://kenvueuser:KenvuePassword2024!@na-penaten-ca.staging.dxp.kenvue.com/fr",
         # "https://kenvueuser:KenvuePassword2024!@na-pepcid-ca.staging.dxp.kenvue.com/fr",
         # "https://kenvueuser:KenvuePassword2024!@na-regaine-ca.staging.dxp.kenvue.com/fr",
-         "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/fr",
+        # "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/fr",
         # "https://kenvueuser:KenvuePassword2024!@na-sudafed-ca.staging.dxp.kenvue.com/fr",
         # "https://kenvueuser:KenvuePassword2024!@na-neutrogena-ca.staging.dxp.kenvue.com/fr",
 
@@ -500,14 +500,14 @@ class Config:
     meta_tylenol_fr = "Inscrivez-vous au Club Bons soins pour recevoir des offres exclusives et des courriels personnalisés, et avoir accès aux nouveaux produits"
     tylenol_alt_text = "A group of Tylenol products"
     aveeno_alt_text = "A group of Aveeno products"
-    zarbees_alt_text = "A group of Zarbee's® products"
+    zarbees_alt_text = "A group of Zarbee's products"
     nicorette_alt_text = "A group of Nicorette products"
     benylin_alt_text = "A group of Benylin products"
     polysporin_alt_text = "A group of Polysporin products"
     reactine_alt_text = "A group of Reactine products"
     listerine_alt_text = "A group of Listerine products"
     jbaby_alt_text = "A group of Johnson's Baby products"
-    bandaid_alt_text = "A group of Bandaid products"
+    bandaid_alt_text = "A group of Band-aid products"
     benadryl_alt_text = "A group of Benadryl products"
     motrin_alt_text = "A group of Motrin products"
     cnc_alt_text = "A group of Clean & Clear products"
@@ -522,14 +522,14 @@ class Config:
 
     tylenol_alt_text_fr = "Un groupe de produits Tylenol"
     aveeno_alt_text_fr = "Un groupe de produits Aveeno"
-    zarbees_alt_text_fr = "Un groupe de produits Zarbees"
+    zarbees_alt_text_fr = "Un groupe de produits Zarbee's"
     nicorette_alt_text_fr = "Un groupe de produits Nicorette"
     benylin_alt_text_fr = "Un groupe de produits Benylin"
     polysporin_alt_text_fr = "Un groupe de produits Polysporin"
     reactine_alt_text_fr = "Un groupe de produits Reactine"
     listerine_alt_text_fr = "Un groupe de produits Listerine"
     jbaby_alt_text_fr = "Un groupe de produits Johnson's Baby"
-    bandaid_alt_text_fr = "Un groupe de produits Bandaid"
+    bandaid_alt_text_fr = "Un groupe de produits Band-aid"
     benadryl_alt_text_fr = "Un groupe de produits Benadryl"
     motrin_alt_text_fr = "Un groupe de produits Motrin"
     cnc_alt_text_fr = "Un groupe de produits Clean & Clear"
@@ -581,49 +581,32 @@ class Config:
     # username = "jjuser"
     # password = "JJJJpassword2022!"
 
-    aveeno_site_name = "Skincare & Baby Products for Face, Body & Sun | AVEENO®"
-    bandaid_site_name = "Adhesive Bandages & First Aid Supplies | BAND-AID®"
-    benadryl_site_name = "Allergy & Itch Relief Medicine for Adults & Children | BENADRYL®"
-    benylin_site_name = "Home | BENYLIN® Canada"
-    cnc_site_name = "Skin Care & Acne Treatment Products | CLEAN & CLEAR® Canada"
-    imodium_site_name = "Diarrhea Treatment & Symptom Relief | IMODIUM® Canada"
-    listerine_site_name = "Prevent Gingivitis & Plaque with LISTERINE® Mouthwash"
-    motrin_site_name = "MOTRIN® Official Canadian Website | Pain Relief Products"
-    neutrogena_site_name = "Skin Care Products & Tips for Healthy-Looking Skin | NEUTROGENA®"
-    nicoderm_site_name = "Nicotine Patches for Quitting Smoking | NICODERM® Canada"
-    nicorette_site_name = "NICORETTE® Canada | Quit Smoking Using Our Products | Quit Smoking with Our Products & Resources | NICORETTE®"
-    penaten_site_name = "Diaper Rash Cream for Babies and Adults | PENATEN® Canada"
-    pepcid_site_name = "PEPCID® Canada | Heartburn Relief & Prevention Medicine"
-    polysporin_site_name ="POLYSPORIN® CANADA | Wound Care & Infection Treatment"
-    reactine_site_name ="REACTINE® | 24 Hour Allergy Symptom Relief Products"
-    rogaine_site_name ="Hair Loss Treatment for Hair Regrowth | ROGAINE® Canada"
-    sudafed_site_name ="Sinus Pressure Pain & Congestion Relief | SUDAFED® | Canada"
-    tylenol_site_name ="The Official TYLENOL® Canada Website | TYLENOL®"
+    aveeno_site_name = "Aveeno"
+    bandaid_site_name = "Band-aid logo"
+    benadryl_site_name = "Benadryl-Canada"
+    benylin_site_name = "Benylin-Canada"
+    cnc_site_name = "CleanAndClearLogo"
+    imodium_site_name = "Imodium"
+    listerine_site_name = "Listerine Home Page"
+    motrin_site_name = "Motrin"
+    neutrogena_site_name = "Neutrogena logo, click to visit homepage"
+    nicoderm_site_name = "nicoderm logo"
+    nicorette_site_name = "Nicorette"
+    penaten_site_name = "Penaten-Canada"
+    pepcid_site_name = "pepcid.ca Logo"
+    polysporin_site_name ="Polysporin Home Page"
+    reactine_site_name ="Reactine-Canada"
+    rogaine_site_name ="Rogaine"
+    sudafed_site_name ="SUDAFED® CA - Homepage"
+    tylenol_site_name ="Tylenol"
     visine_site_name = "Visine-Canada"
-    jbaby_site_name = "Improved Baby Products for Your Family | Johnson's® Baby"
-    zarbees_site_name = "Zarbee's® Canada | Cough & Immunity Solutions"
+    jbaby_site_name = "Johnsons"
+    zarbees_site_name = "Zarbee’s® Logo"
 
-    aveeno_site_name_fr = "Produits Bébés, Visage, Corps et Soins solaires | AVEENO®"
-    bandaid_site_name_fr = "Pansements et articles de premiers soins | BAND-AID®"
-    benadryl_site_name_fr = "Médicaments pour allergies et démangeaisons | BENADRYL®"
-    benylin_site_name_fr = "Home | BENYLIN® Canada"
-    cnc_site_name_fr = "CLEAN & CLEAR® Canada | Produits de soins de la peau et de traitement de l’acné"
-    imodium_site_name_fr = "Traitement et soulagement des symptômes de diarrhée| IMODIUM® Canada"
-    listerine_site_name_fr = "Soins buccodentaires contre la gingivite et la plaque | LISTERINE®"
-    motrin_site_name_fr = "Site canadien officiel de MOTRIN® │ Analgésiques"
-    neutrogena_site_name_fr = "Produits et conseils beauté pour les soins de la peau | NEUTROGENA®"
-    nicoderm_site_name_fr = "Timbres de nicotine pour cesser de fumer | NICODERM®"
-    nicorette_site_name_fr = "NICORETTE® Canada | Cessez de fumer grâce à nos produits | Cessez de fumer avec nos produits et ressources | NICORETTE®"
-    penaten_site_name_fr = "Crème contre l’érythème fessier - Bébés et adultes | PENATEN® Canada"
-    pepcid_site_name_fr = "PEPCID® Canada | Heartburn Relief & Prevention Medicine"
-    polysporin_site_name_fr ="POLYSPORIN® | Soin des plaies et traitement de l’infection"
-    reactine_site_name_fr ="REACTINE® | Pour soulager les symptômes d'allergies"
-    rogaine_site_name_fr ="Traitement pour la repousse des cheveux | ROGAINE®"
-    sudafed_site_name_fr ="Sinus Pressure Pain & Congestion Relief | SUDAFED® | Canada"
-    tylenol_site_name_fr ="TYLENOL® | Le site Web canadien officiel de TYLENOL®"
-    visine_site_name_fr = "Visine-Canada"
-    jbaby_site_name_fr = "Produits pour bébés améliorés pour votre famille | Johnson's® Baby"
-    zarbees_site_name_fr = "Zarbee's® Canada | Solutions Toux et immunité"
+    listerine_site_name_fr = "Logo de Listerine"
+    polysporin_site_name_fr = "Page d’accueil Polysporin"
+    neutrogena_site_name_fr = "Logo Neutrogena, cliquer pour accéder à la page d’accueil"
+    zarbees_site_name_fr = "Logo Zarbee’s®"
 
     aveeno_brand_name = "AVEENO®"
     bandaid_brand_name = "BAND-AID®"
@@ -647,3 +630,49 @@ class Config:
     jbaby_brand_name = "JOHNSON's® BABY"
     zarbees_brand_name = "ZARBEES®"
 
+    brands = ["Aveeno", "Band-Aid", "Benadryl", "Benylin", "Clean & Clear",
+        "Imodium", "Johnson's", "Listerine", "Motrin", "Neutrogena",
+        "Nicoderm", "Nicorette", "Penaten", "Pepcid", "Polysporin",
+        "Reactine", "Rogaine", "Sudafed", "Tylenol", "Visine",
+        "Zarbee's"]
+    
+    price_icon = "Price tag icon"
+    cash_icon = "Cash icon"
+    envelope_icon = "Envelope icon"
+    innovation_icon = "Innovation icon"
+
+    price_icon_fr = "Icône d'étiquette de prix"
+    cash_icon_fr = "Icône d'argent"
+    envelope_icon_fr = "Icône d'enveloppe"
+    innovation_icon_fr = "Icône d'innovation"
+
+    form_content_one = "Sign me up to Care Club Canada"
+    form_content_two = "to receive newsletters, special offers and other promotional emails across the Kenvue brands."
+    form_content_three = "Join Care Club"
+    form_content_four = "YOUR FIRST OFFER:$5 off my next purchase of eligible Kenvue products at a local retailer**."
+    form_content_five = "You may opt-out of receiving emails from us at any time by following the unsubscribe instructions provided in any email message sent to you. Johnson & Johnson Inc. (“Kenvue”), 88 McNabb Street, Markham, ON L3R 5L2, 1-800-265-7323."
+    form_content_six = "Your personal information will be governed by the Privacy Policy and will be used by Kenvue, and its third party service providers inside and outside QC & Canada. You consent to the transfer of your data to jurisdictions outside your province and/or country of residence, which may have different data protection rules governing your personal information."
+    form_content_seven = "**CDN residents only. One offer per email sign up. Signing up with multiple email addresses will result in removal from the program. Coupons expire 2 weeks from date of printing.  Offer not valid on select products in QC. Please see coupon for full details."
+    form_content_eight = "By clicking “Sign me up!”, you agree to receive newsletters, special offers and other promotional emails across the Kenvue brands."
+
+    first_name = "First Name (required)"
+    email = "Email (required)"
+    verify_email = "Verify Email (required)"
+    birthDate = "Birthdate (Optional)"
+    first_name_placeholder = "First Name"
+    email_placeholder = "Email"
+    verify_email_placeholder = "Verify Email Address"
+    month = "Month"
+    day = "Day"
+
+    first_name_fr = "Prénom (requis)"
+    email_fr = "Courriel (requis)"
+    verify_email_fr = "Vérifier l'adresse courriel (requis)"
+    birthDate_fr = "Date de naissance (Facultative)"
+    first_name_placeholder_fr = "Prénom"
+    email_placeholder_fr = "Courriel"
+    verify_email_placeholder_fr = "Vérifier l'adresse courriel"
+    month_fr = "Mois"
+    day_fr = "Jour"
+
+    meta_fr = "Inscrivez-vous au Club Bons soins pour recevoir des offres et de l’information exclusives par courriel, et avoir accès aux nouveaux produits"

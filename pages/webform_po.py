@@ -16,25 +16,26 @@ class Webform:
     def __init__(self, page : Page):
         self.page = page
         self.meta_description = page.get_attribute("meta[name='description']", "content")
-        self.logo_image = page.locator(".care-club-bar-logo img")
-        self.brand_image = page.locator("#block-care-club-care-club-brands-block img")
+        self.logo_image = page.locator(".vds-image--ratio_standardHorizontal")
+        self.brand_image = page.locator("main > .vds-d_flex img")
         self.href_lang_en = page.locator("link[hreflang = 'en-CA']")
         self.href_lang_fr = page.locator("link[hreflang = 'fr-CA']")
         self.privacy_policy_en_p1 = page.locator(".careclub-form .careclub-warnings p:nth-child(2)")
         self.privacy_policy_en_p2 = page.locator(".careclub-form .careclub-warnings p:nth-child(3)")
-        self.privacy_policy_data_link = page.locator('.careclub-warnings > p:nth-child(3) > a')
-        self.first_name = page.locator("#edit-name")
-        self.email = page.locator("#edit-email")
-        self.verify_email = page.locator("#edit-confirm-email")
-        self.birthdate = page.locator("#edit-birth-date")
+        self.privacy_policy_data_link = page.locator('p:nth-child(2) a')
+        self.first_name = page.locator("input[name='name']")
+        self.email = page.locator("input[name='email']")
+        self.verify_email = page.locator("input[name='verify-email']")
+        self.birthdate = page.locator(" div:nth-child(4) > div > div > div:nth-child(1) button")
+        self.month = page.locator(" div:nth-child(4) > div > div > div:nth-child(2) button")
         self.checkbox = page.locator("#edit-term")
-        self.submit = page.locator(".careclub-form .form-submit")
+        self.submit = page.locator("button[type='submit']")
         self.name_error = page.locator("div:nth-child(4) > .error-required")
-        self.name_error_2 = page.locator("div:nth-child(3) > .error-required")
+        self.name_error_2 = page.locator("#radix-\:rb\: > div > p")
         self.email_error = page.locator("div:nth-child(5) > .error-required")
-        self.email_error_2 = page.locator("div:nth-child(4) > .error-required")
+        self.email_error_2 = page.locator("#radix-\:rc\: > div > p")
         self.verify_email_error_message = page.locator("div:nth-child(6) > .error-required")
-        self.verify_email_error_message_2 = page.locator("div:nth-child(5) > .error-required")
+        self.verify_email_error_message_2 = page.locator("#radix-\:rd\: > div > p")
         self.checkbox_error_message_1 = page.locator("#edit-care-club .careclub-term .error-format")
         self.checkbox_error_message_2 = page.locator("div:nth-child(8) > .error-required")
         self.recaptcha_error_message = page.locator(".recaptcha-error")
@@ -42,33 +43,35 @@ class Webform:
         self.email_error_invalid = page.locator("div:nth-child(5) > .error-format")
         self.verify_email_error_message_invalid = page.locator("div:nth-child(6) > .error-format")
         self.birthdate_error_invalid = page.locator(".field-birthdate .error-format")
-        self.name_error_invalid_2 = page.locator("div:nth-child(3) > .error-format")
-        self.email_error_invalid_2 = page.locator("div:nth-child(4) > .error-format")
-        self.verify_email_error_message_invalid_2 = page.locator("#radix-\:r8\: div p")
+        self.name_error_invalid_2 = page.locator(" .vds-grid-cols_1fr > div:nth-child(1) p")
+        self.email_error_invalid_2 = page.locator(" .vds-grid-cols_1fr > div:nth-child(2) p")
+        self.verify_email_error_message_invalid_2 = page.locator(".vds-grid-cols_1fr > div:nth-child(3) p")
         self.terms_link = page.get_by_role("link", name="full terms and conditions.")
         self.terms_link_fr = page.get_by_role("link", name="conditions générales.")
-        self.content_one = page.locator("#content-main")
-        self.content_two = page.locator(".careclub-header p")
-        self.checkbox_content = page.locator(".careclub-term label")
+        self.content_three = page.locator("[data-sb-field-path='topHeadline']")
+        self.content_two = page.locator("[data-sb-field-path='body']")
+        self.content_four = page.locator(".careclub-term label")
         self.privacy_content_one = page.locator(".careclub-warnings p:nth-child(2)")
         self.privacy_content_two = page.locator(".careclub-warnings p:nth-child(3)")
         self.privacy_content_three = page.locator(".careclub-warnings p:nth-child(4)")
-        self.privacy_content_four = page.locator(".careclub-warnings p:nth-child(5)")
-        self.page_content_two = page.locator(".main-row.region-row p:nth-child(1)")
+        self.privacy_content_four = page.locator("[data-sb-field-path='topContent']")
+        self.content_six = page.locator("//*[@data-sb-field-path='bottomContent']/p[2]")
         self.page_content_two_4 = page.locator(".main-row.region-row p:nth-child(2)")
         self.dob = page.locator(".field-birthdate em")
         self.dob_fr = page.locator(".field-birthdate i")
-        self.page_content_two_2 = page.locator(".field--label-hidden p")
-        self.page_content_two_3 = page.locator(".field--label-hidden p p")
+        self.content_five = page.locator("//*[@data-sb-field-path='bottomContent']/p[1]")
+        self.content_seven = page.locator("//*[@data-sb-field-path='bottomContent']/p[3]")
+        self.content_eight = page.locator("//*[@data-sb-field-path='bottomContent']/p[4]")
         self.recaptcha_error_message_2 = page.locator("#submit-error")
         self.recaptcha_error_message_3 = page.locator("#email-registered-error")
-        self.email_address_error_message = page.locator(".error-no-match")
-        self.content_one_1 = page.locator(".careclub-title")
+        self.email_address_error_message = page.locator(".vds-grid-cols_1fr > div:nth-child(3) p")
+        self.content_one_1 = page.locator("[data-sb-field-path='.headline']")
         self.content_one_1_benadryl_stage = page.locator(".careclub-header h1")
         self.checkbox_neutrogena = page.locator(".careclub-term label")
-        self.username = page.locator("#username")
-        self.password = page.locator("#pass")
-        self.cloud_page_submit = page.locator(".btn-primary")
+        self.first_name_text = page.locator(".vds-grid-rows_auto > div:nth-child(1) > label > span")
+        self.email_text = page.locator(".vds-grid-rows_auto > div:nth-child(2) > label > span")
+        self.verifyemail_text = page.locator(".vds-grid-rows_auto > div:nth-child(3) > label > span")
+        self.birthdate_text = page.locator(".vds-grid-rows_auto > div:nth-child(4) > label > span")
         
 
     """
@@ -77,12 +80,13 @@ class Webform:
     def verify_page_title(self, page_title):
         try:
             action_obj = Action(self.page)
-            text = action_obj.validate_brand()
+            text = action_obj.get_brand_text()
+            alt = action_obj.get_logo_alt()
             if text == config.Config.visine_site_name:
                 action_obj.validate_page_title(page_title, config.Config.visine_brand_name)
             elif text == config.Config.tylenol_site_name:
                 action_obj.validate_page_title(page_title, config.Config.tylenol_brand_name)
-            elif text == config.Config.neutrogena_site_name:
+            elif alt == config.Config.neutrogena_site_name:
                 action_obj.validate_page_title(page_title, config.Config.neutrogena_brand_name)
             elif text == config.Config.reactine_site_name:
                action_obj.validate_page_title(page_title, config.Config.reactine_brand_name)
@@ -90,29 +94,29 @@ class Webform:
                action_obj.validate_page_title(page_title, config.Config.nicorette_brand_name)
             elif text == config.Config.aveeno_site_name:
                 action_obj.validate_page_title(page_title, config.Config.aveeno_brand_name)
-            elif text == config.Config.polysporin_site_name:
+            elif alt == config.Config.polysporin_site_name:
                action_obj.validate_page_title(page_title, config.Config.polysporin_brand_name)
             elif text == config.Config.jbaby_site_name:
                 action_obj.validate_page_title(page_title, config.Config.jbaby_brand_name)
-            elif text == config.Config.listerine_site_name:
+            elif alt == config.Config.listerine_site_name:
                 action_obj.validate_page_title(page_title, config.Config.listerine_brand_name)
             elif text == config.Config.benylin_site_name:
                 action_obj.validate_page_title(page_title, config.Config.benylin_brand_name)
             elif text == config.Config.benadryl_site_name:
                 action_obj.validate_page_title(page_title, config.Config.benadryl_brand_name)
-            elif text == config.Config.zarbees_site_name:
+            elif alt == config.Config.zarbees_site_name:
                action_obj.validate_page_title(page_title, config.Config.zarbees_brand_name)
             elif text == config.Config.motrin_site_name:
                action_obj.validate_page_title(page_title, config.Config.motrin_brand_name)
-            elif text == config.Config.bandaid_site_name:
+            elif alt == config.Config.bandaid_site_name:
                 action_obj.validate_page_title(page_title, config.Config.bandaid_brand_name)
             elif text == config.Config.rogaine_site_name:
                action_obj.validate_page_title(page_title, config.Config.rogaine_brand_name)
             elif text == config.Config.imodium_site_name:
                action_obj.validate_page_title(page_title, config.Config.imodium_brand_name)
-            elif text == config.Config.nicoderm_site_name:
+            elif alt == config.Config.nicoderm_site_name:
                action_obj.validate_page_title(page_title, config.Config.nicoderm_brand_name)
-            elif text == config.Config.pepcid_site_name:
+            elif alt == config.Config.pepcid_site_name:
                action_obj.validate_page_title(page_title, config.Config.pepcid_brand_name)
             elif text == config.Config.cnc_site_name:
                action_obj.validate_page_title(page_title, config.Config.cnc_brand_name)
@@ -120,7 +124,15 @@ class Webform:
                 action_obj.validate_page_title(page_title, config.Config.penaten_brand_name)
             elif text == config.Config.visine_site_name:
               action_obj.validate_page_title(page_title, config.Config.visine_brand_name)
-            elif text == config.Config.sudafed_site_name:
+            elif alt == config.Config.sudafed_site_name:
+               action_obj.validate_page_title(page_title, config.Config.sudafed_brand_name)
+            elif alt == config.Config.listerine_site_name_fr:
+               action_obj.validate_page_title(page_title, config.Config.sudafed_brand_name)
+            elif alt == config.Config.polysporin_site_name_fr:
+               action_obj.validate_page_title(page_title, config.Config.sudafed_brand_name)
+            elif alt == config.Config.neutrogena_site_name_fr:
+               action_obj.validate_page_title(page_title, config.Config.sudafed_brand_name)
+            elif alt == config.Config.zarbees_site_name_fr:
                action_obj.validate_page_title(page_title, config.Config.sudafed_brand_name)
         except TimeoutError:
             print("Page title not verified")
@@ -132,13 +144,14 @@ class Webform:
         try:
             action_obj = Action(self.page)
             meta_desc = self.meta_description
-            text = action_obj.validate_brand()
+            text = action_obj.get_brand_text()
+            alt = action_obj.get_logo_alt()
             if site == "EN":
                 if text == config.Config.visine_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.visine_brand_name, site,"")
                 elif text == config.Config.tylenol_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.tylenol_brand_name, site,"")
-                elif text == config.Config.neutrogena_site_name:
+                elif alt == config.Config.neutrogena_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.neutrogena_brand_name, site,"")
                 elif text == config.Config.reactine_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.reactine_brand_name, site,"")
@@ -146,29 +159,29 @@ class Webform:
                     action_obj.validate_meta_desc( meta_desc, config.Config.nicorette_brand_name, site,"")
                 elif text == config.Config.aveeno_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.aveeno_brand_name, site,"")
-                elif text == config.Config.polysporin_site_name:
+                elif alt == config.Config.polysporin_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.polysporin_brand_name, site,"")
                 elif text == config.Config.jbaby_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.jbaby_brand_name, site,"")
-                elif text == config.Config.listerine_site_name:
+                elif alt == config.Config.listerine_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.listerine_brand_name, site,"")
                 elif text == config.Config.benylin_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.benylin_brand_name, site,"")
                 elif text == config.Config.benadryl_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.benadryl_brand_name, site,"")
-                elif text == config.Config.zarbees_site_name:
+                elif alt == config.Config.zarbees_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.zarbees_brand_name, site,"")
                 elif text == config.Config.motrin_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.motrin_brand_name, site,"")
-                elif text == config.Config.bandaid_site_name:
+                elif alt == config.Config.bandaid_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.bandaid_brand_name, site,"")
                 elif text == config.Config.rogaine_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.rogaine_brand_name, site,"")
                 elif text == config.Config.imodium_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.imodium_brand_name, site,"")
-                elif text == config.Config.nicoderm_site_name:
+                elif alt == config.Config.nicoderm_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.nicoderm_brand_name, site,"")
-                elif text == config.Config.pepcid_site_name:
+                elif alt == config.Config.pepcid_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.pepcid_brand_name, site,"")
                 elif text == config.Config.cnc_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.cnc_brand_name, site,"")
@@ -176,7 +189,7 @@ class Webform:
                     action_obj.validate_meta_desc( meta_desc, config.Config.penaten_brand_name, site,"")
                 elif text == config.Config.visine_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.visine_brand_name, site,"")
-                elif text == config.Config.sudafed_site_name:
+                elif alt == config.Config.sudafed_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.sudafed_brand_name, site,"")
 
             elif site == "FR":    
@@ -184,7 +197,7 @@ class Webform:
                     action_obj.validate_meta_desc( meta_desc, config.Config.visine_brand_name, site, meta)
                 elif text == config.Config.tylenol_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.tylenol_brand_name, site, meta)
-                elif text == config.Config.neutrogena_site_name:
+                elif text == config.Config.neutrogena_site_name_fr:
                     action_obj.validate_meta_desc( meta_desc, config.Config.neutrogena_brand_name, site, meta)
                 elif text == config.Config.reactine_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.reactine_brand_name, site, meta)
@@ -192,17 +205,17 @@ class Webform:
                     action_obj.validate_meta_desc( meta_desc, config.Config.nicorette_brand_name, site, meta)
                 elif text == config.Config.aveeno_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.aveeno_brand_name, site, meta)
-                elif text == config.Config.polysporin_site_name:
+                elif text == config.Config.polysporin_site_name_fr:
                     action_obj.validate_meta_desc( meta_desc, config.Config.polysporin_brand_name, site, meta)
                 elif text == config.Config.jbaby_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.jbaby_brand_name, site, meta)
-                elif text == config.Config.listerine_site_name:
+                elif text == config.Config.listerine_site_name_fr:
                     action_obj.validate_meta_desc( meta_desc, config.Config.listerine_brand_name, site, meta)
                 elif text == config.Config.benylin_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.benylin_brand_name, site, meta)
                 elif text == config.Config.benadryl_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.benadryl_brand_name, site, meta)
-                elif text == config.Config.zarbees_site_name:
+                elif text == config.Config.zarbees_site_name_fr:
                     action_obj.validate_meta_desc( meta_desc, config.Config.zarbees_brand_name, site, meta)
                 elif text == config.Config.motrin_site_name:
                     action_obj.validate_meta_desc( meta_desc, config.Config.motrin_brand_name, site, meta)
@@ -228,29 +241,164 @@ class Webform:
             print("Page title not verified")    
 
     """
-    Function to verify image alt tag
+    Function to verify brand image alt tag
     """
 
-    def check_img_alt_tags(self,image_name, alt):
+    def check_brand_img_alt_tag(self, site_name):
         try:
-            if image_name == "logo":
-                alt_text = self.logo_image.get_attribute('alt')
-                print(alt_text)
-                if alt_text == alt:
-                    assert True
-                    print(f"Image Alt Text: {alt_text}")
-                else:
-                    assert False, f"Image has no Alt Text."
-        
-            if image_name == "brand":
-                alt_text = self.brand_image.get_attribute('alt')
-                if alt_text == alt:
-                    assert True
-                    print(f"Image Alt Text: {alt_text}")
-                else:
-                    assert False, f"Image has no Alt Text."
+            alt_text = self.brand_image.get_attribute('alt')
+            action_obj = Action(self.page)
+            text = action_obj.get_brand_text()
+            alt = action_obj.get_logo_alt()
+            if site_name == "EN":
+                if  text==config.Config.tylenol_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.tylenol_alt_text)
+                elif text==config.Config.aveeno_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.aveeno_alt_text)
+                elif alt==config.Config.zarbees_site_name:              
+                    action_obj.validate_alt_text(alt_text, config.Config.zarbees_alt_text)
+                elif text==config.Config.nicorette_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.nicorette_alt_text)
+                elif text==config.Config.benylin_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.benylin_alt_text)
+                elif alt==config.Config.polysporin_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.polysporin_alt_text)
+                elif text==config.Config.reactine_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.reactine_alt_text)
+                elif alt==config.Config.listerine_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.listerine_alt_text)
+                elif text==config.Config.jbaby_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.jbaby_alt_text)
+                elif alt==config.Config.bandaid_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.bandaid_alt_text)
+                elif text==config.Config.benadryl_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.benadryl_alt_text)
+                elif text==config.Config.motrin_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.motrin_alt_text)
+                elif text==config.Config.cnc_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.cnc_alt_text)
+                elif text==config.Config.imodium_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.imodium_alt_text)
+                elif alt==config.Config.nicoderm_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.nicoderm_alt_text)
+                elif text==config.Config.penaten_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.penaten_alt_text)
+                elif alt==config.Config.pepcid_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.pepcid_alt_text)
+                elif text==config.Config.rogaine_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.rogaine_alt_text)
+                elif text==config.Config.visine_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.visine_alt_text)
+                elif alt==config.Config.sudafed_site_name:
+                     action_obj.validate_alt_text(alt_text, config.Config.sudafed_alt_text)
+                elif alt==config.Config.neutrogena_site_name:
+                     action_obj.validate_alt_text(alt_text, config.Config.neutrogena_alt_text)
+
+            if site_name == "FR":
+                if  text==config.Config.tylenol_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.tylenol_alt_text_fr)
+                elif text==config.Config.aveeno_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.aveeno_alt_text_fr)
+                elif alt==config.Config.zarbees_site_name_fr:
+                    action_obj.validate_alt_text(alt_text, config.Config.zarbees_alt_text_fr)
+                elif text==config.Config.nicorette_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.nicorette_alt_text_fr)
+                elif text==config.Config.benylin_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.benylin_alt_text_fr)
+                elif alt==config.Config.polysporin_site_name_fr:
+                    action_obj.validate_alt_text(alt_text, config.Config.polysporin_alt_text_fr)
+                elif text==config.Config.reactine_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.reactine_alt_text_fr)
+                elif alt==config.Config.listerine_site_name_fr:
+                    action_obj.validate_alt_text(alt_text, config.Config.listerine_alt_text_fr)
+                elif text==config.Config.jbaby_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.jbaby_alt_text_fr)
+                elif alt==config.Config.bandaid_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.bandaid_alt_text_fr)
+                elif text==config.Config.benadryl_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.benadryl_alt_text_fr)
+                elif text==config.Config.motrin_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.motrin_alt_text_fr)
+                elif text==config.Config.cnc_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.cnc_alt_text_fr)
+                elif text==config.Config.imodium_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.imodium_alt_text_fr)
+                elif alt==config.Config.nicoderm_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.nicoderm_alt_text_fr)
+                elif text==config.Config.penaten_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.penaten_alt_text_fr)
+                elif alt==config.Config.pepcid_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.pepcid_alt_text_fr)
+                elif text==config.Config.rogaine_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.rogaine_alt_text_fr)
+                elif text==config.Config.visine_site_name:
+                    action_obj.validate_alt_text(alt_text, config.Config.visine_alt_text_fr)
+                elif alt==config.Config.sudafed_site_name:
+                     action_obj.validate_alt_text(alt_text, config.Config.sudafed_alt_text_fr)
+                elif alt==config.Config.neutrogena_site_name_fr:
+                     action_obj.validate_alt_text(alt_text, config.Config.neutrogena_alt_text_fr)
         except TimeoutError:
             print("Timeout Error")
+
+    """
+    Function to verify brand image alt tag
+    """
+
+    def check_brand_logo_alt_tag(self, site_name):
+        try:
+            action_obj = Action(self.page)
+            brands = config.Config.brands
+            for brand in brands:
+                if site_name == "EN":
+                    expected_alt = f"{brand} logo"
+                    logo_selector = f"img[class*='vds-image'][alt*='{expected_alt}']"
+                    logo_element = self.page.locator(logo_selector)
+                    actual_alt = logo_element.get_attribute('alt')
+                    action_obj.validate_alt_text(actual_alt, expected_alt) 
+
+                elif site_name == "FR":
+                    expected_alt = f"Logo {brand}"
+                    logo_selector = f"img[class*='vds-image'][alt*='{expected_alt}']"
+                    logo_element = self.page.locator(logo_selector)
+                    actual_alt = logo_element.get_attribute('alt')
+                    action_obj.validate_alt_text(actual_alt, expected_alt)                    
+        except TimeoutError:
+            print("Timeout Error")
+
+    """
+    Function to verify card icon alt tags
+    """
+
+    def check_card_icon_alt_tag(self, site_name):
+        try:
+            action_obj = Action(self.page)
+            for i in range(1,5):
+                icon_element = self.page.locator(f"section > .vds-d_grid > div:nth-child(2) > div > div:nth-child({i}) img")
+                if site_name == "EN":            
+                    actual_alt = icon_element.get_attribute('alt')
+                    if i==1:
+                        action_obj.validate_alt_text(actual_alt, config.Config.price_icon)
+                    elif i==2:
+                        action_obj.validate_alt_text(actual_alt, config.Config.cash_icon)
+                    elif i==3:
+                        action_obj.validate_alt_text(actual_alt, config.Config.envelope_icon)
+                    elif i==4:
+                        action_obj.validate_alt_text(actual_alt, config.Config.innovation_icon)
+
+                elif site_name == "FR":
+                    actual_alt = icon_element.get_attribute('alt')
+                    if i==1:
+                        action_obj.validate_alt_text(actual_alt, config.Config.price_icon_fr)
+                    elif i==2:
+                        action_obj.validate_alt_text(actual_alt, config.Config.cash_icon_fr)
+                    elif i==3:
+                        action_obj.validate_alt_text(actual_alt, config.Config.envelope_icon_fr)
+                    elif i==4:
+                        action_obj.validate_alt_text(actual_alt, config.Config.innovation_icon_fr)              
+        except TimeoutError:
+             print("Timeout Error")
+
+
     """
     Function to verify href lang
     """
@@ -272,57 +420,24 @@ class Webform:
                 assert False, f"href lang text not present."
 
     """
-    Function to verify privacy policy content
-    """
-
-    def check_privacy_policy(self,site_name):
-        try:
-            text = self.brand_name
-            if site_name == "EN":
-                if text=="Johnson & Johnson Canada":
-                    p_text1 = self.privacy_policy_en_p1
-                    p_text2 = self.privacy_policy_en_p2
-                    expect(p_text1).to_have_text(config.Config.jnj_careclub_privacy_data_en)
-                    expect(p_text2).to_have_text(Webform.privacy_policy_data_en_p2)
-                    print(f"Text is present and is correct: '{config.Config.jnj_careclub_privacy_data_en + Webform.privacy_policy_data_en_p2}'")
-                else:
-                    p_text1 = self.privacy_policy_en_p1
-                    p_text2 = self.privacy_policy_en_p2
-                    expect(p_text1).to_have_text(Webform.privacy_policy_data_en_p1)
-                    expect(p_text2).to_have_text(Webform.privacy_policy_data_en_p2)
-                    print(f"Text is present and is correct: '{Webform.privacy_policy_data_en_p1 + Webform.privacy_policy_data_en_p2}'")
-
-            if site_name == "FR":
-                if text=="Johnson & Johnson Canada":
-                    p_text1 = self.privacy_policy_en_p1
-                    p_text2 = self.privacy_policy_en_p2
-                    expect(p_text1).to_have_text(config.Config.jnj_careclub_privacy_data_fr)
-                    expect(p_text2).to_have_text(Webform.privacy_policy_data_fr_p2)
-                    print(f"Text is present and is correct: '{config.Config.jnj_careclub_privacy_data_fr + Webform.privacy_policy_data_fr_p2}'")
-                else:
-                    p_text1 = self.privacy_policy_en_p1
-                    p_text2 = self.privacy_policy_en_p2
-                    expect(p_text1).to_have_text(Webform.privacy_policy_data_fr_p1)
-                    expect(p_text2).to_have_text(Webform.privacy_policy_data_fr_p2)
-                    print(f"Text is present and is correct: '{Webform.privacy_policy_data_fr_p1 + Webform.privacy_policy_data_fr_p2}'")
-        except TimeoutError:
-            print(f"Text not present.")
-
-    """
     Function for form fields
     """
-    def webform_form(self, name, email_id, email_verify, date, type):
+    def webform_form(self, name, email_id, email_verify, date, month, type):
         try:
-            brand = self.brand_name
+            action_obj = Action(self.page)
+            #brand = self.brand_name
             #firstname
             self.first_name.fill(name)
+            print(f"First Name added : '{name}'")
 
             if type == "recaptcha" or type == "verify_email" or type == 'invalid' or type == 'empty':
                 #email
                 self.email.fill(email_id)
+                print(f"Email id added : '{email_id}'")
 
                 #confirm email
                 self.verify_email.fill(email_verify)
+                print(f"Verify email id added : '{email_verify}'")
             else:
                 #email
                 fake = Faker()
@@ -333,17 +448,22 @@ class Webform:
                 self.verify_email.fill(random_email)
     
             #birthdate
-            self.birthdate.fill(date)
+            if date != "" or month !="":
+                action_obj.select_dropdown_option(self.birthdate, date)
+                print(f"Date added: {date}")
 
-            #checkbox
-            if brand == "NEUTROGENA®":
-                check_box = self.checkbox_neutrogena
-                check_box.highlight()
-                check_box.check()  
-            else:
-                check_box = self.checkbox
-                check_box.highlight()
-                check_box.check()  
+                action_obj.select_dropdown_option(self.month, month)
+                print(f"Date added: {month}")  
+
+            # #checkbox
+            # if brand == "NEUTROGENA®":
+            #     check_box = self.checkbox_neutrogena
+            #     check_box.highlight()
+            #     check_box.check()  
+            # else:
+            #     check_box = self.checkbox
+            #     check_box.highlight()
+            #     check_box.check()  
         except TimeoutError:
                 print(f"Timeout Error")
 
@@ -363,101 +483,58 @@ class Webform:
     Function to verify form error messages for empty fields
     """
     def error_messages_fields(self, name_error, email_error, verify_email_error, checkbox_birthdate_error, recaptcha_error, type):
-        brand = self.brand_name
+        #brand = self.brand_name
+        action_obj = Action(self.page)
         if type == 'empty':
             try:
-                if brand == "Johnson & Johnson Canada":
-                    #name
-                    error_name = self.name_error_2
-                    expect(error_name).to_have_text(name_error)
-                    print(f"Error message is present and is correct: '{name_error}'")
+                #name
+                error_name = self.name_error_2
+                action_obj.compare_text(error_name, name_error, "error")
 
-                    #email
-                    error_email = self.email_error_2
-                    expect(error_email).to_have_text(email_error)
-                    print(f"Error message is present and is correct: '{email_error}'")
+                #email
+                error_email = self.email_error_2
+                action_obj.compare_text(error_email, email_error, "error")
 
-                    #verify email
-                    error_verify_email = self.verify_email_error_message_2
-                    expect(error_verify_email).to_have_text(verify_email_error)
-                    print(f"Error message is present and is correct: '{verify_email_error}'")
+                #verify email
+                error_verify_email = self.verify_email_error_message_2
+                action_obj.compare_text(error_verify_email, verify_email_error, "error")
+               
+                # #checkbox
+                # error_checkbox = self.checkbox_error_message_2
+                # expect(error_checkbox).to_have_text(checkbox_birthdate_error)
+                # print(f"Error message is present and is correct: '{checkbox_birthdate_error}'")
 
-                    #checkbox
-                    error_checkbox = self.checkbox_error_message_2
-                    expect(error_checkbox).to_have_text(checkbox_birthdate_error)
-                    print(f"Error message is present and is correct: '{checkbox_birthdate_error}'")
-                else:
-                    #name
-                    error_name = self.name_error_2
-                    expect(error_name).to_have_text(name_error)
-                    print(f"Error message is present and is correct: '{name_error}'")
-
-                    #email
-                    error_email = self.email_error_2
-                    expect(error_email).to_have_text(email_error)
-                    print(f"Error message is present and is correct: '{email_error}'")
-
-                    #verify email
-                    error_verify_email = self.verify_email_error_message_2
-                    expect(error_verify_email).to_have_text(verify_email_error)
-                    print(f"Error message is present and is correct: '{verify_email_error}'")
-
-                    #checkbox
-                    error_checkbox = self.checkbox_error_message_2
-                    expect(error_checkbox).to_have_text(checkbox_birthdate_error)
-                    print(f"Error message is present and is correct: '{checkbox_birthdate_error}'")
-
-                #recaptcha
-                error_recaptcha = self.recaptcha_error_message
-                expect(error_recaptcha).to_have_text(recaptcha_error)
-                print(f"Error message is present and is correct: '{recaptcha_error}'")
+                # #recaptcha
+                # error_recaptcha = self.recaptcha_error_message
+                # expect(error_recaptcha).to_have_text(recaptcha_error)
+                # print(f"Error message is present and is correct: '{recaptcha_error}'")
 
             except TimeoutError:
                 print(f"Error message not present.")
         
         if type == 'invalid': #need to update locator code
-            brand = self.brand_name
+            #brand = self.brand_name
             try:
-                if brand == "Johnson & Johnson Canada":
-                    #name
-                    error_name = self.name_error_invalid_2
-                    expect(error_name).to_have_text(name_error)
-                    print(f"Error message is present and is correct: '{name_error}'")
+                #name
+                error_name = self.name_error_invalid_2
+                action_obj.compare_text(error_name, name_error, "error")
 
-                    #email
-                    error_email = self.email_error_invalid_2
-                    expect(error_email).to_have_text(email_error)
-                    print(f"Error message is present and is correct: '{email_error}'")
+                #email
+                error_email = self.email_error_invalid_2
+                action_obj.compare_text(error_email, email_error, "error")
 
-                    #verify email
-                    error_verify_email = self.verify_email_error_message_invalid_2
-                    expect(error_verify_email).to_have_text(verify_email_error)
-                    print(f"Error message is present and is correct: '{verify_email_error}'")
-                else:
-                    #name
-                    error_name = self.name_error_invalid_2
-                    expect(error_name).to_have_text(name_error)
-                    print(f"Error message is present and is correct: '{name_error}'")
-
-                    #email
-                    error_email = self.email_error_invalid_2
-                    expect(error_email).to_have_text(email_error)
-                    print(f"Error message is present and is correct: '{email_error}'")
-
-                    #verify email
-                    error_verify_email = self.verify_email_error_message_invalid_2
-                    expect(error_verify_email).to_have_text(verify_email_error)
-                    print(f"Error message is present and is correct: '{verify_email_error}'")
+                #verify email
+                error_verify_email = self.verify_email_error_message_invalid_2
+                action_obj.compare_text(error_verify_email, verify_email_error, "error")
 
                 #birthdate
                 birthdate_error = self.birthdate_error_invalid
-                expect(birthdate_error).to_have_text(checkbox_birthdate_error)
-                print(f"Error message is present and is correct: '{checkbox_birthdate_error}'")
+                action_obj.compare_text(birthdate_error, checkbox_birthdate_error, "error")
 
-                #recaptcha
-                error_recaptcha = self.recaptcha_error_message
-                expect(error_recaptcha).to_have_text(recaptcha_error)
-                print(f"Error message is present and is correct: '{recaptcha_error}'")
+                # #recaptcha
+                # error_recaptcha = self.recaptcha_error_message
+                # expect(error_recaptcha).to_have_text(recaptcha_error)
+                # print(f"Error message is present and is correct: '{recaptcha_error}'")
 
             except TimeoutError:
                 print(f"Error message not present.")
@@ -465,13 +542,14 @@ class Webform:
     """
     Function to verify links on webform
     """
-    def verify_links(self, sitename):
+    def verify_links(self):
         action_obj = Action(self.page)
             
         #privacy policy
         privacy_policy_en = self.privacy_policy_data_link
         href_link = privacy_policy_en.get_attribute('href')
-        action_obj.new_tab_validate_url(privacy_policy_en, href_link)
+        privacy_policy_en.click()
+        action_obj.new_tab_validate_url( href_link)
         self.page.wait_for_load_state()
         #self.page.go_back()
 
@@ -490,89 +568,36 @@ class Webform:
     """
     Function to verify webform content
     """
-    def verify_webform_content(self, site, content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four):
+    def verify_webform_content(self, site, content_one, content_two, content_three, content_four, content_five, content_six, content_seven, content_eight):
         try:
-            brand = self.brand_name
-            if brand == "BAND-AID® Brand" or brand == "Marque BAND-AID®" or brand == "CLEAN & CLEAR® Canada" or brand == "CLEAN & CLEAR® Canada" or brand == "BENYLIN® Canada" or brand == "Motrin" or brand == "PEPCID® Canada" or brand == "SUDAFED®" or brand == "VISINE®" or brand == "NICODERM®":
-                main_title = self.content_one_1
-                expect(main_title).to_have_text(content_one)
-                print(f"Text is present and is correct: '{content_one}'")
+            action_obj = Action(self.page)
+            if site == "EN":
+                    main_title = self.content_one_1
+                    action_obj.validate_h1_title(content_one)
+                    action_obj.compare_text(main_title, content_one,"")
 
-                textcontent_one = self.content_two
-                expect(textcontent_one).to_have_text(content_two)
-                print(f"Text is present and is correct: '{content_two}'")
+                    content_two_text = self.content_two
+                    action_obj.compare_text(content_two_text, content_two,"")
 
-                checkbox = self.checkbox_content
-                expect(checkbox).to_have_text(checkbox_content)
-                print(f"Text is present and is correct: '{checkbox_content}'") #code updated as per staging.
+                    content_three_text = self.content_three
+                    action_obj.compare_text(content_three_text, content_three,"")
 
-            elif brand == "BENADRYL®" or brand == "IMODIUM®":
-                main_title = self.content_one_1_benadryl_stage
-                expect(main_title).to_have_text(content_one)
-                print(f"Text is present and is correct: '{content_one}'")
+                    content_four_text = self.content_four
+                    action_obj.compare_text(content_four_text, content_four,"")
 
-                textcontent_one = self.content_two
-                expect(textcontent_one).to_have_text(content_two)
-                print(f"Text is present and is correct: '{content_two}'")
+                    content_five_text = self.content_five
+                    action_obj.compare_text(content_five_text, content_five,"")
 
-                checkbox = self.checkbox_content
-                expect(checkbox).to_have_text(checkbox_content)
-                print(f"Text is present and is correct: '{checkbox_content}'")
-            else:
-                main_title = self.content_one
-                expect(main_title).to_have_text(content_one)
-                print(f"Text is present and is correct: '{content_one}'")
+                    content_six_text = self.content_six
+                    action_obj.compare_text(content_six_text, content_six,"")
 
-                textcontent_one = self.content_two
-                expect(textcontent_one).to_have_text(content_two)
-                print(f"Text is present and is correct: '{content_two}'")
+                    content_seven_text = self.content_seven
+                    action_obj.compare_text(content_seven_text, content_seven,"")
 
-                checkbox = self.checkbox_content
-                expect(checkbox).to_have_text(checkbox_content)
-                print(f"Text is present and is correct: '{checkbox_content}'")
-
-                if site == "EN":
-                    privacy_text_one = self.privacy_content_one
-                    privacy_text = privacy_content_one + "1‑800‑265‑7323."
-                    expect(privacy_text_one).to_have_text(privacy_text)
-                    print(f"Text is present and is correct: '{privacy_text}'")
-            
-                elif site == "FR":
-                    privacy_text_one = self.privacy_content_one
-                    privacy_text = privacy_content_one + "1 800 265‑7323."
-                    expect(privacy_text_one).to_have_text(privacy_text)
-                    print(f"Text is present and is correct: '{privacy_text}'")
-
-            if brand == "Johnson & Johnson Canada":
-                if site == "EN":
-                    privacy_text_two = self.privacy_content_two
-                    expect(privacy_text_two).to_have_text(config.Config.jnj_careclub_privacy_data_en_new)
-                    print(f"Text is present and is correct: '{config.Config.jnj_careclub_privacy_data_en_new}'")
-                elif site == "FR":
-                    privacy_text_two = self.privacy_content_two
-                    expect(privacy_text_two).to_have_text(config.Config.jnj_careclub_privacy_data_fr_new)
-                    print(f"Text is present and is correct: '{config.Config.jnj_careclub_privacy_data_fr_new}'")
-            else:
-                privacy_text_two = self.privacy_content_two
-                expect(privacy_text_two).to_have_text(privacy_content_two)
-                print(f"Text is present and is correct: '{privacy_content_two}'")
-
-            privacy_text_three = self.privacy_content_three
-            expect(privacy_text_three).to_have_text(privacy_content_three)
-            print(f"Text is present and is correct: '{privacy_content_three}'")
-
-            if brand == "SUDAFED®":
-                if site == "FR":
-                    privacy_text_four = self.privacy_content_four
-                    expect(privacy_text_four).to_have_text(config.Config.privacy_content_four_sudafed)
-                    print(f"Text is present and is correct: '{config.Config.privacy_content_four_sudafed}'")
-            else:
-                privacy_text_four = self.privacy_content_four
-                expect(privacy_text_four).to_have_text(privacy_content_four)
-                print(f"Text is present and is correct: '{privacy_content_four}'")
+                    content_eight_text = self.content_eight
+                    action_obj.compare_text(content_eight_text, content_eight,"")
         except TimeoutError:
-                print(f"Error message not present.")
-    
+            print(f"Timeout Error")   
 
     """
     Function to verify thank you page content
@@ -602,26 +627,38 @@ class Webform:
 
 
     """
-    Function to verify "facultative" text
+    Function to verify "facultative" text and required field content
     """
-    def verify_dob_content(self, dob_content, site):
-         try:
-            text = self.brand_name
-            if text == "TYLENOL®" or text == "Johnson's® Baby":
-                if site == "EN":
-                    dob_text = self.dob
-                    expect(dob_text).to_have_text(dob_content)
-                    print(f"Text is present and is correct: '{dob_content}'")
-                elif site == "FR":
-                    dob_text = self.dob_fr
-                    expect(dob_text).to_have_text(dob_content)
-                    print(f"Text is present and is correct: '{dob_content}'")
-            else:     
-                dob_text = self.dob_fr
-                expect(dob_text).to_have_text(dob_content)
-                print(f"Text is present and is correct: '{dob_content}'")
-         except TimeoutError:
-                print(f"Error message not present.")
+    def verify_dob_and_required_field_content(self, text_firstname, text_email, text_verifyemail, text_birthdate):
+        action_obj = Action(self.page)
+
+        firstName = self.first_name_text
+        action_obj.compare_text(firstName, text_firstname,"")
+
+        email = self.email_text
+        action_obj.compare_text(email, text_email,"")
+
+        birthDate = self.birthdate_text
+        action_obj.compare_text(birthDate, text_birthdate,"")
+
+        verifyEmail = self.verifyemail_text 
+        action_obj.compare_text(verifyEmail, text_verifyemail,"")
+    
+    """
+    Function to verify placeholder texts
+    """
+    def verify_placeholder_text(self, text_firstname, text_email, text_verifyemail, text_month, text_date):
+        action_obj = Action(self.page)
+    
+        action_obj.validate_placeholder(self.first_name, text_firstname)
+
+        action_obj.validate_placeholder(self.email, text_email)
+
+        action_obj.validate_placeholder(self.verify_email, text_verifyemail)
+
+        # action_obj.validate_placeholder(self.birthdate, text_date)
+
+        # action_obj.validate_placeholder(self.month, text_month)
 
     """
     Function to verify "recaptcha" error text
@@ -643,33 +680,32 @@ class Webform:
     """
     Function to verify "email address" error text
     """
-    def email_address_error_check(self, email_error_text, message):
+    def email_address_error_check(self, email_error, email_error_text, message):
          try:
-            # error_email = self.verify_email_error_message_invalid_2
-            # expect(error_email).to_have_text(email_error)
-            # print(f"Error message is present and is correct: '{email_error}'")
+            action_obj = Action(self.page)
             #verifyemail
             if message == "no-match":
                 error_verifyemail= self.email_address_error_message
-                expect(error_verifyemail).to_have_text(email_error_text)
-                print(f"Error message is present and is correct: '{email_error_text}'")
+                action_obj.compare_text(error_verifyemail, email_error_text, "error")
             else:
+                error_email = self.email_error_invalid_2
+                action_obj.compare_text(error_email, email_error, "error")
+                
                 error_verifyemail= self.verify_email_error_message_invalid_2
-                expect(error_verifyemail).to_have_text(email_error_text)
-                print(f"Error message is present and is correct: '{email_error_text}'")
+                action_obj.compare_text(error_verifyemail, email_error_text, "error")
          except TimeoutError:
                 print(f"Error message not present.")              
             
             
-    """
-    Function for cloud page login
-    """
-    def verify_login(self):
-         try:
-           self.username.fill(config.Config.username)
-           self.password.fill(config.Config.password)
-           self.cloud_page_submit.click()
-         except TimeoutError:
-                print(f"Text not present.")
+    # """
+    # Function for cloud page login
+    # """
+    # def verify_login(self):
+    #      try:
+    #        self.username.fill(config.Config.username)
+    #        self.password.fill(config.Config.password)
+    #        self.cloud_page_submit.click()
+    #      except TimeoutError:
+    #             print(f"Text not present.")
     
             

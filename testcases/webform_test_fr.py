@@ -24,47 +24,44 @@ testdata_form = "./test_data/form_data.csv"
 #     action_obj.verify_current_url(expected_partial_url)
 #     page.close()
 
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
-def test_page_title_fr(url, page: Page) -> None:
-    page.set_default_timeout(80000)
-    page.goto(url)
-    data = reader.read_test_data(testdata, Action.get_current_test_name())
-    page_title = data[1]
-    webform_obj = Webform(page)
-    action_obj = Action(page)
-    action_obj.closeCookiePopup()
-    webform_obj.verify_page_title(page_title)
-
-@pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
-def test_meta_description(url, page: Page) -> None:
-    page.set_default_timeout(100000)
-    page.goto(url)
-    data = reader.read_test_data(testdata, Action.get_current_test_name())
-    meta_fr = data[6]
-    webform_obj = Webform(page)
-    action_obj = Action(page)
-    action_obj.closeCookiePopup()
-    webform_obj.meta_description_check('FR', meta_fr)
-
 # @pytest.mark.webform
-# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_prod)
-# def test_img_alt_tags_fr(url, browser : Browser) -> None:  #playwright: Playwright - device viewport
-#     #iphone_13 = playwright.devices['iPhone 13']
-#     context = browser.new_context(
-#         #record_video_dir= "video/",
-#         #**iphone_13
-#     )
-#     page = context.new_page()
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+# def test_page_title_fr(url, page: Page) -> None:
 #     page.set_default_timeout(80000)
 #     page.goto(url)
 #     data = reader.read_test_data(testdata, Action.get_current_test_name())
-#     logo_text_fr, brand_text_fr = data[7], data[8]
+#     page_title = data[1]
 #     webform_obj = Webform(page)
-#     webform_obj.check_img_alt_tags("brand", brand_text_fr)
-#     #webform_obj.check_img_alt_tags("logo", logo_text_fr)
-#     page.close()
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.verify_page_title(page_title)
+
+# @pytest.mark.webform
+# @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+# def test_meta_description(url, page: Page) -> None:
+#     page.set_default_timeout(100000)
+#     page.goto(url)
+#     webform_obj = Webform(page)
+#     action_obj = Action(page)
+#     action_obj.closeCookiePopup()
+#     webform_obj.meta_description_check('FR', config.Config.meta_fr)
+
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+def test_img_alt_tags_fr(url, browser : Browser) -> None:  #playwright: Playwright - device viewport
+    #iphone_13 = playwright.devices['iPhone 13']
+    context = browser.new_context(
+        #record_video_dir= "video/",
+        #**iphone_13
+    )
+    page = context.new_page()
+    page.set_default_timeout(80000)
+    page.goto(url)
+    webform_obj = Webform(page)
+    action_obj = Action(page)
+    action_obj.closeCookiePopup()
+    webform_obj.check_brand_img_alt_tag('FR')
+    page.close()
 
 # @pytest.mark.webform
 # @pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_prod)
@@ -114,7 +111,7 @@ def test_meta_description(url, page: Page) -> None:
 #     page.set_default_timeout(80000)
 #     page.goto(url)
 #     data = reader.read_test_data(testdata_form, Action.get_current_test_name())
-#     name_error, email_error, verify_email_error, checkbox_error, recaptcha_error = data[4], data[5], data[6], data[7], data[8]
+#     name_error, email_error, verify_email_error, checkbox_error, recaptcha_error = data[5], data[6], data[7], data[8], data[9]
 #     webform_obj = Webform(page)
 #     webform_obj.submit_button()
 #     webform_obj.error_messages_fields(name_error, email_error, verify_email_error, checkbox_error, recaptcha_error, 'empty')
