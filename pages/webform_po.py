@@ -4,17 +4,10 @@ from utils.actions import Action
 from faker import Faker
 
 class Webform:
-    jnj_title_text = "Johnson and Johnson Inc."
-    jnj_meta_text_fr = "Obtenez-en plus de la part de J&J Canada en devenant membre du Club Bons soins. Recevez des offres et de l'information exclusives directement dans votre boîte de réception, et l'accès à tous les nouveaux produits!"
-    jnj_meta_text = "Get more out of JNJ Canada by signing up as a Care Club member. Get exclusive offers & education straight to your inbox with access to all product releases!"
-    privacy_policy_data_en_p1 = "Your personal information will be governed by the Privacy Policy Open link in new window and will be used by Johnson & Johnson, Inc. (“Kenvue”), and its third party service providers inside and outside QC & Canada. You consent to the transfer of your data to jurisdictions outside your province and/or country of residence, which may have different data protection rules governing your personal information."
-    privacy_policy_data_fr_p1 = "Vos renseignements personnels seront régis par notre Politique de confidentialité Open link in new window et seront utilisés par Johnson & Johnson Inc. (« Kenvue ») et ses tiers fournisseurs de services au Québec, au Canada et à l’étranger. Vous acceptez que vos données soient transférées vers des juridictions situées en dehors de votre province et/ou de votre pays de résidence, où les règles qui régissent la protection de vos renseignements personnels peuvent différer."
-    privacy_policy_data_en_p2 = "You may opt-out of receiving emails from us at any time by following the unsubscribe instructions provided in any email message sent to you. Johnson & Johnson Inc., 88 McNabb Street, Markham, ON L3R 5L2, 1‑800‑265‑7323."
-    privacy_policy_data_fr_p2 = "Vous pouvez refuser à tout moment de recevoir des courriels de notre part en suivant les instructions de désabonnement fournies dans tout message électronique qui vous est envoyé. Johnson & Johnson Inc., 88 McNabb Street, Markham, ON L3R 5L2, 1 800 265‑7323"
-
 
     def __init__(self, page : Page):
         self.page = page
+        self.card_alt = "section > .vds-d_grid > div:nth-child(2) > div >"
         self.meta_description = page.get_attribute("meta[name='description']", "content")
         self.logo_image = page.locator(".vds-image--ratio_standardHorizontal")
         self.brand_image = page.locator("main > .vds-d_flex img")
@@ -22,12 +15,12 @@ class Webform:
         self.href_lang_fr = page.locator("link[hreflang = 'fr-CA']")
         self.privacy_policy_en_p1 = page.locator(".careclub-form .careclub-warnings p:nth-child(2)")
         self.privacy_policy_en_p2 = page.locator(".careclub-form .careclub-warnings p:nth-child(3)")
-        self.privacy_policy_data_link = page.locator('p:nth-child(2) a')
+        self.privacy_policy_data_link = page.locator('p:nth-child(3) a')
         self.first_name = page.locator("input[name='name']")
         self.email = page.locator("input[name='email']")
         self.verify_email = page.locator("input[name='verify-email']")
-        self.birthdate = page.locator(" div:nth-child(4) > div > div > div:nth-child(1) button")
-        self.month = page.locator(" div:nth-child(4) > div > div > div:nth-child(2) button")
+        self.birthdate = page.locator("div:nth-child(4) > div > div > div:nth-child(1) button span")
+        self.month = page.locator("div:nth-child(4) > div > div > div:nth-child(2) button span")
         self.checkbox = page.locator("#edit-term")
         self.submit = page.locator("button[type='submit']")
         self.name_error = page.locator("div:nth-child(4) > .error-required")
@@ -46,15 +39,9 @@ class Webform:
         self.name_error_invalid_2 = page.locator(" .vds-grid-cols_1fr > div:nth-child(1) p")
         self.email_error_invalid_2 = page.locator(" .vds-grid-cols_1fr > div:nth-child(2) p")
         self.verify_email_error_message_invalid_2 = page.locator(".vds-grid-cols_1fr > div:nth-child(3) p")
-        self.terms_link = page.get_by_role("link", name="full terms and conditions.")
-        self.terms_link_fr = page.get_by_role("link", name="conditions générales.")
         self.content_three = page.locator("[data-sb-field-path='topHeadline']")
         self.content_two = page.locator("[data-sb-field-path='body']")
-        self.content_four = page.locator(".careclub-term label")
-        self.privacy_content_one = page.locator(".careclub-warnings p:nth-child(2)")
-        self.privacy_content_two = page.locator(".careclub-warnings p:nth-child(3)")
-        self.privacy_content_three = page.locator(".careclub-warnings p:nth-child(4)")
-        self.privacy_content_four = page.locator("[data-sb-field-path='topContent']")
+        self.content_four = page.locator("[data-sb-field-path='topContent']")
         self.content_six = page.locator("//*[@data-sb-field-path='bottomContent']/p[2]")
         self.page_content_two_4 = page.locator(".main-row.region-row p:nth-child(2)")
         self.dob = page.locator(".field-birthdate em")
@@ -62,16 +49,19 @@ class Webform:
         self.content_five = page.locator("//*[@data-sb-field-path='bottomContent']/p[1]")
         self.content_seven = page.locator("//*[@data-sb-field-path='bottomContent']/p[3]")
         self.content_eight = page.locator("//*[@data-sb-field-path='bottomContent']/p[4]")
+        self.content_nine = page.locator("//*[@data-sb-field-path='bottomContent']/p[5]")
+        self.content_eleven = page.locator("//section[2]/div/div/section/div[1]/div/h2/span")
+        self.content_twelve = page.locator("[data-sb-field-path='.content']")
+        self.content_twentytwo = page.locator("//section[3]/div/div/section/div[1]/div/h2/span")
         self.recaptcha_error_message_2 = page.locator("#submit-error")
         self.recaptcha_error_message_3 = page.locator("#email-registered-error")
         self.email_address_error_message = page.locator(".vds-grid-cols_1fr > div:nth-child(3) p")
         self.content_one_1 = page.locator("[data-sb-field-path='.headline']")
-        self.content_one_1_benadryl_stage = page.locator(".careclub-header h1")
-        self.checkbox_neutrogena = page.locator(".careclub-term label")
         self.first_name_text = page.locator(".vds-grid-rows_auto > div:nth-child(1) > label > span")
         self.email_text = page.locator(".vds-grid-rows_auto > div:nth-child(2) > label > span")
         self.verifyemail_text = page.locator(".vds-grid-rows_auto > div:nth-child(3) > label > span")
         self.birthdate_text = page.locator(".vds-grid-rows_auto > div:nth-child(4) > label > span")
+        self.logo_tiles = ".vds-mediaWrapper--ratio_standardHorizontal > a"
         
 
     """
@@ -127,13 +117,13 @@ class Webform:
             elif alt == config.Config.sudafed_site_name:
                action_obj.validate_page_title(page_title, config.Config.sudafed_brand_name)
             elif alt == config.Config.listerine_site_name_fr:
-               action_obj.validate_page_title(page_title, config.Config.sudafed_brand_name)
+               action_obj.validate_page_title(page_title, config.Config.listerine_brand_name)
             elif alt == config.Config.polysporin_site_name_fr:
-               action_obj.validate_page_title(page_title, config.Config.sudafed_brand_name)
+               action_obj.validate_page_title(page_title, config.Config.polysporin_brand_name)
             elif alt == config.Config.neutrogena_site_name_fr:
-               action_obj.validate_page_title(page_title, config.Config.sudafed_brand_name)
+               action_obj.validate_page_title(page_title, config.Config.neutrogena_brand_name)
             elif alt == config.Config.zarbees_site_name_fr:
-               action_obj.validate_page_title(page_title, config.Config.sudafed_brand_name)
+               action_obj.validate_page_title(page_title, config.Config.zarbees_brand_name)
         except TimeoutError:
             print("Page title not verified")
 
@@ -146,99 +136,62 @@ class Webform:
             meta_desc = self.meta_description
             text = action_obj.get_brand_text()
             alt = action_obj.get_logo_alt()
-            if site == "EN":
-                if text == config.Config.visine_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.visine_brand_name, site,"")
-                elif text == config.Config.tylenol_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.tylenol_brand_name, site,"")
-                elif alt == config.Config.neutrogena_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.neutrogena_brand_name, site,"")
-                elif text == config.Config.reactine_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.reactine_brand_name, site,"")
-                elif text == config.Config.nicorette_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.nicorette_brand_name, site,"")
-                elif text == config.Config.aveeno_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.aveeno_brand_name, site,"")
-                elif alt == config.Config.polysporin_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.polysporin_brand_name, site,"")
-                elif text == config.Config.jbaby_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.jbaby_brand_name, site,"")
-                elif alt == config.Config.listerine_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.listerine_brand_name, site,"")
-                elif text == config.Config.benylin_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.benylin_brand_name, site,"")
-                elif text == config.Config.benadryl_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.benadryl_brand_name, site,"")
-                elif alt == config.Config.zarbees_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.zarbees_brand_name, site,"")
-                elif text == config.Config.motrin_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.motrin_brand_name, site,"")
-                elif alt == config.Config.bandaid_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.bandaid_brand_name, site,"")
-                elif text == config.Config.rogaine_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.rogaine_brand_name, site,"")
-                elif text == config.Config.imodium_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.imodium_brand_name, site,"")
-                elif alt == config.Config.nicoderm_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.nicoderm_brand_name, site,"")
-                elif alt == config.Config.pepcid_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.pepcid_brand_name, site,"")
-                elif text == config.Config.cnc_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.cnc_brand_name, site,"")
-                elif text == config.Config.penaten_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.penaten_brand_name, site,"")
-                elif text == config.Config.visine_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.visine_brand_name, site,"")
-                elif alt == config.Config.sudafed_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.sudafed_brand_name, site,"")
-
-            elif site == "FR":    
-                if text == config.Config.visine_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.visine_brand_name, site, meta)
-                elif text == config.Config.tylenol_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.tylenol_brand_name, site, meta)
-                elif text == config.Config.neutrogena_site_name_fr:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.neutrogena_brand_name, site, meta)
-                elif text == config.Config.reactine_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.reactine_brand_name, site, meta)
-                elif text == config.Config.nicorette_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.nicorette_brand_name, site, meta)
-                elif text == config.Config.aveeno_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.aveeno_brand_name, site, meta)
-                elif text == config.Config.polysporin_site_name_fr:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.polysporin_brand_name, site, meta)
-                elif text == config.Config.jbaby_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.jbaby_brand_name, site, meta)
-                elif text == config.Config.listerine_site_name_fr:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.listerine_brand_name, site, meta)
-                elif text == config.Config.benylin_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.benylin_brand_name, site, meta)
-                elif text == config.Config.benadryl_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.benadryl_brand_name, site, meta)
-                elif text == config.Config.zarbees_site_name_fr:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.zarbees_brand_name, site, meta)
-                elif text == config.Config.motrin_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.motrin_brand_name, site, meta)
-                elif text == config.Config.bandaid_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.bandaid_brand_name, site, meta)
-                elif text == config.Config.rogaine_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.rogaine_brand_name, site, meta)
-                elif text == config.Config.imodium_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.imodium_brand_name, site, meta)
-                elif text == config.Config.nicoderm_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.nicoderm_brand_name, site, meta)
-                elif text == config.Config.pepcid_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.pepcid_brand_name, site, meta)
-                elif text == config.Config.cnc_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.cnc_brand_name, site, meta)
-                elif text == config.Config.penaten_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.penaten_brand_name, site, meta)
-                elif text == config.Config.visine_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.visine_brand_name, site, meta)
-                elif text == config.Config.sudafed_site_name:
-                    action_obj.validate_meta_desc( meta_desc, config.Config.sudafed_brand_name, site, meta)
+            brand_map = {
+                "EN": {
+                    config.Config.visine_site_name: config.Config.visine_brand_name,
+                    config.Config.tylenol_site_name: config.Config.tylenol_brand_name,
+                    config.Config.neutrogena_site_name: config.Config.neutrogena_brand_name,
+                    config.Config.reactine_site_name: config.Config.reactine_brand_name,
+                    config.Config.nicorette_site_name: config.Config.nicorette_brand_name,
+                    config.Config.aveeno_site_name: config.Config.aveeno_brand_name,
+                    config.Config.polysporin_site_name: config.Config.polysporin_brand_name,
+                    config.Config.jbaby_site_name: config.Config.jbaby_brand_name,
+                    config.Config.listerine_site_name: config.Config.listerine_brand_name,
+                    config.Config.benylin_site_name: config.Config.benylin_brand_name,
+                    config.Config.benadryl_site_name: config.Config.benadryl_brand_name,
+                    config.Config.zarbees_site_name: config.Config.zarbees_brand_name,
+                    config.Config.motrin_site_name: config.Config.motrin_brand_name,
+                    config.Config.bandaid_site_name: config.Config.bandaid_brand_name,
+                    config.Config.rogaine_site_name: config.Config.rogaine_brand_name,
+                    config.Config.imodium_site_name: config.Config.imodium_brand_name,
+                    config.Config.nicoderm_site_name: config.Config.nicoderm_brand_name,
+                    config.Config.pepcid_site_name: config.Config.pepcid_brand_name,
+                    config.Config.cnc_site_name: config.Config.cnc_brand_name,
+                    config.Config.penaten_site_name: config.Config.penaten_brand_name,
+                    config.Config.sudafed_site_name: config.Config.sudafed_brand_name
+                },
+                "FR": {
+                    config.Config.visine_site_name: config.Config.visine_brand_name,
+                    config.Config.tylenol_site_name: config.Config.tylenol_brand_name,
+                    config.Config.neutrogena_site_name_fr: config.Config.neutrogena_brand_name,
+                    config.Config.reactine_site_name: config.Config.reactine_brand_name,
+                    config.Config.nicorette_site_name: config.Config.nicorette_brand_name,
+                    config.Config.aveeno_site_name: config.Config.aveeno_brand_name,
+                    config.Config.polysporin_site_name_fr: config.Config.polysporin_brand_name,
+                    config.Config.jbaby_site_name: config.Config.jbaby_brand_name,
+                    config.Config.listerine_site_name_fr: config.Config.listerine_brand_name,
+                    config.Config.benylin_site_name: config.Config.benylin_brand_name,
+                    config.Config.benadryl_site_name: config.Config.benadryl_brand_name,
+                    config.Config.zarbees_site_name_fr: config.Config.zarbees_brand_name,
+                    config.Config.motrin_site_name: config.Config.motrin_brand_name,
+                    config.Config.bandaid_site_name: config.Config.bandaid_brand_name,
+                    config.Config.rogaine_site_name: config.Config.rogaine_brand_name,
+                    config.Config.imodium_site_name: config.Config.imodium_brand_name,
+                    config.Config.nicoderm_site_name: config.Config.nicoderm_brand_name,
+                    config.Config.pepcid_site_name: config.Config.pepcid_brand_name,
+                    config.Config.cnc_site_name: config.Config.cnc_brand_name,
+                    config.Config.penaten_site_name: config.Config.penaten_brand_name,
+                    config.Config.sudafed_site_name: config.Config.sudafed_brand_name
+                }
+            }
+            site_name = text if text in brand_map[site] else alt
+            if site_name in brand_map[site]:
+                brand_name = brand_map[site][site_name]
+                action_obj.validate_meta_desc(meta_desc, brand_name, site, "" if site == "EN" else meta)
+            else:
+                print(f"Unknown site name: {site_name}")
         except TimeoutError:
-            print("Page title not verified")    
+            print("Page title not verified") 
 
     """
     Function to verify brand image alt tag
@@ -250,93 +203,70 @@ class Webform:
             action_obj = Action(self.page)
             text = action_obj.get_brand_text()
             alt = action_obj.get_logo_alt()
-            if site_name == "EN":
-                if  text==config.Config.tylenol_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.tylenol_alt_text)
-                elif text==config.Config.aveeno_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.aveeno_alt_text)
-                elif alt==config.Config.zarbees_site_name:              
-                    action_obj.validate_alt_text(alt_text, config.Config.zarbees_alt_text)
-                elif text==config.Config.nicorette_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.nicorette_alt_text)
-                elif text==config.Config.benylin_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.benylin_alt_text)
-                elif alt==config.Config.polysporin_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.polysporin_alt_text)
-                elif text==config.Config.reactine_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.reactine_alt_text)
-                elif alt==config.Config.listerine_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.listerine_alt_text)
-                elif text==config.Config.jbaby_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.jbaby_alt_text)
-                elif alt==config.Config.bandaid_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.bandaid_alt_text)
-                elif text==config.Config.benadryl_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.benadryl_alt_text)
-                elif text==config.Config.motrin_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.motrin_alt_text)
-                elif text==config.Config.cnc_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.cnc_alt_text)
-                elif text==config.Config.imodium_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.imodium_alt_text)
-                elif alt==config.Config.nicoderm_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.nicoderm_alt_text)
-                elif text==config.Config.penaten_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.penaten_alt_text)
-                elif alt==config.Config.pepcid_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.pepcid_alt_text)
-                elif text==config.Config.rogaine_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.rogaine_alt_text)
-                elif text==config.Config.visine_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.visine_alt_text)
-                elif alt==config.Config.sudafed_site_name:
-                     action_obj.validate_alt_text(alt_text, config.Config.sudafed_alt_text)
-                elif alt==config.Config.neutrogena_site_name:
-                     action_obj.validate_alt_text(alt_text, config.Config.neutrogena_alt_text)
-
-            if site_name == "FR":
-                if  text==config.Config.tylenol_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.tylenol_alt_text_fr)
-                elif text==config.Config.aveeno_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.aveeno_alt_text_fr)
-                elif alt==config.Config.zarbees_site_name_fr:
-                    action_obj.validate_alt_text(alt_text, config.Config.zarbees_alt_text_fr)
-                elif text==config.Config.nicorette_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.nicorette_alt_text_fr)
-                elif text==config.Config.benylin_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.benylin_alt_text_fr)
-                elif alt==config.Config.polysporin_site_name_fr:
-                    action_obj.validate_alt_text(alt_text, config.Config.polysporin_alt_text_fr)
-                elif text==config.Config.reactine_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.reactine_alt_text_fr)
-                elif alt==config.Config.listerine_site_name_fr:
-                    action_obj.validate_alt_text(alt_text, config.Config.listerine_alt_text_fr)
-                elif text==config.Config.jbaby_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.jbaby_alt_text_fr)
-                elif alt==config.Config.bandaid_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.bandaid_alt_text_fr)
-                elif text==config.Config.benadryl_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.benadryl_alt_text_fr)
-                elif text==config.Config.motrin_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.motrin_alt_text_fr)
-                elif text==config.Config.cnc_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.cnc_alt_text_fr)
-                elif text==config.Config.imodium_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.imodium_alt_text_fr)
-                elif alt==config.Config.nicoderm_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.nicoderm_alt_text_fr)
-                elif text==config.Config.penaten_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.penaten_alt_text_fr)
-                elif alt==config.Config.pepcid_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.pepcid_alt_text_fr)
-                elif text==config.Config.rogaine_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.rogaine_alt_text_fr)
-                elif text==config.Config.visine_site_name:
-                    action_obj.validate_alt_text(alt_text, config.Config.visine_alt_text_fr)
-                elif alt==config.Config.sudafed_site_name:
-                     action_obj.validate_alt_text(alt_text, config.Config.sudafed_alt_text_fr)
-                elif alt==config.Config.neutrogena_site_name_fr:
-                     action_obj.validate_alt_text(alt_text, config.Config.neutrogena_alt_text_fr)
+            brand_map = {
+                "EN": {
+                    "text": {
+                        config.Config.tylenol_site_name: config.Config.tylenol_alt_text,
+                        config.Config.aveeno_site_name: config.Config.aveeno_alt_text,
+                        config.Config.nicorette_site_name: config.Config.nicorette_alt_text,
+                        config.Config.benylin_site_name: config.Config.benylin_alt_text,
+                        config.Config.reactine_site_name: config.Config.reactine_alt_text,
+                        config.Config.jbaby_site_name: config.Config.jbaby_alt_text,
+                        config.Config.benadryl_site_name: config.Config.benadryl_alt_text,
+                        config.Config.motrin_site_name: config.Config.motrin_alt_text,
+                        config.Config.cnc_site_name: config.Config.cnc_alt_text,
+                        config.Config.imodium_site_name: config.Config.imodium_alt_text,
+                        config.Config.penaten_site_name: config.Config.penaten_alt_text,
+                        config.Config.rogaine_site_name: config.Config.rogaine_alt_text,
+                        config.Config.visine_site_name: config.Config.visine_alt_text
+                    },
+                    "alt": {
+                        config.Config.zarbees_site_name: config.Config.zarbees_alt_text,
+                        config.Config.polysporin_site_name: config.Config.polysporin_alt_text,
+                        config.Config.listerine_site_name: config.Config.listerine_alt_text,
+                        config.Config.bandaid_site_name: config.Config.bandaid_alt_text,
+                        config.Config.nicoderm_site_name: config.Config.nicoderm_alt_text,
+                        config.Config.pepcid_site_name: config.Config.pepcid_alt_text,
+                        config.Config.sudafed_site_name: config.Config.sudafed_alt_text,
+                        config.Config.neutrogena_site_name: config.Config.neutrogena_alt_text
+                    }
+                },
+                "FR": {
+                    "text": {
+                        config.Config.tylenol_site_name: config.Config.tylenol_alt_text_fr,
+                        config.Config.aveeno_site_name: config.Config.aveeno_alt_text_fr,
+                        config.Config.nicorette_site_name: config.Config.nicorette_alt_text_fr,
+                        config.Config.benylin_site_name: config.Config.benylin_alt_text_fr,
+                        config.Config.reactine_site_name: config.Config.reactine_alt_text_fr,
+                        config.Config.jbaby_site_name: config.Config.jbaby_alt_text_fr,
+                        config.Config.benadryl_site_name: config.Config.benadryl_alt_text_fr,
+                        config.Config.motrin_site_name: config.Config.motrin_alt_text_fr,
+                        config.Config.cnc_site_name: config.Config.cnc_alt_text_fr,
+                        config.Config.imodium_site_name: config.Config.imodium_alt_text_fr,
+                        config.Config.penaten_site_name: config.Config.penaten_alt_text_fr,
+                        config.Config.rogaine_site_name: config.Config.rogaine_alt_text_fr,
+                        config.Config.visine_site_name: config.Config.visine_alt_text_fr
+                    },
+                    "alt": {
+                        config.Config.zarbees_site_name_fr: config.Config.zarbees_alt_text_fr,
+                        config.Config.polysporin_site_name_fr: config.Config.polysporin_alt_text_fr,
+                        config.Config.listerine_site_name_fr: config.Config.listerine_alt_text_fr,
+                        config.Config.bandaid_site_name: config.Config.bandaid_alt_text_fr,
+                        config.Config.nicoderm_site_name: config.Config.nicoderm_alt_text_fr,
+                        config.Config.pepcid_site_name: config.Config.pepcid_alt_text_fr,
+                        config.Config.sudafed_site_name: config.Config.sudafed_alt_text_fr,
+                        config.Config.neutrogena_site_name_fr: config.Config.neutrogena_alt_text_fr
+                    }
+                }
+            }
+            if text in brand_map[site_name]["text"]:
+                expected_alt = brand_map[site_name]["text"][text]
+            elif alt in brand_map[site_name]["alt"]:
+                expected_alt = brand_map[site_name]["alt"][alt]
+            else:
+                print(f"Unknown brand: {text or alt}")
+                return
+            action_obj.validate_alt_text(alt_text, expected_alt)
         except TimeoutError:
             print("Timeout Error")
 
@@ -351,14 +281,14 @@ class Webform:
             for brand in brands:
                 if site_name == "EN":
                     expected_alt = f"{brand} logo"
-                    logo_selector = f"img[class*='vds-image'][alt*='{expected_alt}']"
+                    logo_selector = f'img[class*="vds-image"][alt*="{expected_alt}"]'
                     logo_element = self.page.locator(logo_selector)
                     actual_alt = logo_element.get_attribute('alt')
                     action_obj.validate_alt_text(actual_alt, expected_alt) 
 
                 elif site_name == "FR":
                     expected_alt = f"Logo {brand}"
-                    logo_selector = f"img[class*='vds-image'][alt*='{expected_alt}']"
+                    logo_selector = f'img[class*="vds-image"][alt*="{expected_alt}"]'
                     logo_element = self.page.locator(logo_selector)
                     actual_alt = logo_element.get_attribute('alt')
                     action_obj.validate_alt_text(actual_alt, expected_alt)                    
@@ -372,32 +302,27 @@ class Webform:
     def check_card_icon_alt_tag(self, site_name):
         try:
             action_obj = Action(self.page)
-            for i in range(1,5):
-                icon_element = self.page.locator(f"section > .vds-d_grid > div:nth-child(2) > div > div:nth-child({i}) img")
-                if site_name == "EN":            
-                    actual_alt = icon_element.get_attribute('alt')
-                    if i==1:
-                        action_obj.validate_alt_text(actual_alt, config.Config.price_icon)
-                    elif i==2:
-                        action_obj.validate_alt_text(actual_alt, config.Config.cash_icon)
-                    elif i==3:
-                        action_obj.validate_alt_text(actual_alt, config.Config.envelope_icon)
-                    elif i==4:
-                        action_obj.validate_alt_text(actual_alt, config.Config.innovation_icon)
-
-                elif site_name == "FR":
-                    actual_alt = icon_element.get_attribute('alt')
-                    if i==1:
-                        action_obj.validate_alt_text(actual_alt, config.Config.price_icon_fr)
-                    elif i==2:
-                        action_obj.validate_alt_text(actual_alt, config.Config.cash_icon_fr)
-                    elif i==3:
-                        action_obj.validate_alt_text(actual_alt, config.Config.envelope_icon_fr)
-                    elif i==4:
-                        action_obj.validate_alt_text(actual_alt, config.Config.innovation_icon_fr)              
+            icon_map = {
+                "EN": [
+                    config.Config.price_icon,
+                    config.Config.cash_icon,
+                    config.Config.envelope_icon,
+                    config.Config.innovation_icon
+                ],
+                "FR": [
+                    config.Config.price_icon_fr,
+                    config.Config.cash_icon_fr,
+                    config.Config.envelope_icon_fr,
+                    config.Config.innovation_icon_fr
+                ]
+            }
+            for i in range(1, 5):
+                icon_element = self.page.locator(f"{self.card_alt} div:nth-child({i}) img")
+                actual_alt = icon_element.get_attribute('alt')
+                expected_alt = icon_map[site_name][i-1]
+                action_obj.validate_alt_text(actual_alt, expected_alt)              
         except TimeoutError:
              print("Timeout Error")
-
 
     """
     Function to verify href lang
@@ -527,9 +452,9 @@ class Webform:
                 error_verify_email = self.verify_email_error_message_invalid_2
                 action_obj.compare_text(error_verify_email, verify_email_error, "error")
 
-                #birthdate
-                birthdate_error = self.birthdate_error_invalid
-                action_obj.compare_text(birthdate_error, checkbox_birthdate_error, "error")
+                # #birthdate
+                # birthdate_error = self.birthdate_error_invalid
+                # action_obj.compare_text(birthdate_error, checkbox_birthdate_error, "error")
 
                 # #recaptcha
                 # error_recaptcha = self.recaptcha_error_message
@@ -542,62 +467,88 @@ class Webform:
     """
     Function to verify links on webform
     """
-    def verify_links(self):
+    def verify_links(self, site, env):
         action_obj = Action(self.page)
-            
+        #logo tiles
+        logo_selector = self.logo_tiles
+        if site == "EN" and env == "prod":
+            action_obj.validate_logo_redirections(logo_selector, config.Config.URLs_en)
+        elif site == "EN" and env == "stage":
+            action_obj.validate_logo_redirections(logo_selector, config.Config.URLs_en_stage)
+        elif site == "FR" and env == "prod":
+            action_obj.validate_logo_redirections(logo_selector, config.Config.URLs_fr)
+        elif site == "FR" and env == "stage":
+            action_obj.validate_logo_redirections(logo_selector, config.Config.URLs_fr_stage)
+
         #privacy policy
         privacy_policy_en = self.privacy_policy_data_link
         href_link = privacy_policy_en.get_attribute('href')
         privacy_policy_en.click()
         action_obj.new_tab_validate_url( href_link)
         self.page.wait_for_load_state()
-        #self.page.go_back()
-
-        # if sitename == 'EN':
-        #     #terms and conditions
-        #     terms_link_en = self.terms_link
-        #     href_link = terms_link_en.get_attribute('href')
-        #     action_obj.new_tab_validate_url(terms_link_en, href_link)
-
-        # if sitename == 'FR':
-        #     #terms and conditions
-        #     terms_link_fr = self.terms_link_fr
-        #     href_link = terms_link_fr.get_attribute('href')
-        #     action_obj.new_tab_validate_url(terms_link_fr, href_link)
+    """
+    Function to verify webform card content
+    """
+    def verify_webform_card_content(self, site_name):
+        try:
+            action_obj = Action(self.page)
+            content_map = {
+                "EN": [
+                    (config.Config.form_content_thirteen, config.Config.form_content_fifteen),
+                    (config.Config.form_content_sixteen, config.Config.form_content_seventeen),
+                    (config.Config.form_content_eighteen, config.Config.form_content_nineteen),
+                    (config.Config.form_content_twenty, config.Config.form_content_twentyone)
+                ],
+                "FR": [
+                    (config.Config.form_content_thirteen_fr, config.Config.form_content_fifteen_fr),
+                    (config.Config.form_content_sixteen_fr, config.Config.form_content_seventeen_fr),
+                    (config.Config.form_content_eighteen_fr, config.Config.form_content_nineteen_fr),
+                    (config.Config.form_content_twenty_fr, config.Config.form_content_twentyone_fr)
+                ]
+            }
+            for i in range(1, 5):
+                title = self.page.locator(f"{self.card_alt} div:nth-child({i}) > div:nth-child(2) > div > div > h4")
+                content = self.page.locator(f"{self.card_alt} div:nth-child({i}) > div:nth-child(2) > div > div > div")
+                title_text, content_text = content_map[site_name][i-1]
+                action_obj.compare_text(title, title_text, "")
+                action_obj.compare_text(content, content_text, "")            
+        except TimeoutError:
+             print("Timeout Error")
 
     """
     Function to verify webform content
     """
-    def verify_webform_content(self, site, content_one, content_two, content_three, content_four, content_five, content_six, content_seven, content_eight):
+    def verify_webform_content(self, site):
         try:
             action_obj = Action(self.page)
-            if site == "EN":
-                    main_title = self.content_one_1
-                    action_obj.validate_h1_title(content_one)
-                    action_obj.compare_text(main_title, content_one,"")
-
-                    content_two_text = self.content_two
-                    action_obj.compare_text(content_two_text, content_two,"")
-
-                    content_three_text = self.content_three
-                    action_obj.compare_text(content_three_text, content_three,"")
-
-                    content_four_text = self.content_four
-                    action_obj.compare_text(content_four_text, content_four,"")
-
-                    content_five_text = self.content_five
-                    action_obj.compare_text(content_five_text, content_five,"")
-
-                    content_six_text = self.content_six
-                    action_obj.compare_text(content_six_text, content_six,"")
-
-                    content_seven_text = self.content_seven
-                    action_obj.compare_text(content_seven_text, content_seven,"")
-
-                    content_eight_text = self.content_eight
-                    action_obj.compare_text(content_eight_text, content_eight,"")
+            lang_suffix = "_fr" if site == "FR" else ""
+            content_map = {
+                "content_one_1": f"form_content_one{lang_suffix}",
+                "content_two": f"form_content_two{lang_suffix}",
+                "content_three": f"form_content_three{lang_suffix}",
+                "content_four": f"form_content_four{lang_suffix}",
+                "content_five": f"form_content_five{lang_suffix}",
+                "content_six": f"form_content_six{lang_suffix}",
+                "content_seven": f"form_content_seven{lang_suffix}",
+                "content_eight": f"form_content_eight{lang_suffix}",
+                "content_nine": f"form_content_nine{lang_suffix}",
+                "submit": f"form_content_ten{lang_suffix}",
+                "content_eleven": f"form_content_eleven{lang_suffix}",
+                "content_twelve": f"form_content_twelve{lang_suffix}",
+                "content_twentytwo": f"form_content_twentytwo{lang_suffix}"
+            }
+            # Validate H1 title
+            action_obj.validate_h1_title(getattr(config.Config, f"form_content_one{lang_suffix}"))
+            # Compare text for each content element
+            for attr, config_attr in content_map.items():
+                content_text = getattr(self, attr)
+                expected_text = getattr(config.Config, config_attr)
+                action_obj.compare_text(content_text, expected_text, "")
+            # Uncomment these lines if you want to check for bold text
+            # action_obj.is_text_bold(self.content_one, self.content_one_1)
+            # action_obj.is_text_bold(self.content_nine, self.content_nine)
         except TimeoutError:
-            print(f"Timeout Error")   
+            print("Timeout Error")   
 
     """
     Function to verify thank you page content
@@ -656,9 +607,9 @@ class Webform:
 
         action_obj.validate_placeholder(self.verify_email, text_verifyemail)
 
-        # action_obj.validate_placeholder(self.birthdate, text_date)
+        action_obj.compare_text(self.birthdate, text_date, "")
 
-        # action_obj.validate_placeholder(self.month, text_month)
+        action_obj.compare_text(self.month, text_month, "")
 
     """
     Function to verify "recaptcha" error text

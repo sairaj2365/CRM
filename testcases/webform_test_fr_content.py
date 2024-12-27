@@ -10,32 +10,64 @@ testdata = "./test_data/test_webform.csv"
 testdata_form = "./test_data/form_data.csv"
 
 @pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_prod)
-def test_webform_content_fr(url, browser : Browser) -> None:
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+def test_webform_content(url, browser : Browser) -> None:
     context = browser.new_context(
-        #record_video_dir= "video/"
+        #record_video_dir= "video/content/english/CC"
     )
     page = context.new_page()
     page.set_default_timeout(200000)
     page.goto(url)
-    data = reader.read_test_data(testdata, Action.get_current_test_name())
-    content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four = data[9], data[10], data[11], data[12], data[13], data[14], data[15]
     webform_obj = Webform(page)
-    webform_obj.verify_webform_content("FR", content_one, content_two, checkbox_content, privacy_content_one, privacy_content_two, privacy_content_three, privacy_content_four)
+    action_obj = Action(page)
+    action_obj.closeCookiePopup()
+    webform_obj.verify_webform_content("FR")
     page.close()
 
 @pytest.mark.webform
-@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr_prod)
-def test_dob_text_fr(url, browser : Browser) -> None:
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+def test_webform_card_content(url, browser : Browser) -> None:
     context = browser.new_context(
-        #record_video_dir= "video/"
+        #record_video_dir= "video/content/english/CC"
     )
     page = context.new_page()
     page.set_default_timeout(200000)
     page.goto(url)
-    data = reader.read_test_data(testdata, Action.get_current_test_name())
-    dob_content = data[18]
     webform_obj = Webform(page)
-    webform_obj.verify_dob_content(dob_content, "FR")
+    action_obj = Action(page)
+    action_obj.closeCookiePopup()
+    webform_obj.verify_webform_card_content("FR")
+    page.close()
+
+
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+def test_webform_required_text(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/CC"
+    )
+    page = context.new_page()
+    page.set_default_timeout(200000)
+    page.goto(url)
+    webform_obj = Webform(page)
+    action_obj = Action(page)
+    action_obj.closeCookiePopup()
+    webform_obj.verify_dob_and_required_field_content(config.Config.first_name_fr, config.Config.email_fr, config.Config.verify_email_fr, config.Config.birthDate_fr)
+    page.close()
+
+
+@pytest.mark.webform
+@pytest.mark.parametrize("url", config.Config.URLs_to_test_fr)
+def test_placeholder_text(url, browser : Browser) -> None:
+    context = browser.new_context(
+        #record_video_dir= "video/content/english/CC"
+    )
+    page = context.new_page()
+    page.set_default_timeout(200000)
+    page.goto(url)
+    webform_obj = Webform(page)
+    action_obj = Action(page)
+    action_obj.closeCookiePopup()
+    webform_obj.verify_placeholder_text(config.Config.first_name_placeholder_fr, config.Config.email_placeholder_fr, config.Config.verify_email_placeholder_fr, config.Config.month_fr, config.Config.day_fr)
     page.close()
 

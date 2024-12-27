@@ -293,27 +293,27 @@ class Config:
 
     URLs_to_test_en_home = [
         # "https://jjuser:JJpassw0rd2024!@con-na-consumer-ca-en.jnjnab13d6-test.jjc-devops.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-aveeno-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-nicorette-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-tylenol-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-zarbees-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-benylin-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-aveeno-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-nicorette-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-tylenol-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-zarbees-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-benylin-ca.staging.dxp.kenvue.com/",
          "https://kenvueuser:KenvuePassword2024!@na-polysporin-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-reactine-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-listerine-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-johnsonsbaby-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-band-aid-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-benadryl-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-motrin-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-cleanandclear-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-imodium-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-nicoderm-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-penaten-ca.staging.dxp.kenvue.com/",
-        #  "https://kenvueuser:KenvuePassword2024!@na-pepcid-ca.staging.dxp.kenvue.com/",
-        #  "https://kenvueuser:KenvuePassword2024!@na-regaine-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/",
-        #  "https://kenvueuser:KenvuePassword2024!@na-sudafed-ca.staging.dxp.kenvue.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-neutrogena-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-reactine-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-listerine-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-johnsonsbaby-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-band-aid-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-benadryl-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-motrin-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-cleanandclear-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-imodium-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-nicoderm-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-penaten-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-pepcid-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-regaine-ca.staging.dxp.kenvue.com/",
+         "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/",
+          "https://kenvueuser:KenvuePassword2024!@na-sudafed-ca.staging.dxp.kenvue.com/",
+          "https://kenvueuser:KenvuePassword2024!@na-neutrogena-ca.staging.dxp.kenvue.com/",
 
         # "https://jjuser:JJJJpassword2022!@con-na-consumer-ca-en.jnjnab13d6-test.jjc-devops.com/explore-our-brands",
         # "https://jjuser:JJJJpassword2022!@con-na-aveeno2-ca-en.jnjnab11d6-test.jjc-devops.com/404",
@@ -357,27 +357,27 @@ class Config:
 
     URLs_to_test_fr_home = [
         #"https://jjuser:JJpassw0rd2024!@con-na-consumer-ca-fr.jnjnab13d6-test.jjc-devops.com/",
-        # "https://kenvueuser:KenvuePassword2024!@na-aveeno-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-nicorette-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-tylenol-ca.staging.dxp.kenvue.com/fr",
-        # # "https://kenvueuser:KenvuePassword2024!@na-zarbees-ca.staging.dxp.kenvue.com/fr",
-        #  "https://kenvueuser:KenvuePassword2024!@na-benylin-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-aveeno-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-nicorette-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-tylenol-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-zarbees-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-benylin-ca.staging.dxp.kenvue.com/fr",
          "https://kenvueuser:KenvuePassword2024!@na-polysporin-ca.staging.dxp.kenvue.com/fr",
-        # # "https://kenvueuser:KenvuePassword2024!@na-reactine-ca.staging.dxp.kenvue.com/fr",
-        # # "https://kenvueuser:KenvuePassword2024!@na-listerine-ca.staging.dxp.kenvue.com/fr",
-        # # "https://kenvueuser:KenvuePassword2024!@na-johnsonsbaby-ca.staging.dxp.kenvue.com/fr",
-        # # "https://kenvueuser:KenvuePassword2024!@na-band-aid-ca.staging.dxp.kenvue.com/fr",
-        #  "https://kenvueuser:KenvuePassword2024!@na-benadryl-ca.staging.dxp.kenvue.com/fr",
-        # # "https://kenvueuser:KenvuePassword2024!@na-motrin-ca.staging.dxp.kenvue.com/fr",
-        #  "https://kenvueuser:KenvuePassword2024!@na-cleanandclear-ca.staging.dxp.kenvue.com/fr",
-        #  "https://kenvueuser:KenvuePassword2024!@na-imodium-ca.staging.dxp.kenvue.com/fr",
-        #  "https://kenvueuser:KenvuePassword2024!@na-nicoderm-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-penaten-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-pepcid-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-regaine-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-sudafed-ca.staging.dxp.kenvue.com/fr",
-        # "https://kenvueuser:KenvuePassword2024!@na-neutrogena-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-reactine-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-listerine-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-johnsonsbaby-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-band-aid-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-benadryl-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-motrin-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-cleanandclear-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-imodium-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-nicoderm-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-penaten-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-pepcid-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-regaine-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-sudafed-ca.staging.dxp.kenvue.com/fr",
+         "https://kenvueuser:KenvuePassword2024!@na-neutrogena-ca.staging.dxp.kenvue.com/fr",
 
         # "https://jjuser:JJJJpassword2022!@con-na-consumer-ca-fr.jnjnab13d6-test.jjc-devops.com/decouvrez-nos-marques",
         # "https://jjuser:JJJJpassword2022!@con-na-aveeno2-ca-fr.jnjnab11d6-test.jjc-devops.com/404",
@@ -631,10 +631,10 @@ class Config:
     zarbees_brand_name = "ZARBEES®"
 
     brands = ["Aveeno", "Band-Aid", "Benadryl", "Benylin", "Clean & Clear",
-        "Imodium", "Johnson's", "Listerine", "Motrin", "Neutrogena",
+        "Imodium", "Johnson’s", "Listerine", "Motrin", "Neutrogena",
         "Nicoderm", "Nicorette", "Penaten", "Pepcid", "Polysporin",
         "Reactine", "Rogaine", "Sudafed", "Tylenol", "Visine",
-        "Zarbee's"]
+        "Zarbee’s"]
     
     price_icon = "Price tag icon"
     cash_icon = "Cash icon"
@@ -646,19 +646,54 @@ class Config:
     envelope_icon_fr = "Icône d'enveloppe"
     innovation_icon_fr = "Icône d'innovation"
 
-    form_content_one = "Sign me up to Care Club Canada"
-    form_content_two = "to receive newsletters, special offers and other promotional emails across the Kenvue brands."
-    form_content_three = "Join Care Club"
-    form_content_four = "YOUR FIRST OFFER:$5 off my next purchase of eligible Kenvue products at a local retailer**."
-    form_content_five = "You may opt-out of receiving emails from us at any time by following the unsubscribe instructions provided in any email message sent to you. Johnson & Johnson Inc. (“Kenvue”), 88 McNabb Street, Markham, ON L3R 5L2, 1-800-265-7323."
-    form_content_six = "Your personal information will be governed by the Privacy Policy and will be used by Kenvue, and its third party service providers inside and outside QC & Canada. You consent to the transfer of your data to jurisdictions outside your province and/or country of residence, which may have different data protection rules governing your personal information."
-    form_content_seven = "**CDN residents only. One offer per email sign up. Signing up with multiple email addresses will result in removal from the program. Coupons expire 2 weeks from date of printing.  Offer not valid on select products in QC. Please see coupon for full details."
-    form_content_eight = "By clicking “Sign me up!”, you agree to receive newsletters, special offers and other promotional emails across the Kenvue brands."
+    form_content_one = "Join Care Club Canada"
+    form_content_two = "YOUR FIRST OFFER: $5 off my next purchase of eligible Kenvue products at a local retailer**."
+    form_content_three = "Sign me up to Care Club Canada"
+    form_content_four = "to receive newsletters, special offers and other promotional emails across the Kenvue brands."
+    form_content_five = "YOUR FIRST OFFER: $5 off my next purchase of eligible Kenvue products at a local retailer**."
+    form_content_six = "You may opt-out of receiving emails from us at any time by following the unsubscribe instructions provided in any email message sent to you. Kenvue Canada Inc., 88 McNabb Street, Markham, ON L3R 5L2, 1-800-265-7323."
+    form_content_seven = "Your personal information will be governed by the Privacy Policy and will be used by Kenvue, and its third party service providers inside and outside QC & Canada. You consent to the transfer of your data to jurisdictions outside your province and/or country of residence, which may have different data protection rules governing your personal information."
+    form_content_eight = "**CDN residents only. One offer per email sign up. Signing up with multiple email addresses will result in removal from the program. Coupons expire 2 weeks from date of printing. Offer not valid on select products in QC. Please see coupon for full details."
+    form_content_nine = "By clicking “Sign me up!”, you agree to receive newsletters, special offers and other promotional emails across the Kenvue brands."
+    form_content_ten = "Sign me up!"
+    form_content_eleven = "Care Club Offers and Rewards"
+    form_content_twelve = "What do you get when you join Care Club?"
+    form_content_thirteen = "$5 coupon"
+    form_content_fifteen = "Sign up with this form to receive a $5 off coupon for your next in-store purchase at participating retailers on eligible Kenvue products**."
+    form_content_sixteen = "Exclusive Offers"
+    form_content_seventeen = "Enjoy exclusive offers sent directly to your inbox when you sign up to Care Club!"
+    form_content_eighteen = "Tips for Healthy Living"
+    form_content_nineteen = "Get email content for healthy living."
+    form_content_twenty = "Access to New Products"
+    form_content_twentyone = "Be among the first to know about new products releases!"
+    form_content_twentytwo = "Participating Brands:"
+
+    form_content_one_fr = "Inscrivez-vous au Club Bons soins Canada"
+    form_content_two_fr = "Un rabais de 5 $ sur votre prochain achat de produits Kenvue admissibles chez votre détaillant**."
+    form_content_three_fr = "Je m’inscris au Club Bons soins Canada"
+    form_content_four_fr = "pour recevoir des bulletins, des offres spéciales et d’autres courriels promotionnels des marques de Kenvue."
+    form_content_five_fr = "Un rabais de 5 $ sur votre prochain achat de produits Kenvue admissibles chez votre détaillant**."
+    form_content_six_fr = "Vous pouvez refuser à tout moment de recevoir des courriels de notre part en suivant les instructions de désabonnement fournies dans tout message électronique qui vous est envoyé. Kenvue Canada Inc., 88 McNabb Street, Markham, ON L3R 5L2, 1 800 265- 7323."
+    form_content_seven_fr = "Vos renseignements personnels seront régis par notre Politique de confidentialité et seront utilisés par Kenvue et ses tiers fournisseurs de services au Québec, au Canada et à l’étranger. Vous acceptez que vos données soient transférées vers des juridictions situées en dehors de votre province et/ou de votre pays de résidence, où les règles qui régissent la protection de vos renseignements personnels peuvent différer."
+    form_content_eight_fr = "**Résidents du Canada seulement. Une seule offre par inscription par courriel. L’inscription avec plusieurs adresses courriel entraînera la suspension du programme. Le coupon expire 2 semaines après la date d'impression.  Cette offre n'est pas valable sur certains produits au Québec. Détails complets sur le coupon."
+    form_content_nine_fr = "En cliquant sur « S'inscrire! », vous acceptez de recevoir des bulletins d'information, des offres spéciales et d'autres courriels promotionnels des marques Kenvue."
+    form_content_ten_fr = "S'inscrire!"
+    form_content_eleven_fr = "Offres et récompenses du Club Bons soins"
+    form_content_twelve_fr = "Qu’obtenez-vous en vous inscrivant au Club Bons soins?"
+    form_content_thirteen_fr = "Coupon de 5 $"
+    form_content_fifteen_fr = "Inscrivez-vous à l’aide de ce formulaire pour recevoir un coupon de 5 $ valable sur votre prochain achat en magasin de produits Kenvue admissibles chez les détaillants participants**."
+    form_content_sixteen_fr = "Offres exclusives"
+    form_content_seventeen_fr = "Inscrivez-vous au Club Bons soins pour profiter d’offres exclusives envoyées directement dans votre boîte de réception!"
+    form_content_eighteen_fr = "Conseils pour vivre sainement"
+    form_content_nineteen_fr = "Recevez des courriels axés sur un mode de vie sain."
+    form_content_twenty_fr = "L’accès à de nouveaux produits"
+    form_content_twentyone_fr = "Soyez parmi les premiers à être informés de l'arrivée de nouveaux produits!"
+    form_content_twentytwo_fr = "Marques participantes :"
 
     first_name = "First Name (required)"
     email = "Email (required)"
     verify_email = "Verify Email (required)"
-    birthDate = "Birthdate (Optional)"
+    birthDate = "Birthdate (DD/MM) (optional)"
     first_name_placeholder = "First Name"
     email_placeholder = "Email"
     verify_email_placeholder = "Verify Email Address"
@@ -668,7 +703,7 @@ class Config:
     first_name_fr = "Prénom (requis)"
     email_fr = "Courriel (requis)"
     verify_email_fr = "Vérifier l'adresse courriel (requis)"
-    birthDate_fr = "Date de naissance (Facultative)"
+    birthDate_fr = "Date de naissance (JJ/MM) (facultative)"
     first_name_placeholder_fr = "Prénom"
     email_placeholder_fr = "Courriel"
     verify_email_placeholder_fr = "Vérifier l'adresse courriel"
@@ -676,3 +711,99 @@ class Config:
     day_fr = "Jour"
 
     meta_fr = "Inscrivez-vous au Club Bons soins pour recevoir des offres et de l’information exclusives par courriel, et avoir accès aux nouveaux produits"
+
+    URLs_fr = [
+        "https://www.aveeno.ca/fr",
+        "https://www.band-aid.ca/fr",
+        "https://www.benadryl.ca/fr",
+        "https://www.benylin.ca/fr",
+        "https://www.cleanandclear.ca/fr",
+        "https://www.imodium.ca/fr",
+        "https://www.johnsonsbaby.ca/fr",
+        "https://www.listerine.ca/fr",
+        "https://www.motrin.ca/fr",
+        "https://www.neutrogena.ca/fr",
+        "https://www.nicoderm.ca/fr",
+        "https://www.nicorette.ca/fr",
+        "https://www.penaten.ca/fr",
+        "https://www.pepcid.ca/fr",
+        "https://www.polysporin.ca/fr",
+        "https://www.reactine.ca/fr",
+        "https://www.rogaine.ca/fr",
+        "https://www.sudafed.ca/fr",
+        "https://www.tylenol.ca/fr",
+        "https://www.visine.ca/fr",
+        "https://www.zarbees.ca/fr",
+    ]
+
+    URLs_en = [
+        "https://www.aveeno.ca",
+        "https://www.band-aid.ca",
+        "https://www.benadryl.ca",
+        "https://www.benylin.ca",
+        "https://www.cleanandclear.ca",
+        "https://www.imodium.ca",
+        "https://www.johnsonsbaby.ca",
+        "https://www.listerine.ca",
+        "https://www.motrin.ca",
+        "https://www.neutrogena.ca",
+        "https://www.nicoderm.ca",
+        "https://www.nicorette.ca",
+        "https://www.penaten.ca",
+        "https://www.pepcid.ca",
+        "https://www.polysporin.ca",
+        "https://www.reactine.ca",
+        "https://www.rogaine.ca",
+        "https://www.sudafed.ca",
+        "https://www.tylenol.ca",
+        "https://www.visine.ca",
+        "https://www.zarbees.ca",
+    ]
+
+    URLs_fr_stage = [
+        "https://kenvueuser:KenvuePassword2024!@na-aveeno-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-band-aid-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-benadryl-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-benylin-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-cleanandclear-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-imodium-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-johnsonsbaby-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-listerine-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-motrin-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-neutrogena-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-nicoderm-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-nicorette-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-penaten-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-pepcid-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-polysporin-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-reactine-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-regaine-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-sudafed-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-tylenol-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/fr",
+        "https://kenvueuser:KenvuePassword2024!@na-zarbees-ca.staging.dxp.kenvue.com/fr",
+    ]
+
+    URLs_en_stage = [
+        "https://kenvueuser:KenvuePassword2024!@na-aveeno-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-band-aid-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-benadryl-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-benylin-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-cleanandclear-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-imodium-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-johnsonsbaby-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-listerine-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-motrin-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-neutrogena-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-nicoderm-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-nicorette-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-penaten-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-pepcid-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-polysporin-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-reactine-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-regaine-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-sudafed-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-tylenol-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-visine-ca.staging.dxp.kenvue.com/",
+        "https://kenvueuser:KenvuePassword2024!@na-zarbees-ca.staging.dxp.kenvue.com/",     
+    ]

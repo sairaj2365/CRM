@@ -1,6 +1,7 @@
 import config
 import inspect
 from playwright.sync_api import Playwright, sync_playwright, Page, Browser, expect
+from urllib.parse import urlparse
 
 
 class Action:
@@ -212,6 +213,46 @@ class Action:
             return True
         except Exception:
             return False
+        
+    """
+    Function to validate bold text
+    """
+    def is_text_bold(self, content, element):
+        font_weight = element.evaluate("el => window.getComputedStyle(el).getPropertyValue('font-weight')")
+        font = int(font_weight)
+        if font >= 700:
+            assert True
+            print(f"Text is bold: {content}") 
+        else:
+            assert False, print(f"Text is not bold: {content}")
+
+    def compare_urls(self, actual_url, expected_url):
+        actual_parsed = urlparse(actual_url)
+        expected_parsed = urlparse(expected_url)
+        actual_base = f"{actual_parsed.scheme}://{actual_parsed.netloc}"
+        expected_base = f"{expected_parsed.scheme}://{expected_parsed.netloc}" 
+        return actual_base == expected_base
+    
+    """
+    Function to validate logo redirections
+    """
+    def validate_logo_redirections(self, logo_selector, logo_urls):
+        logos = self.page.query_selector_all(logo_selector)
+        for index, (logo, expected_url) in enumerate(zip(logos, logo_urls), 1):
+            logo.wait_for_element_state("visible", timeout=5000)
+            with self.page.context.expect_page() as new_page_info:
+                logo.click()
+            new_page = new_page_info.value
+            new_page.wait_for_load_state('networkidle', timeout=80000)
+            actual_url = new_page.url
+            if self.compare_urls(actual_url, expected_url):
+                assert True 
+                print(f"PASS: Redirected to '{actual_url}' as expected '{expected_url}'")
+            else:
+                assert False, print(f"FAIL: Redirected to '{actual_url}', expected '{expected_url}")
+            new_page.close()
+            self.page.bring_to_front()
+            
 
   
             
